@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  angular:
+    build:
+      context: angular
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./..:/app
+    tty: true
