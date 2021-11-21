@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+
+.gym-theme-light {
+  $special-primary: mat.define-palette(mat.$amber-palette);
+  $special-accent: mat.define-palette(mat.$blue-palette);
+  $special-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $special-primary,
+        accent: $special-accent,
+      ),
+    )
+  );
+
+  @include mat.all-component-themes($special-theme);
+}

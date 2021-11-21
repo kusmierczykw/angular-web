@@ -1,0 +1,29 @@
+<form [formGroup]="formModel.form">
+  <mat-form-field class="w-100">
+    <input
+      matInput
+      placeholder="Nazwa użytkownika"
+      [formControlName]="SignInFormControl.FC_USERNAME"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <input
+      matInput
+      type="password"
+      placeholder="Hasło użytkownika"
+      [formControlName]="SignInFormControl.FC_PASSWORD"
+    />
+  </mat-form-field>
+
+  <div class="d-flex justify-content-end">
+    <button
+      mat-button
+      mat-flat-button
+      color="primary"
+      [disabled]="formModel.isValid$ | async"
+    >
+      Zaloguj
+    </button>
+  </div>
+</form>
