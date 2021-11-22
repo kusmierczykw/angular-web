@@ -21,7 +21,8 @@
       mat-button
       mat-flat-button
       color="primary"
-      [disabled]="formModel.isValid$ | async"
+      (click)="handleSubmitClick()"
+      [disabled]="submit$ | async"
     >
       Zaloguj
     </button>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Image } from '@core/image/image.enum';
+import { Image } from '@core/image/enums';
+import { SignInModel } from '@features/auth/sign-in/models';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -8,4 +9,6 @@ import { Image } from '@core/image/image.enum';
 })
 export class SignInPageComponent {
   public readonly SING_IN_IMAGE: Image = Image.UNDRAW_STABILITY_BALL;
+
+  public handleSubmitClick(model: SignInModel): void {}
 }
