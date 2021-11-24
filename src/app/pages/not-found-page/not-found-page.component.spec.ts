@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignInFormComponent } from './sign-in-form.component';
+import { NotFoundPageComponent } from './not-found-page.component';
 
-describe('SignInFormComponent', () => {
-  let component: SignInFormComponent;
-  let fixture: ComponentFixture<SignInFormComponent>;
+describe('NotFoundPageComponent', () => {
+  let component: NotFoundPageComponent;
+  let fixture: ComponentFixture<NotFoundPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SignInFormComponent],
+      declarations: [NotFoundPageComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignInFormComponent);
+    fixture = TestBed.createComponent(NotFoundPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

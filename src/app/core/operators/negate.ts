@@ -1,3 +1,5 @@
 import { map } from 'rxjs';
 
-export const negate = map((value: boolean) => !value);
+export function negate() {
+  return map((value: boolean) => !value);
+}

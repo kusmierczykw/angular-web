@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Image } from '@core/image/enums';
 import { SignInModel } from '@features/auth/sign-in/models';
+import { NavigationService } from '@core/routing/services';
+import { RoutePath } from '@core/routing/paths';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -10,5 +12,9 @@ import { SignInModel } from '@features/auth/sign-in/models';
 export class SignInPageComponent {
   public readonly SING_IN_IMAGE: Image = Image.UNDRAW_STABILITY_BALL;
 
-  public handleSubmitClick(model: SignInModel): void {}
+  public constructor(private readonly navigation: NavigationService) {}
+
+  public handleSubmitClick(model: SignInModel): void {
+    this.navigation.navigate(RoutePath.DASHBOARD);
+  }
 }

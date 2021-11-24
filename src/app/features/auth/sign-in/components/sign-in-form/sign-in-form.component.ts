@@ -39,6 +39,6 @@ export class SignInFormComponent implements OnInit {
   }
 
   private prepareSubmitPossibility(): void {
-    this.submit$ = this.formModel.isValid$.pipe(negate);
+    this.submit$ = this.formModel.isValid$.pipe(negate());
   }
 }
