@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoutePathFragment } from '@core/routing/paths';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'sign-in',
+    path: RoutePathFragment.SIGN_IN,
     loadChildren: () =>
       import('./pages/sign-in-page/sign-in-page.module').then(
         (m) => m.SignInPageModule,
