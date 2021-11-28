@@ -1,0 +1,41 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 100vh auto;
+  grid-template-areas:
+    'sidebar header'
+    'sidebar content'
+    'sidebar footer';
+
+  & > aside {
+    grid-area: sidebar;
+  }
+
+  & > header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+  }
+
+  & > footer {
+    grid-area: footer;
+  }
+
+  & > main {
+    grid-area: content;
+  }
+
+  &__sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  &__header {
+    position: sticky;
+    top: 0;
+  }
+
+  &__content {
+  }
+}

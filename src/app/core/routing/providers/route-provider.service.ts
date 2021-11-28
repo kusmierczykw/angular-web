@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { RoutePath, RoutePathFragment } from '@core/routing/paths';
+import { RouterLink } from '@core/routing/types/router-link';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouteProviderService {
-  private readonly routes: Record<RoutePath, string[]> = {
+  private readonly routes: Record<RoutePath, RouterLink> = {
     [RoutePath.SIGN_IN]: [
       RoutePathFragment.ROOT,
       RoutePathFragment.AUTH,
@@ -16,13 +17,14 @@ export class RouteProviderService {
       RoutePathFragment.ROOT,
       RoutePathFragment.DASHBOARD,
     ],
+    [RoutePath.ROOT]: [RoutePathFragment.ROOT],
     [RoutePath.NOT_FOUND]: [
       RoutePathFragment.ROOT,
       RoutePathFragment.NOT_FOUND,
     ],
   };
 
-  public getRoute(path: RoutePath, params?: Params): string[] {
+  public getRoute(path: RoutePath, params?: Params): RouterLink {
     let route = this.routes[path];
 
     if (params) {
@@ -32,7 +34,7 @@ export class RouteProviderService {
     return route;
   }
 
-  private replaceRouteVariables(route: string[], params: Params): string[] {
+  private replaceRouteVariables(route: string[], params: Params): RouterLink {
     const keys = Object.keys(params);
     const values: { [key: string]: string } = keys.reduce((object, key) => {
       const variable = this.variable(key);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Image } from '@core/image/enums';
+import { Image } from '@core/images/enums';
 import { SignInModel } from '@features/auth/sign-in/models';
 import { NavigationService } from '@core/routing/services';
 import { RoutePath } from '@core/routing/paths';

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ImageUrlProviderService } from '../providers/image-url-provider.service';
-import { Image } from '@core/image/enums';
+import { ImageUrlProviderService } from '@core/images/providers';
+import { Image } from '@core/images/enums';
 
 @Pipe({
   name: 'imageUrl',
