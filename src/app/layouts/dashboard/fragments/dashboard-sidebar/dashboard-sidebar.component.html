@@ -1,1 +1,7 @@
-<p>dashboard-sidebar-layout works!</p>
+<div class="dashboard-sidebar">
+  <div class="dashboard-sidebar__menu">
+    <ng-container *ngIf="menu$ | async as menu">
+      <app-menu [menu]="menu"></app-menu>
+    </ng-container>
+  </div>
+</div>

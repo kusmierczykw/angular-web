@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@forward 'buttons';
 
 .gym-theme-light {
   $special-primary: mat.define-palette(mat.$amber-palette);

@@ -1,0 +1,32 @@
+:host {
+  .dashboard-sidebar {
+    height: 100vh;
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    background-color: #ffc107;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+
+    &__menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto 0;
+
+      a {
+        padding: 1rem;
+        line-height: 1;
+        margin-top: 1rem;
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        i {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
