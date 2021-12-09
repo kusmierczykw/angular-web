@@ -17,6 +17,11 @@ export class RouteProviderService {
       RoutePathFragment.ROOT,
       RoutePathFragment.DASHBOARD,
     ],
+    [RoutePath.GYMS]: [
+      RoutePathFragment.ROOT,
+      RoutePathFragment.DASHBOARD,
+      RoutePathFragment.GYMS,
+    ],
     [RoutePath.ROOT]: [RoutePathFragment.ROOT],
     [RoutePath.NOT_FOUND]: [
       RoutePathFragment.ROOT,

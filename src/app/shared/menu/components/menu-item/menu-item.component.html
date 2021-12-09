@@ -1,0 +1,14 @@
+<a
+  mat-button
+  routerLinkActive="active"
+  [matTooltip]="item.tooltip!"
+  [routerLink]="item.routerLink"
+>
+  <ng-container *ngIf="item.icon">
+    <i [class]="item.icon | iconClass"></i>
+  </ng-container>
+
+  <ng-container *ngIf="item.label">
+    {{ item.label }}
+  </ng-container>
+</a>
