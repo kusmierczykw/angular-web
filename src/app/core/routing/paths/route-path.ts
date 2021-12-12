@@ -2,6 +2,8 @@ export enum RoutePath {
   SIGN_IN = 'SIGN_IN',
   DASHBOARD = 'DASHBOARD',
   GYMS = 'GYMS',
+  SETTINGS = 'SETTINGS',
   NOT_FOUND = 'NOT_FOUND',
   ROOT = 'ROOT',
+  EMPLOYEES = 'EMPLOYEES',
 }

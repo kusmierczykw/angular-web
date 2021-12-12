@@ -9,6 +9,8 @@ export class IconClassProviderService {
     [Icon.BELL]: 'bi bi-bell-fill',
     [Icon.BUILDING]: 'bi bi-building',
     [Icon.CREDIT_CARD]: 'bi-credit-card',
+    [Icon.USERS]: 'bi bi-people',
+    [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
   };
 
   public getClass(icon: Icon): string {

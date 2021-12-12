@@ -1,6 +1,8 @@
 <a
   mat-button
   routerLinkActive="active"
+  class="menu-item"
+  [ngClass]="styleClass"
   [matTooltip]="item.tooltip!"
   [routerLink]="item.routerLink"
 >

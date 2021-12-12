@@ -4,6 +4,7 @@ import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
 import { Icon } from '@core/icons/enums';
 import { RouteProviderService } from '@core/routing/providers';
 import { RoutePath } from '@core/routing/paths';
+import { DashboardHeaderMenuService } from '@layouts/dashboard/services/dashboard-header-menu.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,23 +14,48 @@ import { RoutePath } from '@core/routing/paths';
 export class DashboardComponent implements OnInit {
   public constructor(
     private readonly routeProvider: RouteProviderService,
+    private readonly menuBuilder: MenuItemBuilder,
     private readonly sidebarMenuService: DashboardSidebarMenuService,
+    private readonly headerMenuService: DashboardHeaderMenuService,
   ) {}
 
   public ngOnInit(): void {
-    const builder: MenuItemBuilder = new MenuItemBuilder();
+    this.registerHeaderMenu();
+    this.registerSidebarMenu();
+  }
 
+  public registerHeaderMenu(): void {
+    this.headerMenuService.register([
+      this.menuBuilder.setLabel('Wskazówki').setRouterLink([]).build(),
+      this.menuBuilder.setLabel('Pomoc').setRouterLink([]).build(),
+      this.menuBuilder.setLabel('Zgłoś błąd').setRouterLink([]).build(),
+    ]);
+  }
+
+  public registerSidebarMenu(): void {
     this.sidebarMenuService.register([
-      builder
+      this.menuBuilder
         .setIcon(Icon.BUILDING)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.GYMS))
         .setTooltip('Siłownie')
         .build(),
 
-      builder
+      this.menuBuilder
+        .setIcon(Icon.USERS)
+        .setRouterLink(this.routeProvider.getRoute(RoutePath.EMPLOYEES))
+        .setTooltip('Pracownicy')
+        .build(),
+
+      this.menuBuilder
         .setIcon(Icon.CREDIT_CARD)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.GYMS))
         .setTooltip('Karty lojalnościowe')
+        .build(),
+
+      this.menuBuilder
+        .setIcon(Icon.GEAR_WIDE_CONNECTED)
+        .setRouterLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
+        .setTooltip('Konfiguracja')
         .build(),
     ]);
   }

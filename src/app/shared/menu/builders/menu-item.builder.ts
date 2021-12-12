@@ -1,7 +1,11 @@
 import { MenuItemModel } from '@shared/menu/models';
 import { RouterLink } from '@core/routing/types/router-link';
 import { Icon } from '@core/icons/enums';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class MenuItemBuilder {
   public routerLink?: RouterLink;
   public label?: string;

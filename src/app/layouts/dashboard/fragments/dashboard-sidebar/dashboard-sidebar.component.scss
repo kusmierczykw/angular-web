@@ -1,11 +1,19 @@
+$sidebar-height: 100vh;
+$sidebar-padding: 1rem;
+$sidebar-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+$sidebar-background: #ffc107;
+
+$sidebar-menu-item-size: 4rem;
+$sidebar-menu-item-font-size: 1.25rem;
+
 :host {
   .dashboard-sidebar {
-    height: 100vh;
+    height: $sidebar-height;
+    padding: $sidebar-padding;
+    background-color: $sidebar-background;
+    box-shadow: $sidebar-shadow;
     display: flex;
-    padding: 1rem;
     flex-direction: column;
-    background-color: #ffc107;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
 
     &__menu {
       display: flex;
@@ -13,6 +21,14 @@
       justify-content: center;
       align-items: center;
       margin: auto 0;
+    }
+
+    ::ng-deep {
+      .dashboard-sidebar__menu-item {
+        font-size: $sidebar-menu-item-font-size;
+        width: $sidebar-menu-item-size;
+        height: $sidebar-menu-item-size;
+      }
     }
   }
 }
