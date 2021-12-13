@@ -10,4 +10,5 @@ import { StyleClass } from '@core/types/style-class';
 export class MenuItemComponent {
   @Input() public item!: MenuItemModel;
   @Input() public styleClass!: StyleClass;
+  @Input() public activeClass: string = 'active';
 }

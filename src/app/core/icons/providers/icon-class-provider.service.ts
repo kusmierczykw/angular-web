@@ -11,6 +11,8 @@ export class IconClassProviderService {
     [Icon.CREDIT_CARD]: 'bi-credit-card',
     [Icon.USERS]: 'bi bi-people',
     [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
+    [Icon.RECORD]: 'bi bi-record',
+    [Icon.RECORD_PARTIALLY_FILL]: 'bi bi-record2',
   };
 
   public getClass(icon: Icon): string {

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
+import {
+  DashboardHeaderMenuService,
+  DashboardSidebarMenuService,
+} from '@layouts/dashboard/services';
 import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
 import { Icon } from '@core/icons/enums';
 import { RouteProviderService } from '@core/routing/providers';
 import { RoutePath } from '@core/routing/paths';
-import { DashboardHeaderMenuService } from '@layouts/dashboard/services/dashboard-header-menu.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,9 +28,20 @@ export class DashboardComponent implements OnInit {
 
   public registerHeaderMenu(): void {
     this.headerMenuService.register([
-      this.menuBuilder.setLabel('Wskazówki').setRouterLink([]).build(),
-      this.menuBuilder.setLabel('Pomoc').setRouterLink([]).build(),
-      this.menuBuilder.setLabel('Zgłoś błąd').setRouterLink([]).build(),
+      this.menuBuilder //
+        .setLabel('Wskazówki')
+        .setRouterLink([])
+        .build(),
+
+      this.menuBuilder //
+        .setLabel('Pomoc')
+        .setRouterLink([])
+        .build(),
+
+      this.menuBuilder //
+        .setLabel('Zgłoś błąd')
+        .setRouterLink([])
+        .build(),
     ]);
   }
 

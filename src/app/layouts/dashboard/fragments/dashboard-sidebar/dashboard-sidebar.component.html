@@ -1,8 +1,15 @@
 <div class="dashboard-sidebar">
   <div class="dashboard-sidebar__menu">
     <ng-container *ngFor="let item of menu$ | async">
-      <app-menu-item styleClass="dashboard-sidebar__menu-item" [item]="item">
+      <app-menu-item
+        activeClass="dashboard-sidebar__menu-item--active"
+        styleClass="dashboard-sidebar__menu-item"
+        [item]="item">
       </app-menu-item>
     </ng-container>
+  </div>
+
+  <div class="dashboard-sidebar__toggle">
+    <app-dashboard-sidebar-toggle></app-dashboard-sidebar-toggle>
   </div>
 </div>

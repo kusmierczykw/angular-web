@@ -6,10 +6,14 @@ import {
   DashboardFooterComponent,
   DashboardHeaderComponent,
   DashboardSidebarComponent,
+  DashboardSidebarToggleComponent,
 } from '@layouts/dashboard/fragments';
 import { IconsModule } from '@core/icons/icons.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MenuModule } from '@shared/menu/menu.module';
+import { UserAvatarModule } from '@features/avatar/components/user-avatar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,7 @@ import { MenuModule } from '@shared/menu/menu.module';
     DashboardHeaderComponent,
     DashboardSidebarComponent,
     DashboardFooterComponent,
+    DashboardSidebarToggleComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +29,9 @@ import { MenuModule } from '@shared/menu/menu.module';
     IconsModule,
     MatButtonModule,
     MenuModule,
+    UserAvatarModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
 })
 export class DashboardModule {}

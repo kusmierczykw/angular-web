@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Icon } from '@core/icons/enums';
 import { MenuItemModel } from '@shared/menu/models';
 import { Observable } from 'rxjs';
-import { DashboardHeaderMenuService } from '@layouts/dashboard/services/dashboard-header-menu.service';
+import { DashboardHeaderMenuService } from '@layouts/dashboard/services';
 
 @Component({
   selector: 'app-dashboard-header',

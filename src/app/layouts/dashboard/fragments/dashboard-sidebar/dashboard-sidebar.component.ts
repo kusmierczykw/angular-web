@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Icon } from '@core/icons/enums';
-import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
+import { DashboardSidebarMenuService } from '@layouts/dashboard/services';
 import { Observable } from 'rxjs';
 import { MenuItemModel } from '@shared/menu/models';
 

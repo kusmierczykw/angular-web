@@ -1,11 +1,10 @@
 <a
   mat-button
-  routerLinkActive="active"
   class="menu-item"
+  [routerLinkActive]="activeClass"
   [ngClass]="styleClass"
   [matTooltip]="item.tooltip!"
-  [routerLink]="item.routerLink"
->
+  [routerLink]="item.routerLink">
   <ng-container *ngIf="item.icon">
     <i [class]="item.icon | iconClass"></i>
   </ng-container>

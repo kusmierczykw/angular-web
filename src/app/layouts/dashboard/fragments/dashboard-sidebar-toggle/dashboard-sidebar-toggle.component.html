@@ -1,0 +1,8 @@
+<ng-container *ngIf="{ label: label$ | async, icon: icon$ | async } as sidebar">
+  <button
+    mat-button
+    [matTooltip]="sidebar.label!"
+    (click)="handleToggleClick()">
+    <i [class]="sidebar.icon! | iconClass"></i>
+  </button>
+</ng-container>
