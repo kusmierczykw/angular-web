@@ -8,3 +8,7 @@ services:
     volumes:
       - ./..:/app
     tty: true
+    networks:
+      - gym
+networks:
+  gym:
