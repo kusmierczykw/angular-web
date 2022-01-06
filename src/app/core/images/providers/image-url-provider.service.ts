@@ -12,6 +12,7 @@ export class ImageUrlProviderService {
     [Image.UNDRAW_NOT_FOUND]: 'assets/images/undraw_not_found.svg',
     [Image.UNDRAW_HEALTHY_LIFESTYLE]:
       'assets/images/undraw_healthy_lifestyle.svg',
+    [Image.FITNESS_LOGO]: 'assets/images/fitness-logo.png',
   };
 
   public getUrl(image: Image): string {

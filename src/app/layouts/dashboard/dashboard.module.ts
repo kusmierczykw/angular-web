@@ -14,6 +14,7 @@ import { MenuModule } from '@shared/menu/menu.module';
 import { UserAvatarModule } from '@features/avatar/components/user-avatar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ImagesModule } from '@core/images/images.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UserAvatarModule,
     MatIconModule,
     MatTooltipModule,
+    ImagesModule,
   ],
 })
 export class DashboardModule {}

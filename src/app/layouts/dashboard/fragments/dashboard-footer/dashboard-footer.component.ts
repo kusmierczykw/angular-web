@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard-footer.component.html',
   styleUrls: ['./dashboard-footer.component.scss'],
 })
-export class DashboardFooterComponent {}
+export class DashboardFooterComponent {
+  public get year(): number {
+    const today = new Date();
+    
+    return today.getFullYear();
+  }
+}

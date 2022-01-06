@@ -13,6 +13,7 @@ export class IconClassProviderService {
     [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
     [Icon.RECORD]: 'bi bi-record',
     [Icon.RECORD_PARTIALLY_FILL]: 'bi bi-record2',
+    [Icon.DASHBOARD]: 'bi bi-columns-gap',
   };
 
   public getClass(icon: Icon): string {

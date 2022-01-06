@@ -6,10 +6,14 @@
   [matTooltip]="item.tooltip!"
   [routerLink]="item.routerLink">
   <ng-container *ngIf="item.icon">
-    <i [class]="item.icon | iconClass"></i>
+    <span class="menu-item__icon">
+      <i [class]="item.icon | iconClass"></i>
+    </span>
   </ng-container>
 
   <ng-container *ngIf="item.label">
-    {{ item.label }}
+    <span class="menu-item__label">
+      {{ item.label }}
+    </span>
   </ng-container>
 </a>

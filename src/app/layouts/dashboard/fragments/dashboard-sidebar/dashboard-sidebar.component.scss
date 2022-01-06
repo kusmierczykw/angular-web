@@ -1,20 +1,16 @@
 $sidebar-height: 100vh;
 $sidebar-padding: 1rem;
-$sidebar-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
-$sidebar-background: #ffc107;
 
 $sidebar-menu-item-size: 4rem;
 $sidebar-menu-item-font-size: 1.25rem;
-$sidebar-menu-item-active-background-color: rgba(255, 255, 255, 0.8);
 
 :host {
   .dashboard-sidebar {
     height: $sidebar-height;
     padding: $sidebar-padding;
-    background-color: $sidebar-background;
-    box-shadow: $sidebar-shadow;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
 
     &__menu {
       display: flex;
@@ -25,13 +21,22 @@ $sidebar-menu-item-active-background-color: rgba(255, 255, 255, 0.8);
     }
 
     ::ng-deep {
-      .dashboard-sidebar__menu-item {
-        font-size: $sidebar-menu-item-font-size;
-        width: $sidebar-menu-item-size;
+      .menu-item {
+        width: 200px;
         height: $sidebar-menu-item-size;
+        justify-content: flex-start;
+        color: #95abdf;
+
+        &__label {
+        }
+
+        &__icon {
+          font-size: $sidebar-menu-item-font-size;
+          margin-right: 0.5rem;
+        }
 
         &--active {
-          background-color: $sidebar-menu-item-active-background-color;
+          color: #1093ff;
         }
       }
     }

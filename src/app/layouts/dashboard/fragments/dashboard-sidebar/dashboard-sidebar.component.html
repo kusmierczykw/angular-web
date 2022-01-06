@@ -1,15 +1,19 @@
 <div class="dashboard-sidebar">
+  <div class="text-center">
+    <img [src]="Image.FITNESS_LOGO | imageUrl" [style.width.rem]="10" />
+  </div>
+
   <div class="dashboard-sidebar__menu">
     <ng-container *ngFor="let item of menu$ | async">
       <app-menu-item
-        activeClass="dashboard-sidebar__menu-item--active"
-        styleClass="dashboard-sidebar__menu-item"
-        [item]="item">
-      </app-menu-item>
+        activeClass="menu-item--active"
+        [item]="item"></app-menu-item>
     </ng-container>
   </div>
 
-  <div class="dashboard-sidebar__toggle">
-    <app-dashboard-sidebar-toggle></app-dashboard-sidebar-toggle>
-  </div>
+  <ng-container *ngIf="sidebarToggle">
+    <div class="dashboard-sidebar__toggle">
+      <app-dashboard-sidebar-toggle></app-dashboard-sidebar-toggle>
+    </div>
+  </ng-container>
 </div>

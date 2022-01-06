@@ -48,27 +48,33 @@ export class DashboardComponent implements OnInit {
   public registerSidebarMenu(): void {
     this.sidebarMenuService.register([
       this.menuBuilder
+        .setIcon(Icon.DASHBOARD)
+        .setRouterLink(this.routeProvider.getRoute(RoutePath.DASHBOARD))
+        .setLabel('Dashboard')
+        .build(),
+
+      this.menuBuilder
         .setIcon(Icon.BUILDING)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.GYMS))
-        .setTooltip('Siłownie')
+        .setLabel('Siłownie')
         .build(),
 
       this.menuBuilder
         .setIcon(Icon.USERS)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.EMPLOYEES))
-        .setTooltip('Pracownicy')
+        .setLabel('Pracownicy')
         .build(),
 
       this.menuBuilder
         .setIcon(Icon.CREDIT_CARD)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.GYMS))
-        .setTooltip('Karty lojalnościowe')
+        .setLabel('Karty lojalnościowe')
         .build(),
 
       this.menuBuilder
         .setIcon(Icon.GEAR_WIDE_CONNECTED)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
-        .setTooltip('Konfiguracja')
+        .setLabel('Konfiguracja')
         .build(),
     ]);
   }
