@@ -3,8 +3,7 @@
     <input
       matInput
       placeholder="Nazwa użytkownika"
-      [formControlName]="SignInFormControl.FC_USERNAME"
-    />
+      [formControlName]="SignInFormControl.FC_USERNAME" />
   </mat-form-field>
 
   <mat-form-field class="w-100">
@@ -12,8 +11,7 @@
       matInput
       type="password"
       placeholder="Hasło użytkownika"
-      [formControlName]="SignInFormControl.FC_PASSWORD"
-    />
+      [formControlName]="SignInFormControl.FC_PASSWORD" />
   </mat-form-field>
 
   <div class="d-flex justify-content-end">
@@ -22,8 +20,7 @@
       mat-flat-button
       color="primary"
       (click)="handleSubmitClick()"
-      [disabled]="submit$ | async"
-    >
+      [disabled]="submit$ | async">
       Zaloguj
     </button>
   </div>

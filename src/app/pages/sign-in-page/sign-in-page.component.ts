@@ -10,7 +10,7 @@ import { RoutePath } from '@core/routing/paths';
   styleUrls: ['./sign-in-page.component.scss'],
 })
 export class SignInPageComponent {
-  public readonly SING_IN_IMAGE: Image = Image.UNDRAW_STABILITY_BALL;
+  public readonly SING_IN_IMAGE: Image = Image.UNDRAW_TRAVEL_TOGETHER;
 
   public constructor(private readonly navigation: NavigationService) {}
 

@@ -1,16 +1,49 @@
-$sidebar-height: 100vh;
-$sidebar-padding: 1rem;
+@use '@angular/material' as material;
 
-$sidebar-menu-item-size: 4rem;
-$sidebar-menu-item-font-size: 1.25rem;
+$_sidebar-height: 100vh;
+$_sidebar-border-radius: 1rem;
+$_sidebar-background-color: #ffffff;
+$_sidebar-menu-item-width: 16rem;
+$_sidebar-menu-item-size: 4rem;
+$-sidebar-menu-item-font-size: 1.25rem;
+$_sidebar-menu-item-color: material.get-color-from-palette(
+  material.$blue-palette,
+  500
+);
+$_sidebar-menu-item-active-dot-size: 0.75rem;
+
+@mixin active-item-pointer() {
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    border-radius: 1rem;
+  }
+
+  &:after {
+    background-color: $_sidebar-menu-item-color;
+    width: $_sidebar-menu-item-active-dot-size;
+    height: $_sidebar-menu-item-active-dot-size;
+    right: 0;
+  }
+
+  &:before {
+    background-color: #f9fbff;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 4rem;
+    right: -2.5rem;
+  }
+}
 
 :host {
   .dashboard-sidebar {
-    height: $sidebar-height;
-    padding: $sidebar-padding;
+    height: $_sidebar-height;
+    border-radius: $_sidebar-border-radius;
+    background-color: $_sidebar-background-color;
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    overflow-x: hidden;
 
     &__menu {
       display: flex;
@@ -22,21 +55,28 @@ $sidebar-menu-item-font-size: 1.25rem;
 
     ::ng-deep {
       .menu-item {
-        width: 200px;
-        height: $sidebar-menu-item-size;
+        width: $_sidebar-menu-item-width;
+        height: $_sidebar-menu-item-size;
         justify-content: flex-start;
-        color: #95abdf;
+        border-radius: 0;
 
         &__label {
         }
 
         &__icon {
-          font-size: $sidebar-menu-item-font-size;
+          font-size: $-sidebar-menu-item-font-size;
           margin-right: 0.5rem;
         }
 
         &--active {
-          color: #1093ff;
+          color: $_sidebar-menu-item-color;
+          position: relative;
+
+          @include active-item-pointer;
+        }
+
+        &:hover {
+          background-color: white;
         }
       }
     }

@@ -1,9 +1,19 @@
+@use '@angular/material' as material;
+
+$_menu-item-color: material.get-color-from-palette(material.$blue-palette, 500);
 :host {
   .dashboard-header {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding: 1rem;
     align-items: center;
     background-color: white;
+    border-radius: 1rem;
+
+    ::ng-deep {
+      .menu-item {
+        color: $_menu-item-color;
+      }
+    }
   }
 }

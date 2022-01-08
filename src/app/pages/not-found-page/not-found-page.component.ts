@@ -10,7 +10,7 @@ import { RoutePath } from '@core/routing/paths';
   styleUrls: ['./not-found-page.component.scss'],
 })
 export class NotFoundPageComponent {
-  public readonly NOT_FOUND_IMAGE: Image = Image.UNDRAW_NOT_FOUND;
+  public readonly NOT_FOUND_IMAGE: Image = Image.UNDRAW_TAKEN;
   public readonly ROOT_PATH: RouterLink;
 
   public constructor(private readonly routeProvider: RouteProviderService) {

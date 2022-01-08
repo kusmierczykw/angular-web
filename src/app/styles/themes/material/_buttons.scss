@@ -3,3 +3,12 @@
     border-radius: 4px !important;
   }
 }
+
+.mat-stroked-button,
+.mat-button:hover {
+  &:hover:not(.mat-button-disabled) {
+    .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
+}

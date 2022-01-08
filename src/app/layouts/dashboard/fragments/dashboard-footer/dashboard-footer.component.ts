@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class DashboardFooterComponent {
   public get year(): number {
     const today = new Date();
-    
+
     return today.getFullYear();
   }
 }

@@ -2,6 +2,7 @@ import { MenuItemModel } from '@shared/menu/models';
 import { RouterLink } from '@core/routing/types/router-link';
 import { Icon } from '@core/icons/enums';
 import { Injectable } from '@angular/core';
+import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,12 @@ export class MenuItemBuilder {
   public icon?: Icon;
   public command?: () => void;
   public tooltip?: string;
+  public ripple?: boolean;
+  public theme: ThemePalette;
+
+  public constructor() {
+    this.reset();
+  }
 
   public setIcon(icon: Icon): this {
     this.icon = icon;
@@ -21,6 +28,12 @@ export class MenuItemBuilder {
 
   public setTooltip(tooltip: string): this {
     this.tooltip = tooltip;
+
+    return this;
+  }
+
+  public setRipple(ripple: boolean): this {
+    this.ripple = ripple;
 
     return this;
   }
@@ -43,6 +56,24 @@ export class MenuItemBuilder {
     return this;
   }
 
+  public setTheme(theme: ThemePalette): this {
+    this.theme = theme;
+
+    return this;
+  }
+
+  public reset(): this {
+    this.routerLink = undefined;
+    this.label = undefined;
+    this.icon = undefined;
+    this.command = undefined;
+    this.tooltip = undefined;
+    this.ripple = true;
+    this.theme = 'primary';
+
+    return this;
+  }
+
   public build(): MenuItemModel {
     if (!this.label && !this.icon) {
       throw new Error('Label or icon must be set.');
@@ -57,15 +88,5 @@ export class MenuItemBuilder {
     this.reset();
 
     return item;
-  }
-
-  public reset(): this {
-    this.routerLink = undefined;
-    this.label = undefined;
-    this.icon = undefined;
-    this.command = undefined;
-    this.tooltip = undefined;
-
-    return this;
   }
 }

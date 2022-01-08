@@ -22,6 +22,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: RoutePathFragment.GUIDEBOOK,
+    loadChildren: () =>
+      import('@pages/guidebook-page/guidebook-page.module').then(
+        (m) => m.GuidebookPageModule,
+      ),
+  },
+  {
     path: '',
     redirectTo: RoutePathFragment.DASHBOARD,
     pathMatch: 'full',

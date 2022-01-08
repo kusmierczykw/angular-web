@@ -26,19 +26,19 @@ export class SignInFormComponent implements OnInit {
   public constructor(private readonly formBuilder: FormBuilder) {}
 
   public ngOnInit() {
-    this.prepareFormModel();
-    this.prepareSubmitPossibility();
+    this.configureForm();
+    this.configureSubmitPossibility();
   }
 
   public handleSubmitClick(): void {
     this.submitClick.next(this.formModel.toModel());
   }
 
-  private prepareFormModel(): void {
+  private configureForm(): void {
     this.formModel = new SignInFormModel(this.formBuilder, this.model);
   }
 
-  private prepareSubmitPossibility(): void {
+  private configureSubmitPossibility(): void {
     this.submit$ = this.formModel.isValid$.pipe(negate());
   }
 }

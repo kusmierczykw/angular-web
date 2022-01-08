@@ -1,6 +1,8 @@
 <a
   mat-button
   class="menu-item"
+  [color]="item.theme"
+  [disableRipple]="!item.ripple"
   [routerLinkActive]="activeClass"
   [ngClass]="styleClass"
   [matTooltip]="item.tooltip!"

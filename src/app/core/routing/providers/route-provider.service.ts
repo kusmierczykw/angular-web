@@ -8,12 +8,6 @@ import { RouterLink } from '@core/routing/types/router-link';
 })
 export class RouteProviderService {
   private readonly routes: Record<RoutePath, RouterLink> = {
-    [RoutePath.ROOT]: [RoutePathFragment.ROOT],
-    [RoutePath.SIGN_IN]: [
-      RoutePathFragment.ROOT,
-      RoutePathFragment.AUTH,
-      RoutePathFragment.SIGN_IN,
-    ],
     [RoutePath.DASHBOARD]: [
       RoutePathFragment.ROOT,
       RoutePathFragment.DASHBOARD,
@@ -23,10 +17,9 @@ export class RouteProviderService {
       RoutePathFragment.DASHBOARD,
       RoutePathFragment.EMPLOYEES,
     ],
-    [RoutePath.SETTINGS]: [
+    [RoutePath.GUIDEBOOK]: [
       RoutePathFragment.ROOT,
-      RoutePathFragment.DASHBOARD,
-      RoutePathFragment.SETTINGS,
+      RoutePathFragment.GUIDEBOOK,
     ],
     [RoutePath.GYMS]: [
       RoutePathFragment.ROOT,
@@ -36,6 +29,17 @@ export class RouteProviderService {
     [RoutePath.NOT_FOUND]: [
       RoutePathFragment.ROOT,
       RoutePathFragment.NOT_FOUND,
+    ],
+    [RoutePath.ROOT]: [RoutePathFragment.ROOT],
+    [RoutePath.SETTINGS]: [
+      RoutePathFragment.ROOT,
+      RoutePathFragment.DASHBOARD,
+      RoutePathFragment.SETTINGS,
+    ],
+    [RoutePath.SIGN_IN]: [
+      RoutePathFragment.ROOT,
+      RoutePathFragment.AUTH,
+      RoutePathFragment.SIGN_IN,
     ],
   };
 

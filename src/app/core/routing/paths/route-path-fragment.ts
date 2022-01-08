@@ -1,11 +1,12 @@
 export enum RoutePathFragment {
   AUTH = 'auth',
-  GYMS = 'gyms',
-  SIGN_IN = 'sign-in',
   DASHBOARD = 'dashboard',
   EMPLOYEES = 'employees',
-  SETTINGS = 'settings',
+  GUIDEBOOK = 'guidebook',
+  GYMS = 'gyms',
   NOT_FOUND = '404',
   ROOT = '/',
+  SETTINGS = 'settings',
+  SIGN_IN = 'sign-in',
   WILDCARD = '**',
 }

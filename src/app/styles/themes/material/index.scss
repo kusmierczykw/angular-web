@@ -1,17 +1,17 @@
-@use '@angular/material' as mat;
+@use '@angular/material' as material;
 @forward 'buttons';
 
-.gym-theme-light {
-  $special-primary: mat.define-palette(mat.$amber-palette);
-  $special-accent: mat.define-palette(mat.$blue-palette);
-  $special-theme: mat.define-light-theme(
+.light-theme {
+  $primary-palette: material.define-palette(material.$blue-palette);
+  $secondary-palette: material.define-palette(material.$light-green-palette);
+  $light-theme: material.define-light-theme(
     (
       color: (
-        primary: $special-primary,
-        accent: $special-accent,
+        primary: $primary-palette,
+        accent: $secondary-palette,
       ),
     )
   );
 
-  @include mat.all-component-themes($special-theme);
+  @include material.all-component-themes($light-theme);
 }

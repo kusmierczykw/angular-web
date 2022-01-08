@@ -1,0 +1,53 @@
+<div class="row row-cols-4 border p-3">
+  <div class="mb-3">
+    <h2>Basic</h2>
+    <ng-container *ngFor="let button of buttons">
+      <button
+        mat-button
+        class="me-3 mb-3"
+        [disabled]="button.disabled"
+        [color]="button.theme">
+        {{ button.label }}
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="mb-3">
+    <h2>Raised</h2>
+    <ng-container *ngFor="let button of buttons">
+      <button
+        mat-raised-button
+        class="me-3 mb-3"
+        [disabled]="button.disabled"
+        [color]="button.theme">
+        {{ button.label }}
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="mb-3">
+    <h2>Stroked</h2>
+    <ng-container *ngFor="let button of buttons">
+      <button
+        mat-stroked-button
+        class="me-3 mb-3"
+        [disabled]="button.disabled"
+        [color]="button.theme">
+        {{ button.label }}
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="mb-3">
+    <h2>Flat</h2>
+    <ng-container *ngFor="let button of buttons">
+      <button
+        mat-flat-button
+        class="me-3 mb-3"
+        [disabled]="button.disabled"
+        [color]="button.theme">
+        {{ button.label }}
+      </button>
+    </ng-container>
+  </div>
+</div>
