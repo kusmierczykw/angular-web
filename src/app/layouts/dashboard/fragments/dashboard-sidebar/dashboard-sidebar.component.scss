@@ -1,38 +1,44 @@
 @use '@angular/material' as material;
+@use 'src/app/styles/themes/material/mixins/button' as material-button;
 
 $_sidebar-height: 100vh;
 $_sidebar-border-radius: 1rem;
 $_sidebar-background-color: #ffffff;
 $_sidebar-menu-item-width: 16rem;
+$_sidebar-menu-item-icon-margin: 0.5rem;
 $_sidebar-menu-item-size: 4rem;
-$-sidebar-menu-item-font-size: 1.25rem;
+$_sidebar-menu-item-font-size: 1.25rem;
 $_sidebar-menu-item-color: material.get-color-from-palette(
   material.$blue-palette,
   500
 );
-$_sidebar-menu-item-active-dot-size: 0.75rem;
 
 @mixin active-item-pointer() {
+  $_sidebar-pointer-background-color: #f9fbff;
+  $_sidebar-pointer-background-size: 4rem;
+  $_sidebar-pointer-dot-size: 0.75rem;
+  $_sidebar-pointer-background-position: -2.5rem;
+
   &:before,
   &:after {
     content: '';
     position: absolute;
-    border-radius: 1rem;
   }
 
   &:after {
     background-color: $_sidebar-menu-item-color;
-    width: $_sidebar-menu-item-active-dot-size;
-    height: $_sidebar-menu-item-active-dot-size;
+    width: $_sidebar-pointer-dot-size;
+    height: $_sidebar-pointer-dot-size;
+    border-radius: $_sidebar-pointer-dot-size;
     right: 0;
   }
 
   &:before {
-    background-color: #f9fbff;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 4rem;
-    right: -2.5rem;
+    background-color: $_sidebar-pointer-background-color;
+    width: $_sidebar-pointer-background-size;
+    height: $_sidebar-pointer-background-size;
+    border-radius: $_sidebar-pointer-background-size;
+    right: $_sidebar-pointer-background-position;
   }
 }
 
@@ -58,26 +64,20 @@ $_sidebar-menu-item-active-dot-size: 0.75rem;
         width: $_sidebar-menu-item-width;
         height: $_sidebar-menu-item-size;
         justify-content: flex-start;
-        border-radius: 0;
-
-        &__label {
-        }
 
         &__icon {
-          font-size: $-sidebar-menu-item-font-size;
-          margin-right: 0.5rem;
+          font-size: $_sidebar-menu-item-font-size;
+          margin-right: $_sidebar-menu-item-icon-margin;
         }
 
-        &--active {
+        &.active {
+          @include active-item-pointer;
+
           color: $_sidebar-menu-item-color;
           position: relative;
-
-          @include active-item-pointer;
         }
 
-        &:hover {
-          background-color: white;
-        }
+        @include material-button.remove-hover-background;
       }
     }
   }

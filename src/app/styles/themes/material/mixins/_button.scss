@@ -1,0 +1,7 @@
+@mixin remove-hover-background() {
+  &:hover:not(.mat-button-disabled) {
+    .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
+}

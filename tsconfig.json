@@ -32,6 +32,9 @@
       "@features/*": [
         "src/app/features/*"
       ],
+      "@guidebook/*": [
+        "src/app/guidebook/*"
+      ],
       "@layouts/*": [
         "src/app/layouts/*"
       ],

@@ -3,7 +3,7 @@
 
 .light-theme {
   $primary-palette: material.define-palette(material.$blue-palette);
-  $secondary-palette: material.define-palette(material.$light-green-palette);
+  $secondary-palette: material.define-palette(material.$light-blue-palette);
   $light-theme: material.define-light-theme(
     (
       color: (
