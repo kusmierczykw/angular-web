@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Icon } from '@core/icons/enums';
 import { DashboardSidebarMenuService } from '@layouts/dashboard/services';
 import { Observable } from 'rxjs';
-import { MenuItemModel } from '@shared/menu/models';
+import { MenuItem } from '@shared/menu/models';
 import { Image } from '@core/images/enums';
 
 @Component({
@@ -13,7 +13,7 @@ import { Image } from '@core/images/enums';
 export class DashboardSidebarComponent {
   public readonly Icon = Icon;
   public readonly Image = Image;
-  public readonly menu$: Observable<MenuItemModel[]>;
+  public readonly menu$: Observable<MenuItem[]>;
   public readonly sidebarToggle: boolean = false;
 
   public constructor(

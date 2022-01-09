@@ -1,18 +1,20 @@
-import { BlankComponent } from '@layouts/blank/blank.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('BlankComponent', () => {
-  let component: BlankComponent;
-  let fixture: ComponentFixture<BlankComponent>;
+import { TitleComponent } from './title.component';
+
+describe('TitleComponent', () => {
+  let component: TitleComponent;
+  let fixture: ComponentFixture<TitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BlankComponent],
-    }).compileComponents();
+      declarations: [ TitleComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BlankComponent);
+    fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

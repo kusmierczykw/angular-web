@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Icon } from '@core/icons/enums';
-import { MenuItemModel } from '@shared/menu/models';
+import { MenuItem } from '@shared/menu/models';
 import { Observable } from 'rxjs';
 import { DashboardHeaderMenuService } from '@layouts/dashboard/services';
 
@@ -12,7 +12,7 @@ import { DashboardHeaderMenuService } from '@layouts/dashboard/services';
 export class DashboardHeaderComponent {
   public readonly Icon = Icon;
 
-  public menu$: Observable<MenuItemModel[]>;
+  public menu$: Observable<MenuItem[]>;
 
   public constructor(private readonly menuService: DashboardHeaderMenuService) {
     this.menu$ = this.menuService.menu$;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MenuItemModel } from '@shared/menu/models';
+import { MenuItem } from '@shared/menu/models';
 import { StyleClass } from '@core/types/style-class';
 
 @Component({
@@ -8,7 +8,7 @@ import { StyleClass } from '@core/types/style-class';
   styleUrls: ['./menu-item.component.scss'],
 })
 export class MenuItemComponent {
-  @Input() public item!: MenuItemModel;
+  @Input() public item!: MenuItem;
   @Input() public styleClass!: StyleClass;
   @Input() public activeClass: string = 'active';
 }

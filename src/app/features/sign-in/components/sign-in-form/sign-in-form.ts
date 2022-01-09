@@ -4,12 +4,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { SignInModel } from '../../models';
+import { SignInModel } from '@features/sign-in/models';
 import { SignInFormControl } from './sign-in-form.control';
 import { Observable } from 'rxjs';
 import { isValid } from '@shared/forms/operators';
 
-export class SignInFormModel {
+export class SignInForm {
   public readonly form: FormGroup;
 
   public constructor(

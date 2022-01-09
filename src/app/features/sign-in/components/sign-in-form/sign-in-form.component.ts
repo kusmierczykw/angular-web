@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SignInModel } from '../../models';
 import { SignInFormControl } from './sign-in-form.control';
-import { SignInFormModel } from './sign-in-form.model';
+import { SignInForm } from './sign-in-form';
 import { Observable } from 'rxjs';
 import { negate } from '@core/operators';
 
@@ -20,7 +20,7 @@ export class SignInFormComponent implements OnInit {
 
   public readonly SignInFormControl = SignInFormControl;
 
-  public formModel!: SignInFormModel;
+  public formModel!: SignInForm;
   public submit$!: Observable<boolean>;
 
   public constructor(private readonly formBuilder: FormBuilder) {}
@@ -35,7 +35,7 @@ export class SignInFormComponent implements OnInit {
   }
 
   private configureForm(): void {
-    this.formModel = new SignInFormModel(this.formBuilder, this.model);
+    this.formModel = new SignInForm(this.formBuilder, this.model);
   }
 
   private configureSubmitPossibility(): void {

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoutePathFragment } from '@core/routing/paths';
-import { AuthComponent, BlankComponent, DashboardComponent } from './layouts';
+import { AuthComponent } from '@layouts/auth';
+import { DashboardComponent } from '@layouts/dashboard';
+import { BlankComponent } from '@layouts/blank';
 
 const routes: Routes = [
   {

@@ -15,6 +15,8 @@ export class IconClassProviderService {
     [Icon.RECORD_PARTIALLY_FILL]: 'bi bi-record2',
     [Icon.DASHBOARD]: 'bi bi-columns-gap',
     [Icon.CASH_COIN]: 'bi bi-cash-coin',
+    [Icon.BRICKS]: 'bi bi-bricks',
+    [Icon.BOOK_HALF]: 'bi bi-book-half',
   };
 
   public getClass(icon: Icon): string {

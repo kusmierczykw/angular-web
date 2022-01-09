@@ -81,6 +81,14 @@ export class DashboardComponent implements OnInit {
         .setLabel('Konfiguracja')
         .setRipple(false)
         .build(),
+
+      this.menuBuilder
+        .setIcon(Icon.BOOK_HALF)
+        .setRouterLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
+        .setLabel('Guidebook')
+        .setRipple(false)
+        .setVisibility(() => false)
+        .build(),
     ]);
   }
 }
