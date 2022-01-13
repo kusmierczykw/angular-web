@@ -7,11 +7,14 @@ import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
 import { Icon } from '@core/icons/enums';
 import { RouteProviderService } from '@core/routing/providers';
 import { RoutePath } from '@core/routing/paths';
+import { TitleService } from '@features/title/services';
+import { Title } from '@features/title/models';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  providers: [TitleService],
 })
 export class DashboardComponent implements OnInit {
   public constructor(
@@ -19,33 +22,24 @@ export class DashboardComponent implements OnInit {
     private readonly menuBuilder: MenuItemBuilder,
     private readonly sidebarMenuService: DashboardSidebarMenuService,
     private readonly headerMenuService: DashboardHeaderMenuService,
+    private readonly titleService: TitleService,
   ) {}
 
   public ngOnInit(): void {
     this.registerHeaderMenu();
     this.registerSidebarMenu();
+    this.registerTitle();
   }
 
-  public registerHeaderMenu(): void {
+  private registerHeaderMenu(): void {
     this.headerMenuService.register([
-      this.menuBuilder //
-        .setLabel('Wskazówki')
-        .setRouterLink([])
-        .build(),
-
-      this.menuBuilder //
-        .setLabel('Pomoc')
-        .setRouterLink([])
-        .build(),
-
-      this.menuBuilder //
-        .setLabel('Zgłoś błąd')
-        .setRouterLink([])
-        .build(),
+      this.menuBuilder.setLabel('Wskazówki').setRouterLink([]).build(),
+      this.menuBuilder.setLabel('Pomoc').setRouterLink([]).build(),
+      this.menuBuilder.setLabel('Zgłoś błąd').setRouterLink([]).build(),
     ]);
   }
 
-  public registerSidebarMenu(): void {
+  private registerSidebarMenu(): void {
     this.sidebarMenuService.register([
       this.menuBuilder
         .setIcon(Icon.DASHBOARD)
@@ -90,5 +84,9 @@ export class DashboardComponent implements OnInit {
         .setVisibility(() => false)
         .build(),
     ]);
+  }
+
+  private registerTitle(): void {
+    this.titleService.setTitle(new Title('Miłego dnia, Wojciech!'));
   }
 }

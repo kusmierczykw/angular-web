@@ -8,8 +8,7 @@ import { Title } from '@features/title/models/title';
 export class TitleService {
   public title$!: Observable<Title>;
 
-  private readonly titleSource$: ReplaySubject<Title> =
-    new ReplaySubject<Title>(1);
+  private readonly titleSource$ = new ReplaySubject<Title>(1);
 
   public constructor() {
     this.title$ = this.titleSource$.asObservable();

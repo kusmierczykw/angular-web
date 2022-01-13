@@ -5,9 +5,10 @@ import { IconsModule } from '@core/icons/icons.module';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OnlyVisibleMenuItemsPipe } from './pipes/only-visible-menu-items.pipe';
 
 @NgModule({
-  declarations: [MenuItemComponent],
+  declarations: [MenuItemComponent, OnlyVisibleMenuItemsPipe],
   imports: [
     CommonModule,
     IconsModule,
@@ -15,6 +16,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     MatTooltipModule,
   ],
-  exports: [MenuItemComponent],
+  exports: [MenuItemComponent, OnlyVisibleMenuItemsPipe],
 })
 export class MenuModule {}

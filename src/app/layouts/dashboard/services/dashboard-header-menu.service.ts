@@ -8,14 +8,13 @@ import { MenuItem } from '@shared/menu/models';
 export class DashboardHeaderMenuService {
   public readonly menu$: Observable<MenuItem[]>;
 
-  private readonly menuSource$: BehaviorSubject<MenuItem[]> =
-    new BehaviorSubject<MenuItem[]>([]);
+  private readonly menuSource$ = new BehaviorSubject<MenuItem[]>([]);
 
   public constructor() {
     this.menu$ = this.menuSource$.asObservable();
   }
 
-  public register(menu: MenuItem[]): void {
-    this.menuSource$.next(menu);
+  public register(items: MenuItem[]): void {
+    this.menuSource$.next(items);
   }
 }

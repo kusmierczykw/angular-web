@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { MenuItem } from '@shared/menu/models';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { MenuItem } from '@shared/menu/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardSidebarMenuService {
-  public menu$: Observable<MenuItem[]>;
+  public readonly menu$: Observable<MenuItem[]>;
 
-  private menuSource$: BehaviorSubject<MenuItem[]> = new BehaviorSubject<
-    MenuItem[]
-  >([]);
+  private menuSource$ = new BehaviorSubject<MenuItem[]>([]);
 
   public constructor() {
     this.menu$ = this.menuSource$.asObservable();
   }
 
-  public register(menu: MenuItem[]): void {
-    this.menuSource$.next(menu);
+  public register(items: MenuItem[]): void {
+    this.menuSource$.next(items);
   }
 }

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Icon } from '@core/icons/enums';
 import { DashboardSidebarMenuService } from '@layouts/dashboard/services';
 import { Observable } from 'rxjs';
-import { MenuItem } from '@shared/menu/models';
 import { Image } from '@core/images/enums';
+import { MenuItem } from '@shared/menu/models';
 
 @Component({
   selector: 'app-dashboard-sidebar',

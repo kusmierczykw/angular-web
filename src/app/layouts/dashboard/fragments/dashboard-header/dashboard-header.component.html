@@ -1,10 +1,12 @@
 <div class="dashboard-header">
   <div class="me-auto">
-    <div class="h5 my-0">Miłego dnia, Wojciech!</div>
+    <ng-container *ngIf="title$ | async as title">
+      <app-title [title]="title"></app-title>
+    </ng-container>
   </div>
 
   <div class="ms-auto">
-    <ng-container *ngFor="let item of menu$ | async">
+    <ng-container *ngFor="let item of menu$ | onlyVisibleMenuItems$ | async">
       <app-menu-item [item]="item"></app-menu-item>
     </ng-container>
   </div>

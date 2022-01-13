@@ -10,7 +10,6 @@ import { DashboardSidebarToggleService } from '@layouts/dashboard/services/dashb
 })
 export class DashboardSidebarToggleComponent {
   public readonly Icon = Icon;
-
   public readonly expandLabel: string = 'Rozwiń';
   public readonly collapseLabel: string = 'Rozwiń';
   public readonly expandIcon: Icon = Icon.RECORD;

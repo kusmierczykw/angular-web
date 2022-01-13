@@ -15,6 +15,7 @@ import { UserAvatarModule } from '@features/avatar/components/user-avatar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ImagesModule } from '@core/images/images.module';
+import { TitleModule } from '@features/title/components/title';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ImagesModule } from '@core/images/images.module';
     MatIconModule,
     MatTooltipModule,
     ImagesModule,
+    TitleModule,
   ],
 })
 export class DashboardModule {}

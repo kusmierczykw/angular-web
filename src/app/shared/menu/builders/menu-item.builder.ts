@@ -4,9 +4,7 @@ import { Icon } from '@core/icons/enums';
 import { Injectable } from '@angular/core';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { RequiredParameterException } from '@core/exceptions/required-parameter.exception';
-import { Observable } from 'rxjs';
-
-type VisibilitySource = (() => boolean) | Observable<boolean>;
+import { isObservable, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +17,7 @@ export class MenuItemBuilder {
   public tooltip?: string;
   public ripple?: boolean;
   public theme: ThemePalette;
-  public visibility?: VisibilitySource;
+  public visibility!: Observable<boolean>;
 
   public constructor() {
     this.reset();
@@ -67,8 +65,10 @@ export class MenuItemBuilder {
     return this;
   }
 
-  public setVisibility(visibility: VisibilitySource): this {
-    this.visibility = visibility;
+  public setVisibility(factory: () => Observable<boolean> | boolean): this {
+    const visibility = factory();
+
+    this.visibility = isObservable(visibility) ? visibility : of(visibility);
 
     return this;
   }
@@ -81,7 +81,7 @@ export class MenuItemBuilder {
     this.tooltip = undefined;
     this.ripple = true;
     this.theme = 'primary';
-    this.visibility = () => true;
+    this.visibility = of(true);
 
     return this;
   }
