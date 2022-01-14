@@ -4,6 +4,7 @@ import { RoutePathFragment } from '@core/routing/paths';
 import { AuthComponent } from '@layouts/auth';
 import { DashboardComponent } from '@layouts/dashboard';
 import { BlankComponent } from '@layouts/blank';
+import { RouteData } from '@core/routing/data/route-data';
 
 const routes: Routes = [
   {
@@ -17,10 +18,28 @@ const routes: Routes = [
   {
     path: RoutePathFragment.DASHBOARD,
     component: DashboardComponent,
-    loadChildren: () =>
-      import('@pages/dashboard-page/dashboard-page.module').then(
-        (m) => m.DashboardPageModule,
-      ),
+    data: {
+      [RouteData.BREADCRUMB]: 'Dashboard',
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('@pages/dashboard-page/dashboard-page.module').then(
+            (m) => m.DashboardPageModule,
+          ),
+      },
+      {
+        path: RoutePathFragment.TRAININGS,
+        data: {
+          [RouteData.BREADCRUMB]: 'Trening',
+        },
+        loadChildren: () =>
+          import('@pages/trainings-page/trainings-page.module').then(
+            (m) => m.TrainingsPageModule,
+          ),
+      },
+    ],
   },
   {
     path: RoutePathFragment.GUIDEBOOK,

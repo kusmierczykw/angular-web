@@ -4,11 +4,11 @@ import {
   DashboardSidebarMenuService,
 } from '@layouts/dashboard/services';
 import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
-import { Icon } from '@core/icons/enums';
 import { RouteProviderService } from '@core/routing/providers';
-import { RoutePath } from '@core/routing/paths';
 import { TitleService } from '@features/title/services';
 import { Title } from '@features/title/models';
+import { RoutePath } from '@core/routing/paths';
+import { Icon } from '@core/icons/enums';
 
 @Component({
   selector: 'app-dashboard',
@@ -42,46 +42,28 @@ export class DashboardComponent implements OnInit {
   private registerSidebarMenu(): void {
     this.sidebarMenuService.register([
       this.menuBuilder
+        .setLabel('Dashboard')
         .setIcon(Icon.DASHBOARD)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.DASHBOARD))
-        .setLabel('Dashboard')
-        .setRipple(false)
+        .setRouterLinkActiveOptions({ exact: true })
         .build(),
 
       this.menuBuilder
-        .setIcon(Icon.BUILDING)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.GYMS))
-        .setLabel('Siłownie')
-        .setRipple(false)
+        .setLabel('Treningi')
+        .setIcon(Icon.ACTIVITY)
+        .setRouterLink(this.routeProvider.getRoute(RoutePath.TRAININGS))
         .build(),
 
       this.menuBuilder
-        .setIcon(Icon.USERS)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.EMPLOYEES))
-        .setLabel('Pracownicy')
-        .setRipple(false)
-        .build(),
-
-      this.menuBuilder
-        .setIcon(Icon.CREDIT_CARD)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.GYMS))
-        .setLabel('Karty lojalnościowe')
-        .setRipple(false)
-        .build(),
-
-      this.menuBuilder
+        .setLabel('Konfiguracja')
         .setIcon(Icon.GEAR_WIDE_CONNECTED)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
-        .setLabel('Konfiguracja')
-        .setRipple(false)
         .build(),
 
       this.menuBuilder
+        .setLabel('Guidebook')
         .setIcon(Icon.BOOK_HALF)
         .setRouterLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
-        .setLabel('Guidebook')
-        .setRipple(false)
-        .setVisibility(() => false)
         .build(),
     ]);
   }

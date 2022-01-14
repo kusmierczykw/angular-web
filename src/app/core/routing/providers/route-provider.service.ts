@@ -12,19 +12,9 @@ export class RouteProviderService {
       RoutePathFragment.ROOT,
       RoutePathFragment.DASHBOARD,
     ],
-    [RoutePath.EMPLOYEES]: [
-      RoutePathFragment.ROOT,
-      RoutePathFragment.DASHBOARD,
-      RoutePathFragment.EMPLOYEES,
-    ],
     [RoutePath.GUIDEBOOK]: [
       RoutePathFragment.ROOT,
       RoutePathFragment.GUIDEBOOK,
-    ],
-    [RoutePath.GYMS]: [
-      RoutePathFragment.ROOT,
-      RoutePathFragment.DASHBOARD,
-      RoutePathFragment.GYMS,
     ],
     [RoutePath.NOT_FOUND]: [
       RoutePathFragment.ROOT,
@@ -40,6 +30,11 @@ export class RouteProviderService {
       RoutePathFragment.ROOT,
       RoutePathFragment.AUTH,
       RoutePathFragment.SIGN_IN,
+    ],
+    [RoutePath.TRAININGS]: [
+      RoutePathFragment.ROOT,
+      RoutePathFragment.DASHBOARD,
+      RoutePathFragment.TRAININGS,
     ],
   };
 

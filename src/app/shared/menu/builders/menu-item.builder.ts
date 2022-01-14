@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { RequiredParameterException } from '@core/exceptions/required-parameter.exception';
 import { isObservable, Observable, of } from 'rxjs';
+import { RouterLinkActiveOptions } from '@shared/menu/types/router-link-active.options';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class MenuItemBuilder {
   public ripple?: boolean;
   public theme: ThemePalette;
   public visibility!: Observable<boolean>;
+  public routerLinkActiveOptions!: RouterLinkActiveOptions;
 
   public constructor() {
     this.reset();
@@ -59,6 +61,12 @@ export class MenuItemBuilder {
     return this;
   }
 
+  public setRouterLinkActiveOptions(options: RouterLinkActiveOptions): this {
+    this.routerLinkActiveOptions = options;
+
+    return this;
+  }
+
   public setTheme(theme: ThemePalette): this {
     this.theme = theme;
 
@@ -82,6 +90,7 @@ export class MenuItemBuilder {
     this.ripple = true;
     this.theme = 'primary';
     this.visibility = of(true);
+    this.routerLinkActiveOptions = { exact: false };
 
     return this;
   }
@@ -92,7 +101,7 @@ export class MenuItemBuilder {
     }
 
     if (!this.routerLink && !this.command) {
-      throw new RequiredParameterException('link');
+      throw new RequiredParameterException('router link or command');
     }
 
     const item: MenuItem = new MenuItem(this);

@@ -3,6 +3,7 @@ import { Icon } from '@core/icons/enums';
 import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { Observable } from 'rxjs';
+import { RouterLinkActiveOptions } from '@shared/menu/types/router-link-active.options';
 
 export class MenuItem {
   public readonly routerLink?: RouterLink;
@@ -13,6 +14,7 @@ export class MenuItem {
   public readonly ripple?: boolean;
   public readonly theme: ThemePalette;
   public readonly visibility: Observable<boolean>;
+  public readonly routerLinkActiveOptions: RouterLinkActiveOptions;
 
   public constructor(builder: MenuItemBuilder) {
     this.label = builder.label;
@@ -23,5 +25,6 @@ export class MenuItem {
     this.theme = builder.theme;
     this.command = builder.command;
     this.visibility = builder.visibility;
+    this.routerLinkActiveOptions = builder.routerLinkActiveOptions;
   }
 }
