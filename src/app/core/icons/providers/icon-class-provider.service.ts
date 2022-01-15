@@ -14,6 +14,7 @@ export class IconClassProviderService {
     [Icon.CALENDAR]: 'bi bi-calendar',
     [Icon.CASH_COIN]: 'bi bi-cash-coin',
     [Icon.CREDIT_CARD]: 'bi-credit-card',
+    [Icon.CHEVRON_RIGHT]: 'bi bi-chevron-right',
     [Icon.DASHBOARD]: 'bi bi-columns-gap',
     [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
     [Icon.RECORD]: 'bi bi-record',

@@ -18,14 +18,11 @@ const routes: Routes = [
   {
     path: RoutePathFragment.DASHBOARD,
     component: DashboardComponent,
-    data: {
-      [RouteData.BREADCRUMB]: 'Dashboard',
-    },
     children: [
       {
         path: '',
         data: {
-          [RouteData.BREADCRUMB]: null,
+          [RouteData.BREADCRUMB]: 'Dashboard',
         },
         loadChildren: () =>
           import('@pages/dashboard-page/dashboard-page.module').then(

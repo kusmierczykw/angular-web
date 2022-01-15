@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ImagesModule } from '@core/images/images.module';
 import { TitleModule } from '@features/title/components/title';
+import { BreadcrumbsModule } from '@shared/breadcrumbs/components/breadcrumbs/breadcrumbs.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TitleModule } from '@features/title/components/title';
     MatTooltipModule,
     ImagesModule,
     TitleModule,
+    BreadcrumbsModule,
   ],
 })
 export class DashboardModule {}

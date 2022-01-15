@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Breadcrumb } from '@core/routing/models/breadcrumb';
+import { Breadcrumb } from '@shared/breadcrumbs/models';
 import { ActivatedRoute } from '@angular/router';
 import { RouteData } from '@core/routing/data/route-data';
 
@@ -7,7 +7,11 @@ import { RouteData } from '@core/routing/data/route-data';
   providedIn: 'root',
 })
 export class BreadcrumbsProviderService {
-  public buildFromActivatedRoute(activatedRoute: ActivatedRoute): Breadcrumb[] {
+  public constructor(private readonly activatedRoute: ActivatedRoute) {}
+
+  public buildFromActivatedRoute(
+    activatedRoute: ActivatedRoute = this.activatedRoute,
+  ): Breadcrumb[] {
     return this.createBreadcrumbs(activatedRoute);
   }
 
@@ -23,15 +27,14 @@ export class BreadcrumbsProviderService {
     }
 
     children.forEach((child: ActivatedRoute) => {
-      const routeURL: string[] = child.snapshot.url.map(
-        (segment) => segment.path,
-      );
+      const snapshot = child.snapshot;
+      const routeURL: string[] = snapshot.url.map((segment) => segment.path);
 
       if (routeURL.length > 0) {
         routerLink = [...routerLink, ...routeURL];
       }
 
-      const label: string = child.snapshot.data[RouteData.BREADCRUMB] as string;
+      const label: string = snapshot.data[RouteData.BREADCRUMB] as string;
 
       if (label) {
         breadcrumbs.push({ label, routerLink });

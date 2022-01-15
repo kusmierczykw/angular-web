@@ -1,0 +1,15 @@
+:host {
+  .breadcrumbs {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+  }
+
+  .breadcrumb {
+    &__item {
+    }
+
+    &__link {
+    }
+  }
+}

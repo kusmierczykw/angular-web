@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   DashboardHeaderMenuService,
   DashboardSidebarMenuService,
@@ -7,6 +7,20 @@ import { TitleService } from '@features/title/services';
 import { Title } from '@features/title/models';
 import { DashboardHeaderMenuProviderService } from '@layouts/dashboard/providers/dashboard-header-menu-provider.service';
 import { DashboardSidebarMenuProviderService } from '@layouts/dashboard/providers/dashboard-sidebar-menu-provider.service';
+import {
+  BehaviorSubject,
+  filter,
+  map,
+  Observable,
+  startWith,
+  Subject,
+  switchMapTo,
+  takeUntil,
+  tap,
+} from 'rxjs';
+import { Breadcrumb } from '@shared/breadcrumbs/models';
+import { NavigationEnd, Router } from '@angular/router';
+import { BreadcrumbsProviderService } from '@shared/breadcrumbs/providers';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,19 +28,35 @@ import { DashboardSidebarMenuProviderService } from '@layouts/dashboard/provider
   styleUrls: ['./dashboard.component.scss'],
   providers: [TitleService],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  public breadcrumbs$!: Observable<Breadcrumb[]>;
+
+  private readonly destroy$ = new Subject<void>();
+  private readonly breadcrumbsSource$ = new BehaviorSubject<Breadcrumb[]>([]);
+
   public constructor(
     private readonly headerMenuProvider: DashboardHeaderMenuProviderService,
     private readonly sidebarMenuProvider: DashboardSidebarMenuProviderService,
     private readonly sidebarMenuService: DashboardSidebarMenuService,
     private readonly headerMenuService: DashboardHeaderMenuService,
     private readonly titleService: TitleService,
+    private readonly breadcrumbsProvider: BreadcrumbsProviderService,
+    private readonly router: Router,
   ) {}
 
   public ngOnInit(): void {
     this.registerHeaderMenu();
     this.registerSidebarMenu();
     this.registerTitle();
+    this.configureBreadcrumbsSource();
+  }
+
+  public ngOnDestroy() {
+    this.destroy();
+  }
+
+  private destroy(): void {
+    this.destroy$.next();
   }
 
   private registerHeaderMenu(): void {
@@ -39,5 +69,20 @@ export class DashboardComponent implements OnInit {
 
   private registerTitle(): void {
     this.titleService.setTitle(new Title('Miłego dnia, Wojciech!'));
+  }
+
+  private configureBreadcrumbsSource(): void {
+    this.breadcrumbs$ = this.breadcrumbsSource();
+  }
+
+  private breadcrumbsSource(): Observable<Breadcrumb[]> {
+    return this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      takeUntil(this.destroy$),
+      map(() => this.breadcrumbsProvider.buildFromActivatedRoute()),
+      tap((breadcrumbs) => this.breadcrumbsSource$.next(breadcrumbs)),
+      switchMapTo(this.breadcrumbsSource$.asObservable()),
+      startWith(this.breadcrumbsProvider.buildFromActivatedRoute()),
+    );
   }
 }

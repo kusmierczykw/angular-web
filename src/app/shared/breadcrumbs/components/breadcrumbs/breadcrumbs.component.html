@@ -1,0 +1,13 @@
+<ul class="breadcrumbs">
+  <ng-container *ngFor="let breadcrumb of breadcrumbs; let isLast = last">
+    <li class="breadcrumb__item">
+      <a class="breadcrumb__link" [routerLink]="breadcrumb.routerLink">
+        <span>{{ breadcrumb.label }}</span>
+      </a>
+
+      <ng-container *ngIf="!isLast">
+        <i [class]="Icon.CHEVRON_RIGHT | iconClass"></i>
+      </ng-container>
+    </li>
+  </ng-container>
+</ul>
