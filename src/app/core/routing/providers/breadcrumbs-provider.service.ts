@@ -12,33 +12,33 @@ export class BreadcrumbsProviderService {
   }
 
   private createBreadcrumbs(
-    activatedRoute: ActivatedRoute,
+    route: ActivatedRoute,
     routerLink: string[] = ['/'],
     breadcrumbs: Breadcrumb[] = [],
   ): Breadcrumb[] {
-    const children: ActivatedRoute[] = activatedRoute.children;
+    const { children } = route;
 
     if (children.length === 0) {
       return breadcrumbs;
     }
 
-    for (const child of children) {
-      const routerLinkSegment: string[] = child.snapshot.url.map(
+    children.forEach((child: ActivatedRoute) => {
+      const routeURL: string[] = child.snapshot.url.map(
         (segment) => segment.path,
       );
 
-      if (routerLinkSegment.length > 0) {
-        routerLink = [...routerLink, ...routerLinkSegment];
+      if (routeURL.length > 0) {
+        routerLink = [...routerLink, ...routeURL];
       }
 
-      const label = child.snapshot.data[RouteData.BREADCRUMB];
+      const label: string = child.snapshot.data[RouteData.BREADCRUMB] as string;
 
-      if (!label) {
-        breadcrumbs.push(new Breadcrumb(label, routerLink));
+      if (label) {
+        breadcrumbs.push({ label, routerLink });
       }
 
-      this.createBreadcrumbs(child, routerLink, breadcrumbs);
-    }
+      return this.createBreadcrumbs(child, routerLink, breadcrumbs);
+    });
 
     return breadcrumbs;
   }

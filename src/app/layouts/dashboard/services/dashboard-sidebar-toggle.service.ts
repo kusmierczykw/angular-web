@@ -7,8 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class DashboardSidebarToggleService {
   public readonly toggle$: Observable<boolean>;
 
-  private readonly toggleSource$: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
+  private readonly toggleSource$ = new BehaviorSubject<boolean>(false);
 
   public constructor() {
     this.toggle$ = this.toggleSource$.asObservable();

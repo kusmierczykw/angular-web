@@ -24,6 +24,9 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        data: {
+          [RouteData.BREADCRUMB]: null,
+        },
         loadChildren: () =>
           import('@pages/dashboard-page/dashboard-page.module').then(
             (m) => m.DashboardPageModule,
