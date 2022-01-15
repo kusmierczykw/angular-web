@@ -1,15 +1,30 @@
+$breadcrumbs-font-size: 0.825rem;
+
 :host {
   .breadcrumbs {
     list-style: none;
     padding: 0;
     display: inline-flex;
+    font-size: $breadcrumbs-font-size;
   }
 
   .breadcrumb {
     &__item {
+      &--last {
+        .breadcrumb__link {
+          pointer-events: none;
+        }
+      }
     }
 
     &__link {
+      text-decoration: none;
+      color: inherit;
+      opacity: 0.825;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

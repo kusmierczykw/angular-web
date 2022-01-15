@@ -1,6 +1,8 @@
 <ul class="breadcrumbs">
   <ng-container *ngFor="let breadcrumb of breadcrumbs; let isLast = last">
-    <li class="breadcrumb__item">
+    <li
+      class="breadcrumb__item"
+      [ngClass]="{ 'breadcrumb__item--last': isLast }">
       <a class="breadcrumb__link" [routerLink]="breadcrumb.routerLink">
         <span>{{ breadcrumb.label }}</span>
       </a>
