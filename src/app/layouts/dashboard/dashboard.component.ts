@@ -21,6 +21,7 @@ import {
 import { Breadcrumb } from '@shared/breadcrumbs/models';
 import { NavigationEnd, Router } from '@angular/router';
 import { BreadcrumbsProviderService } from '@shared/breadcrumbs/providers';
+import { ScrollTopService } from '@core/routing/services/scroll-top.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,10 +38,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly headerMenuProvider: DashboardHeaderMenuProviderService,
     private readonly sidebarMenuProvider: DashboardSidebarMenuProviderService,
+    private readonly breadcrumbsProvider: BreadcrumbsProviderService,
     private readonly sidebarMenuService: DashboardSidebarMenuService,
     private readonly headerMenuService: DashboardHeaderMenuService,
+    private readonly scrollTopService: ScrollTopService,
     private readonly titleService: TitleService,
-    private readonly breadcrumbsProvider: BreadcrumbsProviderService,
     private readonly router: Router,
   ) {}
 
@@ -48,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.registerHeaderMenu();
     this.registerSidebarMenu();
     this.registerTitle();
+    this.registerScrollTopOnNavigate();
     this.configureBreadcrumbsSource();
   }
 
@@ -69,6 +72,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private registerTitle(): void {
     this.titleService.setTitle(new Title('Miłego dnia, Wojciech!'));
+  }
+
+  private registerScrollTopOnNavigate(): void {
+    this.scrollTopService.scrollTopOnNavigate();
   }
 
   private configureBreadcrumbsSource(): void {

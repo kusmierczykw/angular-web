@@ -8,7 +8,9 @@
       </a>
 
       <ng-container *ngIf="!isLast">
-        <i [class]="Icon.CHEVRON_RIGHT | iconClass"></i>
+        <span class="breadcrumb__separator">
+          <i [class]="Icon.CHEVRON_RIGHT | iconClass"></i>
+        </span>
       </ng-container>
     </li>
   </ng-container>

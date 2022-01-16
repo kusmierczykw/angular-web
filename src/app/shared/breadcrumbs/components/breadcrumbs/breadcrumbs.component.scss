@@ -26,5 +26,9 @@ $breadcrumbs-font-size: 0.825rem;
         text-decoration: underline;
       }
     }
+
+    &__separator {
+      margin: 0 0.5rem;
+    }
   }
 }
