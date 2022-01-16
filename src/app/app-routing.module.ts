@@ -11,9 +11,7 @@ const routes: Routes = [
     path: RoutePathFragment.SIGN_IN,
     component: AuthComponent,
     loadChildren: () =>
-      import('@pages/sign-in-page/sign-in-page.module').then(
-        (m) => m.SignInPageModule,
-      ),
+      import('@pages/sign-in-page').then((m) => m.SignInPageModule),
   },
   {
     path: RoutePathFragment.DASHBOARD,
@@ -25,28 +23,42 @@ const routes: Routes = [
           [RouteData.BREADCRUMB]: 'Dashboard',
         },
         loadChildren: () =>
-          import('@pages/dashboard-page/dashboard-page.module').then(
-            (m) => m.DashboardPageModule,
-          ),
+          import('@pages/dashboard-page').then((m) => m.DashboardPageModule),
       },
       {
         path: RoutePathFragment.TRAININGS,
         data: {
           [RouteData.BREADCRUMB]: 'Trening',
         },
-        loadChildren: () =>
-          import('@pages/trainings-page/trainings-page.module').then(
-            (m) => m.TrainingsPageModule,
-          ),
+        children: [
+          {
+            path: RoutePathFragment.ADD,
+            data: {
+              [RouteData.BREADCRUMB]: 'Dodaj trening',
+            },
+            loadChildren: () =>
+              import('@pages/training-add-page').then(
+                (m) => m.TrainingAddPageModule,
+              ),
+          },
+          {
+            path: '',
+            data: {
+              [RouteData.BREADCRUMB]: null,
+            },
+            loadChildren: () =>
+              import('@pages/trainings-page').then(
+                (m) => m.TrainingsPageModule,
+              ),
+          },
+        ],
       },
     ],
   },
   {
     path: RoutePathFragment.GUIDEBOOK,
     loadChildren: () =>
-      import('@pages/guidebook-page/guidebook-page.module').then(
-        (m) => m.GuidebookPageModule,
-      ),
+      import('@pages/guidebook-page').then((m) => m.GuidebookPageModule),
   },
   {
     path: '',
@@ -57,9 +69,7 @@ const routes: Routes = [
     path: RoutePathFragment.NOT_FOUND,
     component: BlankComponent,
     loadChildren: () =>
-      import('@pages/not-found-page/not-found-page.module').then(
-        (m) => m.NotFoundPageModule,
-      ),
+      import('@pages/not-found-page').then((m) => m.NotFoundPageModule),
   },
   {
     path: RoutePathFragment.WILDCARD,

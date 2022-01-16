@@ -6,4 +6,5 @@ export enum RoutePath {
   SETTINGS = 'SETTINGS',
   SIGN_IN = 'SIGN_IN',
   TRAININGS = 'TRAININGS',
+  TRAINING_ADD = 'TRAINING_ADD',
 }

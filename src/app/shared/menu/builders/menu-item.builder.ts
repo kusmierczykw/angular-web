@@ -55,7 +55,7 @@ export class MenuItemBuilder {
     return this;
   }
 
-  public setRouterLink(routerLink: string[]): this {
+  public setRouterLink(routerLink: RouterLink): this {
     this.routerLink = routerLink;
 
     return this;

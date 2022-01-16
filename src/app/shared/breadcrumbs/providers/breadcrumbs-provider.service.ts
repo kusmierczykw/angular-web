@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Breadcrumb } from '@shared/breadcrumbs/models';
 import { ActivatedRoute } from '@angular/router';
 import { RouteData } from '@core/routing/data/route-data';
+import { RouterLink } from '@core/routing/types';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class BreadcrumbsProviderService {
 
   private createBreadcrumbs(
     route: ActivatedRoute,
-    routerLink: string[] = ['/'],
+    routerLink: RouterLink = ['/'],
     breadcrumbs: Breadcrumb[] = [],
   ): Breadcrumb[] {
     const { children } = route;

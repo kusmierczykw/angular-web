@@ -16,7 +16,10 @@
       <ng-container *ngIf="breadcrumbs$ | async as breadcrumbs">
         <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
       </ng-container>
-      <router-outlet></router-outlet>
+      
+      <div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </main>
 

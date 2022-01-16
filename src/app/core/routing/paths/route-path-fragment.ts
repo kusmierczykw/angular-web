@@ -1,4 +1,5 @@
 export enum RoutePathFragment {
+  ADD = 'add',
   AUTH = 'auth',
   DASHBOARD = 'dashboard',
   GUIDEBOOK = 'guidebook',
