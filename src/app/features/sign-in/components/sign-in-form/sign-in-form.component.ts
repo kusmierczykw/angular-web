@@ -16,7 +16,7 @@ export class SignInFormComponent implements OnInit {
   public model?: SignInModel;
 
   @Output()
-  public submitClick: EventEmitter<SignInModel> = new EventEmitter<SignInModel>();
+  public submitClick = new EventEmitter<SignInModel>();
 
   public readonly SignInFormControl = SignInFormControl;
 
