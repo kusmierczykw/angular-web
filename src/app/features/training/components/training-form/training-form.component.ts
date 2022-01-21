@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingForm } from '@features/training/components/training-form/training-form';
-import { FormBuilder } from '@angular/forms';
+import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
+import { SimpleFormBuilderService } from '@shared/forms/builders/simple-form-builder.service';
 
 @Component({
   selector: 'app-training-form',
@@ -8,9 +9,13 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./training-form.component.scss'],
 })
 export class TrainingFormComponent implements OnInit {
+  public readonly TrainingFormControl = TrainingFormControl;
+
   public formModel!: TrainingForm;
 
-  public constructor(private readonly formBuilder: FormBuilder) {}
+  public constructor(
+    private readonly formBuilder: SimpleFormBuilderService<TrainingFormControl>,
+  ) {}
 
   public ngOnInit(): void {
     this.configureFormModel();
