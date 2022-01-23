@@ -1,15 +1,1 @@
-<form [formGroup]="formModel.form">
-  <mat-form-field appearance="outline">
-    <mat-label>Nazwa</mat-label>
-    <input matInput [formControlName]="TrainingFormControl.NAME" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Data rozpoczęcia treningu</mat-label>
-    <input
-      matInput
-      [matDatepicker]="datepicker"
-      [formControlName]="TrainingFormControl.STARTED_AT" />
-    <mat-datepicker #datepicker></mat-datepicker>
-  </mat-form-field>
-</form>
+<app-simple-form-renderer [form]="form"></app-simple-form-renderer>

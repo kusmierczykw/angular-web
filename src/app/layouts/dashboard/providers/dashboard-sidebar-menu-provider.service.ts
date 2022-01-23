@@ -17,28 +17,28 @@ export class DashboardSidebarMenuProviderService {
   public getMenu(): MenuItem[] {
     return [
       this.builder
-        .setLabel('Dashboard')
-        .setIcon(Icon.DASHBOARD)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.DASHBOARD))
-        .setRouterLinkActiveOptions({ exact: true })
+        .label('Dashboard')
+        .icon(Icon.DASHBOARD)
+        .routerLink(this.routeProvider.getRoute(RoutePath.DASHBOARD))
+        .routerLinkActiveOptions({ exact: true })
         .build(),
 
       this.builder
-        .setLabel('Treningi')
-        .setIcon(Icon.ACTIVITY)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.TRAININGS))
+        .label('Treningi')
+        .icon(Icon.ACTIVITY)
+        .routerLink(this.routeProvider.getRoute(RoutePath.TRAININGS))
         .build(),
 
       this.builder
-        .setLabel('Konfiguracja')
-        .setIcon(Icon.GEAR_WIDE_CONNECTED)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
+        .label('Konfiguracja')
+        .icon(Icon.GEAR_WIDE_CONNECTED)
+        .routerLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
         .build(),
 
       this.builder
-        .setLabel('Guidebook')
-        .setIcon(Icon.BOOK_HALF)
-        .setRouterLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
+        .label('Guidebook')
+        .icon(Icon.BOOK_HALF)
+        .routerLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
         .build(),
     ];
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainingForm } from '@features/training/components/training-form/training-form';
 import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
-import { SimpleFormBuilderService } from '@shared/forms/builders/simple-form-builder.service';
+import { FormBuilder } from '@angular/forms';
+import { SimpleFormBuilder } from '@shared/forms/components';
+import { SimpleForm } from '@shared/forms/components/simple-form-renderer/models/simple-form';
 
 @Component({
   selector: 'app-training-form',
@@ -9,19 +10,35 @@ import { SimpleFormBuilderService } from '@shared/forms/builders/simple-form-bui
   styleUrls: ['./training-form.component.scss'],
 })
 export class TrainingFormComponent implements OnInit {
-  public readonly TrainingFormControl = TrainingFormControl;
-
-  public formModel!: TrainingForm;
+  public form!: SimpleForm<TrainingFormControl>;
 
   public constructor(
-    private readonly formBuilder: SimpleFormBuilderService<TrainingFormControl>,
+    private readonly formBuilder: FormBuilder,
+    private readonly simpleFormBuilder: SimpleFormBuilder<TrainingFormControl>,
   ) {}
 
   public ngOnInit(): void {
-    this.configureFormModel();
+    this.configureForm();
   }
 
-  private configureFormModel(): void {
-    this.formModel = new TrainingForm(this.formBuilder);
+  private configureForm(): void {
+    this.form = this.simpleFormBuilder
+      .addControl((builder) =>
+        builder
+          .initText(TrainingFormControl.NAME)
+          .label('Nazwa')
+          .required()
+          .build(),
+      )
+      .addControl((builder) =>
+        builder
+          .initDate(TrainingFormControl.STARTED_AT)
+          .label('Data rozpoczęcia')
+          .required()
+          .build(),
+      )
+      .cancel((builder) => builder.command(() => {}).build())
+      .submit((builder) => builder.command(() => {}).build())
+      .build();
   }
 }

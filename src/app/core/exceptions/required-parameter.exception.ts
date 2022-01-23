@@ -1,5 +1,5 @@
 export class RequiredParameterException extends Error {
-  public constructor(param: string) {
-    super(`The param ${param} is required.`);
+  public constructor(parameter: string) {
+    super(`The param ${parameter} is required.`);
   }
 }

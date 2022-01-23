@@ -10,9 +10,9 @@ export class DashboardHeaderMenuProviderService {
 
   public getMenu(): MenuItem[] {
     return [
-      this.builder.setLabel('Wskazówki').setRouterLink([]).build(),
-      this.builder.setLabel('Pomoc').setRouterLink([]).build(),
-      this.builder.setLabel('Zgłoś błąd').setRouterLink([]).build(),
+      this.builder.label('Wskazówki').routerLink([]).build(),
+      this.builder.label('Pomoc').routerLink([]).build(),
+      this.builder.label('Zgłoś błąd').routerLink([]).build(),
     ];
   }
 }

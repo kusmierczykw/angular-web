@@ -3,9 +3,9 @@ import { RouterLink } from '@core/routing/types/router-link';
 import { Icon } from '@core/icons/enums';
 import { Injectable } from '@angular/core';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
-import { RequiredParameterException } from '@core/exceptions/required-parameter.exception';
 import { isObservable, Observable, of } from 'rxjs';
 import { RouterLinkActiveOptions } from '@shared/menu/types/router-link-active.options';
+import { RequiredParameterException } from '@core/exceptions/required-parameter.exception';
 
 @Injectable({
   providedIn: 'root',
@@ -25,91 +25,55 @@ export class MenuItemBuilder {
     this.reset();
   }
 
-  public get routerLink(): RouterLink | undefined {
-    return this._routerLink;
-  }
-
-  public get label(): string | undefined {
-    return this._label;
-  }
-
-  public get icon(): Icon | undefined {
-    return this._icon;
-  }
-
-  public get command(): (() => void) | undefined {
-    return this._command;
-  }
-
-  public get tooltip(): string | undefined {
-    return this._tooltip;
-  }
-
-  public get ripple(): boolean | undefined {
-    return this._ripple;
-  }
-
-  public get theme(): ThemePalette {
-    return this._theme;
-  }
-
-  public get visibility(): Observable<boolean> {
-    return this._visibility;
-  }
-
-  public get routerLinkActiveOptions(): RouterLinkActiveOptions {
-    return this._routerLinkActiveOptions;
-  }
-
-  public setIcon(icon: Icon): this {
+  public icon(icon: Icon): this {
     this._icon = icon;
 
     return this;
   }
 
-  public setTooltip(tooltip: string): this {
+  public tooltip(tooltip: string): this {
     this._tooltip = tooltip;
 
     return this;
   }
 
-  public setRipple(ripple: boolean): this {
+  public ripple(ripple: boolean): this {
     this._ripple = ripple;
 
     return this;
   }
 
-  public setLabel(label: string): this {
+  public label(label: string): this {
     this._label = label;
 
     return this;
   }
 
-  public setCommand(command: () => void): this {
+  public command(command: () => void): this {
     this._command = command;
 
     return this;
   }
 
-  public setRouterLink(routerLink: RouterLink): this {
+  public routerLink(routerLink: RouterLink): this {
     this._routerLink = routerLink;
 
     return this;
   }
 
-  public setRouterLinkActiveOptions(options: RouterLinkActiveOptions): this {
+  public routerLinkActiveOptions(options: RouterLinkActiveOptions): this {
     this._routerLinkActiveOptions = options;
 
     return this;
   }
 
-  public setTheme(theme: ThemePalette): this {
+  public theme(theme: ThemePalette): this {
     this._theme = theme;
 
     return this;
   }
 
-  public setVisibility(factory: () => Observable<boolean> | boolean): this {
+  public visibility(factory: () => Observable<boolean> | boolean): this {
     const visibility = factory();
 
     this._visibility = isObservable(visibility) ? visibility : of(visibility);
@@ -132,6 +96,26 @@ export class MenuItemBuilder {
   }
 
   public build(): MenuItem {
+    this.validate();
+
+    const item = new MenuItem(
+      this._theme,
+      this._visibility,
+      this._routerLinkActiveOptions,
+      this._routerLink,
+      this._label,
+      this._icon,
+      this._command,
+      this._tooltip,
+      this._ripple,
+    );
+
+    this.reset();
+
+    return item;
+  }
+
+  private validate(): void {
     if (!this._label && !this._icon) {
       throw new RequiredParameterException('label or icon');
     }
@@ -139,11 +123,5 @@ export class MenuItemBuilder {
     if (!this._routerLink && !this._command) {
       throw new RequiredParameterException('router link or command');
     }
-
-    const item: MenuItem = new MenuItem(this);
-
-    this.reset();
-
-    return item;
   }
 }
