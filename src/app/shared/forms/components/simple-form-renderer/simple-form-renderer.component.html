@@ -5,14 +5,14 @@
       [formGroupRef]="formGroup"></app-text-control-renderer>
   </ng-container>
 
-  <ng-container *ngIf="cancel?.visibility | async">
-    <button mat-flat-button [disabled]="cancel?.disabled | async">
+  <ng-container *ngIf="cancel?.visibility$ | async">
+    <button mat-flat-button [disabled]="cancel?.disabled$ | async">
       {{ cancel?.label }}
     </button>
   </ng-container>
 
-  <ng-container *ngIf="submit?.visibility | async">
-    <button mat-flat-button [disabled]="submit?.disabled | async">
+  <ng-container *ngIf="submit?.visibility$ | async">
+    <button mat-flat-button [disabled]="submit?.disabled$ | async">
       {{ submit?.label }}
     </button>
   </ng-container>

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextControlRendererComponent } from '@shared/forms/components';
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
+import { TextControlRendererComponent } from '@shared/forms/components/simple-form-renderer/fragments/text-control-renderer/text-control-renderer.component';
 
 describe('TextControlRendererComponent', () => {
   let component: TextControlRendererComponent<SimpleControlNameType>;

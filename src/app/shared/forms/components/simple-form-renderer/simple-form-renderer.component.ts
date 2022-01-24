@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SimpleForm } from '@shared/forms/components/simple-form-renderer/models/simple-form';
 import { FormGroup } from '@angular/forms';
-import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models/simple-form-button';
+import { ActionButton } from '@shared/buttons/models/action-button';
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
 
@@ -18,8 +18,8 @@ export class SimpleFormRendererComponent<
 
   public formGroup!: FormGroup;
   public controls!: SimpleFormControl<ControlName>[];
-  public submit?: SimpleFormButton;
-  public cancel?: SimpleFormButton;
+  public submit?: ActionButton;
+  public cancel?: ActionButton;
 
   public ngOnChanges(changes: SimpleChanges) {
     const { form } = changes;

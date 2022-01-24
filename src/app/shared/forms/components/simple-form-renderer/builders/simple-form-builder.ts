@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { SimpleForm } from '@shared/forms/components/simple-form-renderer/models/simple-form';
 import { ValidatorFn } from '@angular/forms';
 import { UniquenessException } from '@core/exceptions/uniqueness.exception';
-import { SimpleFormButtonBuilder } from '@shared/forms/components/simple-form-renderer/builders/simple-form-button-builder';
-import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models/simple-form-button';
+import { ActionButtonBuilder } from '@shared/buttons/builders/action-button-builder.service';
+import { ActionButton } from '@shared/buttons/models/action-button';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 import { SimpleControlBuilder } from '@shared/forms/components/simple-form-renderer/builders/simple-control-builder';
@@ -14,11 +14,11 @@ import { SimpleControlBuilder } from '@shared/forms/components/simple-form-rende
 export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
   private _controls!: SimpleFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
-  private _cancel?: SimpleFormButton;
-  private _submit?: SimpleFormButton;
+  private _cancel?: ActionButton;
+  private _submit?: ActionButton;
 
   public constructor(
-    private readonly buttonBuilder: SimpleFormButtonBuilder,
+    private readonly buttonBuilder: ActionButtonBuilder,
     private readonly controlBuilder: SimpleControlBuilder<ControlName>,
   ) {
     this.reset();
@@ -33,17 +33,13 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
     return this;
   }
 
-  public submit(
-    factory: (builder: SimpleFormButtonBuilder) => SimpleFormButton,
-  ): this {
+  public submit(factory: (builder: ActionButtonBuilder) => ActionButton): this {
     this._submit = factory(this.buttonBuilder.label('Zapisz'));
 
     return this;
   }
 
-  public cancel(
-    factory: (builder: SimpleFormButtonBuilder) => SimpleFormButton,
-  ): this {
+  public cancel(factory: (builder: ActionButtonBuilder) => ActionButton): this {
     this._cancel = factory(this.buttonBuilder.label('Anuluj'));
 
     return this;

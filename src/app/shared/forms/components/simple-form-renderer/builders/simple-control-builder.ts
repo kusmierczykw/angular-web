@@ -6,6 +6,7 @@ import {
   SimpleControlType,
 } from '@shared/forms/components/simple-form-renderer/types';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
   private _label?: string;
   private _placeholder?: string;
   private _value?: unknown;
-  private _disabled?: boolean;
+  private _disabled$?: Observable<boolean>;
 
   public constructor() {
     this.reset();
@@ -47,8 +48,8 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
     return this;
   }
 
-  public disabled(disabled: boolean): this {
-    this._disabled = disabled;
+  public disabled(factory: () => Observable<boolean>): this {
+    this._disabled$ = factory();
 
     return this;
   }
@@ -87,7 +88,7 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
     this._label = undefined;
     this._placeholder = undefined;
 
-    return this.type(SimpleControlType.TEXT).disabled(false);
+    return this.type(SimpleControlType.TEXT).disabled(() => of(false));
   }
 
   public build(): SimpleFormControl<ControlName> {
@@ -97,7 +98,7 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
       this._name,
       this._type,
       this._validators,
-      this._disabled,
+      this._disabled$,
       this._value,
       this._label,
       this._placeholder,

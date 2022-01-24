@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { ActionButton } from '@shared/buttons/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SimpleFormButtonBuilder {
+export class ActionButtonBuilder {
   private _label!: string;
-  private _visibility!: Observable<boolean>;
-  private _disabled!: Observable<boolean>;
+  private _visibility$!: Observable<boolean>;
+  private _disabled$!: Observable<boolean>;
   private _command!: () => void;
 
   public constructor() {
     this.reset();
   }
 
-  public build(): SimpleFormButton {
+  public build(): ActionButton {
     this.validate();
 
-    const button = new SimpleFormButton(
+    const button = new ActionButton(
       this._label,
-      this._visibility,
-      this._disabled,
+      this._visibility$,
+      this._disabled$,
       this._command,
     );
 
@@ -38,13 +38,13 @@ export class SimpleFormButtonBuilder {
   }
 
   public visibility(factory: () => Observable<boolean>): this {
-    this._visibility = factory();
+    this._visibility$ = factory();
 
     return this;
   }
 
   public disabled(factory: () => Observable<boolean>): this {
-    this._disabled = factory();
+    this._disabled$ = factory();
 
     return this;
   }
