@@ -9,8 +9,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { SimpleFormRenderer } from '@shared/forms/components/simple-form-renderer';
 
 @NgModule({
-  declarations: [ TrainingFormComponent ],
-  exports: [ TrainingFormComponent ],
+  declarations: [TrainingFormComponent],
+  exports: [TrainingFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,5 +21,4 @@ import { SimpleFormRenderer } from '@shared/forms/components/simple-form-rendere
     SimpleFormRenderer,
   ],
 })
-export class TrainingFormModule {
-}
+export class TrainingFormModule {}

@@ -7,7 +7,7 @@ import { SimpleFormBuilder } from '@shared/forms/components/simple-form-renderer
 @Component({
   selector: 'app-training-form',
   templateUrl: './training-form.component.html',
-  styleUrls: [ './training-form.component.scss' ],
+  styleUrls: ['./training-form.component.scss'],
 })
 export class TrainingFormComponent implements OnInit {
   public form!: SimpleForm<TrainingFormControl>;
@@ -15,8 +15,7 @@ export class TrainingFormComponent implements OnInit {
   public constructor(
     private readonly formBuilder: FormBuilder,
     private readonly simpleFormBuilder: SimpleFormBuilder<TrainingFormControl>,
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.configureForm();
@@ -38,10 +37,8 @@ export class TrainingFormComponent implements OnInit {
           .required()
           .build(),
       )
-      .cancel((builder) => builder.command(() => {
-      }).build())
-      .submit((builder) => builder.command(() => {
-      }).build())
+      .cancel((builder) => builder.command(() => {}).build())
+      .submit((builder) => builder.command(() => {}).build())
       .build();
   }
 }

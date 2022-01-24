@@ -9,8 +9,7 @@ export class SimpleForm<ControlName extends SimpleControlNameType> {
     public readonly validators: ValidatorFn[],
     public readonly submit?: SimpleFormButton,
     public readonly cancel?: SimpleFormButton,
-  ) {
-  }
+  ) {}
 
   public formGroup(): FormGroup {
     const controls: { [key: SimpleControlNameType]: FormControl } =

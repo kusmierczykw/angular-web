@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { SimpleControlNameType, SimpleControlType } from '@shared/forms/components/simple-form-renderer/types';
+import {
+  SimpleControlNameType,
+  SimpleControlType,
+} from '@shared/forms/components/simple-form-renderer/types';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
 
 @Injectable({

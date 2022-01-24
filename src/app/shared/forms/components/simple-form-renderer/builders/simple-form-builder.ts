@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { SimpleForm } from '@shared/forms/components/simple-form-renderer/models/simple-form';
 import { ValidatorFn } from '@angular/forms';
 import { UniquenessException } from '@core/exceptions/uniqueness.exception';
-import {
-  SimpleFormButtonBuilder
-} from '@shared/forms/components/simple-form-renderer/builders/simple-form-button-builder';
+import { SimpleFormButtonBuilder } from '@shared/forms/components/simple-form-renderer/builders/simple-form-button-builder';
 import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models/simple-form-button';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
@@ -94,6 +92,6 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
       return;
     }
 
-    throw new UniquenessException(`The control ${ name } must have unique name.`);
+    throw new UniquenessException(`The control ${name} must have unique name.`);
   }
 }
