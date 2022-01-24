@@ -1,19 +1,17 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SimpleForm } from '@shared/forms/components/simple-form-renderer/models/simple-form';
-import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 import { FormGroup } from '@angular/forms';
-import { SimpleFormControl } from '@shared/forms/components';
 import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models/simple-form-button';
+import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
+import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
 
 @Component({
   selector: 'app-simple-form-renderer',
   templateUrl: './simple-form-renderer.component.html',
-  styleUrls: ['./simple-form-renderer.component.scss'],
+  styleUrls: [ './simple-form-renderer.component.scss' ],
 })
-export class SimpleFormRendererComponent<
-  ControlName extends SimpleControlNameType,
-> implements OnChanges
-{
+export class SimpleFormRendererComponent<ControlName extends SimpleControlNameType,
+  > implements OnChanges {
   @Input() public form!: SimpleForm<ControlName>;
 
   public formGroup!: FormGroup;

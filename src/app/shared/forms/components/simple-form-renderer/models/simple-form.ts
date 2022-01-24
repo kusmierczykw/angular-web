@@ -1,7 +1,7 @@
-import { SimpleFormControl } from '@shared/forms/components';
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models/simple-form-button';
+import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models/simple-form-control';
+import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 
 export class SimpleForm<ControlName extends SimpleControlNameType> {
   public constructor(
@@ -9,7 +9,8 @@ export class SimpleForm<ControlName extends SimpleControlNameType> {
     public readonly validators: ValidatorFn[],
     public readonly submit?: SimpleFormButton,
     public readonly cancel?: SimpleFormButton,
-  ) {}
+  ) {
+  }
 
   public formGroup(): FormGroup {
     const controls: { [key: SimpleControlNameType]: FormControl } =

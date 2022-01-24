@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models/simple-form-button';
+import { SimpleFormButton } from '@shared/forms/components/simple-form-renderer/models';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 
 @Injectable({
