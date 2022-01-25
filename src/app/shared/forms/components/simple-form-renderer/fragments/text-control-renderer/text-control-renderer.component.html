@@ -1,9 +1,6 @@
 <ng-container [formGroup]="formGroupRef">
   <mat-form-field appearance="outline">
     <mat-label *ngIf="control.label">{{ control.label }}</mat-label>
-    <input
-      matInput
-      [disabled]="$any(control.disabled$ | async)"
-      [formControlName]="$any(control.name)" />
+    <input matInput [formControlName]="$any(control.name)" />
   </mat-form-field>
 </ng-container>

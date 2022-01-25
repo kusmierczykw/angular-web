@@ -1,1 +1,5 @@
-export type FormControlStatus = 'VALID' | 'INVALID' | 'PENDING' | 'DISABLED';
+export declare type FormControlStatus =
+  | 'VALID'
+  | 'INVALID'
+  | 'PENDING'
+  | 'DISABLED';

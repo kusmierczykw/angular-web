@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { ValidatorFn, Validators } from '@angular/forms';
-import {
-  SimpleControlNameType,
-  SimpleControlType,
-} from '@shared/forms/components/simple-form-renderer/types';
+import { SimpleControlType } from '@shared/forms/components/simple-form-renderer/types';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
+export class SimpleControlBuilder<ControlName> {
   private _type!: SimpleControlType;
   private _name!: ControlName;
   private _validators!: ValidatorFn[];
   private _label?: string;
   private _placeholder?: string;
   private _value?: unknown;
-  private _disabled$?: Observable<boolean>;
+  private _disabled?: boolean;
 
   public constructor() {
     this.reset();
@@ -48,8 +44,8 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
     return this;
   }
 
-  public disabled(factory: () => Observable<boolean>): this {
-    this._disabled$ = factory();
+  public disabled(factory: () => boolean): this {
+    this._disabled = factory();
 
     return this;
   }
@@ -66,7 +62,7 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
     return this;
   }
 
-  public value<T>(value: T): this {
+  public value<ValueType>(value: ValueType): this {
     this._value = value;
 
     return this;
@@ -88,17 +84,17 @@ export class SimpleControlBuilder<ControlName extends SimpleControlNameType> {
     this._label = undefined;
     this._placeholder = undefined;
 
-    return this.type(SimpleControlType.TEXT).disabled(() => of(false));
+    return this.type(SimpleControlType.TEXT).disabled(() => false);
   }
 
   public build(): SimpleFormControl<ControlName> {
     this.validate();
 
-    const control = new SimpleFormControl(
+    const control = new SimpleFormControl<ControlName>(
       this._name,
       this._type,
       this._validators,
-      this._disabled$,
+      this._disabled,
       this._value,
       this._label,
       this._placeholder,

@@ -1,4 +1,4 @@
-export type StyleClass =
+export declare type StyleClass =
   | string
   | string[]
   | Set<string>

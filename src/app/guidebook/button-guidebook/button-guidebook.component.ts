@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 
-type Button = {
+declare type Button = {
   theme: ThemePalette;
   disabled: boolean;
   label: string;

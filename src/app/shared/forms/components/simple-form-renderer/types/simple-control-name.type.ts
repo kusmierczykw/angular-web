@@ -1,1 +1,1 @@
-export type SimpleControlNameType = string | number;
+export declare type SimpleControlNameType = string | number;

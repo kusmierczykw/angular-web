@@ -1,19 +1,33 @@
 <form [formGroup]="formGroup">
-  <ng-container *ngFor="let control of controls">
-    <app-text-control-renderer
-      [control]="control"
-      [formGroupRef]="formGroup"></app-text-control-renderer>
-  </ng-container>
+  <div class="row row-cols-3 gap-3">
+    <ng-container *ngFor="let control of controls">
+      <app-control-renderer
+        [control]="control"
+        [formGroupRef]="formGroup"></app-control-renderer>
+    </ng-container>
+  </div>
 
-  <ng-container *ngIf="cancel?.visibility$ | async">
-    <button mat-flat-button [disabled]="cancel?.disabled$ | async">
-      {{ cancel?.label }}
-    </button>
-  </ng-container>
+  <div class="row row-cols-auto justify-content-end gap-3">
+    <ng-container *ngIf="cancel?.visibility$ | async">
+      <button
+        mat-button
+        [type]="cancel?.htmlButtonType"
+        [class]="cancel?.style | actionButtonStyle"
+        [disabled]="cancel?.disabled$ | async"
+        [color]="cancel?.theme">
+        {{ cancel?.label }}
+      </button>
+    </ng-container>
 
-  <ng-container *ngIf="submit?.visibility$ | async">
-    <button mat-flat-button [disabled]="submit?.disabled$ | async">
-      {{ submit?.label }}
-    </button>
-  </ng-container>
+    <ng-container *ngIf="submit?.visibility$ | async">
+      <button
+        mat-button
+        [type]="submit?.htmlButtonType"
+        [class]="submit?.style | actionButtonStyle"
+        [disabled]="submit?.disabled$ | async"
+        [color]="submit?.theme">
+        {{ submit?.label }}
+      </button>
+    </ng-container>
+  </div>
 </form>

@@ -1,1 +1,1 @@
-export type RouterLink = string[];
+export declare type RouterLink = string[];

@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
-import { ActionButton } from '@shared/buttons/models';
+import { ActionButton } from '@shared/buttons/components/action-button/models';
+import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
+import { ThemePalette } from '@angular/material/core/common-behaviors/color';
+import { HtmlButtonType } from '@shared/buttons/types/html-button.type';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +14,9 @@ export class ActionButtonBuilder {
   private _visibility$!: Observable<boolean>;
   private _disabled$!: Observable<boolean>;
   private _command!: () => void;
+  private _style!: ActionButtonStyle;
+  private _theme!: ThemePalette;
+  private _htmlButtonType!: HtmlButtonType;
 
   public constructor() {
     this.reset();
@@ -24,6 +30,9 @@ export class ActionButtonBuilder {
       this._visibility$,
       this._disabled$,
       this._command,
+      this._style,
+      this._theme,
+      this._htmlButtonType,
     );
 
     this.reset();
@@ -55,8 +64,30 @@ export class ActionButtonBuilder {
     return this;
   }
 
+  public style(style: ActionButtonStyle): this {
+    this._style = style;
+
+    return this;
+  }
+
+  public theme(theme: ThemePalette): this {
+    this._theme = theme;
+
+    return this;
+  }
+
+  public htmlButtonType(type: HtmlButtonType): this {
+    this._htmlButtonType = type;
+
+    return this;
+  }
+
   public reset(): this {
-    return this.visibility(() => of(true)).disabled(() => of(false));
+    return this.visibility(() => of(true))
+      .disabled(() => of(false))
+      .style(ActionButtonStyle.FLAT)
+      .theme('primary')
+      .htmlButtonType('button');
   }
 
   private validate(): void {

@@ -1,5 +1,5 @@
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { ActionButton } from '@shared/buttons/models/action-button';
+import { ActionButton } from '@shared/buttons/components/action-button/models/action-button';
 import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models/simple-form-control';
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 
