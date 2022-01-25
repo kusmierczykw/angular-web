@@ -4,19 +4,23 @@ import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 
 export class SimpleForm<ControlName extends SimpleControlNameType> {
+  public formGroup: FormGroup;
+
   public constructor(
     public readonly controls: SimpleFormControl<ControlName>[],
     public readonly validators: ValidatorFn[],
     public readonly submit?: ActionButton,
     public readonly cancel?: ActionButton,
-  ) {}
+  ) {
+    this.formGroup = this.buildFormGroup();
+  }
 
-  public formGroup(): FormGroup {
+  private buildFormGroup(): FormGroup {
     const controls: { [key: SimpleControlNameType]: FormControl } =
       this.controls.reduce(
         (controls: {}, control: SimpleFormControl<ControlName>) => ({
           ...controls,
-          ...{ [control.name]: control.formControl() },
+          ...{ [control.name]: control.formControl },
         }),
         {},
       );

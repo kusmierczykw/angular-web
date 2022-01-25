@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SimpleControlRendererComponent } from '@shared/forms/components/simple-form-renderer/abstract/simple-control-renderer.component';
+import { AbstractControlRendererComponent } from '@shared/forms/components/simple-form-renderer/fragments/abstract-control-renderer.component';
 import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
 
 @Component({
@@ -9,4 +9,4 @@ import { SimpleControlNameType } from '@shared/forms/components/simple-form-rend
 })
 export class ControlRendererComponent<
   ControlName extends SimpleControlNameType,
-> extends SimpleControlRendererComponent<ControlName> {}
+> extends AbstractControlRendererComponent<ControlName> {}

@@ -32,7 +32,7 @@ export class SimpleFormRendererComponent<
   private configureForm(): void {
     const { controls, formGroup, submit, cancel } = this.form;
 
-    this.formGroup = formGroup.call(this.form);
+    this.formGroup = formGroup;
     this.controls = controls;
     this.submit = submit;
     this.cancel = cancel;

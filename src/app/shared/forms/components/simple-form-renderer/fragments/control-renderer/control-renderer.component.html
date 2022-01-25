@@ -2,13 +2,15 @@
   <ng-container *ngSwitchCase="SimpleControlType.TEXT">
     <app-text-control-renderer
       [control]="control"
-      [formGroupRef]="formGroupRef"></app-text-control-renderer>
+      [formGroupRef]="formGroupRef">
+    </app-text-control-renderer>
   </ng-container>
 
   <ng-container *ngSwitchCase="SimpleControlType.DATE">
     <app-date-control-renderer
       [control]="control"
-      [formGroupRef]="formGroupRef"></app-date-control-renderer>
+      [formGroupRef]="formGroupRef">
+    </app-date-control-renderer>
   </ng-container>
 
   <ng-container *ngSwitchDefault>
