@@ -23,20 +23,19 @@ export class TrainingFormComponent implements OnInit {
 
   private configureForm(): void {
     this.form = this.simpleFormBuilder
-      .addControl((builder) =>
+      .controls((builder) => [
         builder
           .initText(TrainingFormControl.NAME)
           .label('Nazwa')
           .required()
           .build(),
-      )
-      .addControl((builder) =>
+
         builder
           .initDate(TrainingFormControl.STARTED_AT)
           .label('Data rozpoczęcia')
           .required()
           .build(),
-      )
+      ])
       .cancel((builder) => builder.command(() => {}).build())
       .submit((builder) => builder.command(() => {}).build())
       .build();

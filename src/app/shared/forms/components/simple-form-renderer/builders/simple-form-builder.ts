@@ -15,8 +15,7 @@ import { ActionButtonStyle } from '@shared/buttons/components/action-button/enum
 export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
   private _controls!: SimpleFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
-  private _cancel?: ActionButton;
-  private _submit?: ActionButton;
+  private _actions!: ActionButton[];
 
   public constructor(
     private readonly buttonBuilder: ActionButtonBuilder,
@@ -28,29 +27,50 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
   public reset(): this {
     this._controls = [];
     this._validators = [];
-    this._cancel = undefined;
-    this._submit = undefined;
+    this._actions = [];
+
+    return this;
+  }
+
+  public action(factory: (builder: ActionButtonBuilder) => ActionButton): this {
+    const button = factory(this.buttonBuilder);
+
+    this._actions.push(button);
 
     return this;
   }
 
   public submit(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    this._submit = factory(
+    const button = factory(
       this.buttonBuilder.label('Zapisz').htmlButtonType('submit'),
     );
+
+    this._actions.push(button);
 
     return this;
   }
 
   public cancel(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    this._cancel = factory(
+    const button = factory(
       this.buttonBuilder.label('Anuluj').style(ActionButtonStyle.STROKED),
     );
+
+    this._actions.push(button);
 
     return this;
   }
 
-  public addControl(
+  public controls(
+    factory: (
+      builder: SimpleControlBuilder<ControlName>,
+    ) => SimpleFormControl<ControlName>[],
+  ): this {
+    this._controls.push(...factory(this.controlBuilder));
+
+    return this;
+  }
+
+  public control(
     factory: (
       builder: SimpleControlBuilder<ControlName>,
     ) => SimpleFormControl<ControlName>,
@@ -65,7 +85,13 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
     return this;
   }
 
-  public addValidator(validator: ValidatorFn): this {
+  public validators(validators: ValidatorFn[]): this {
+    this._validators.push(...validators);
+
+    return this;
+  }
+
+  public validator(validator: ValidatorFn): this {
     this._validators.push(validator);
 
     return this;
@@ -75,8 +101,7 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
     const form = new SimpleForm(
       this._controls,
       this._validators,
-      this._submit,
-      this._cancel,
+      this._actions,
     );
 
     this.reset();

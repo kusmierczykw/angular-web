@@ -18,8 +18,7 @@ export class SimpleFormRendererComponent<
 
   public formGroup!: FormGroup;
   public controls!: SimpleFormControl<ControlName>[];
-  public submit?: ActionButton;
-  public cancel?: ActionButton;
+  public actions!: ActionButton[];
 
   public ngOnChanges(changes: SimpleChanges) {
     const { form } = changes;
@@ -30,11 +29,10 @@ export class SimpleFormRendererComponent<
   }
 
   private configureForm(): void {
-    const { controls, formGroup, submit, cancel } = this.form;
+    const { controls, formGroup, actions } = this.form;
 
     this.formGroup = formGroup;
     this.controls = controls;
-    this.submit = submit;
-    this.cancel = cancel;
+    this.actions = actions;
   }
 }

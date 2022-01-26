@@ -9,8 +9,7 @@ export class SimpleForm<ControlName extends SimpleControlNameType> {
   public constructor(
     public readonly controls: SimpleFormControl<ControlName>[],
     public readonly validators: ValidatorFn[],
-    public readonly submit?: ActionButton,
-    public readonly cancel?: ActionButton,
+    public readonly actions: ActionButton[],
   ) {
     this.formGroup = this.buildFormGroup();
   }
