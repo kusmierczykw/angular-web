@@ -28,6 +28,10 @@ export class SimpleFormRendererComponent<
     }
   }
 
+  public handleActionClick(action: ActionButton): void {
+    action.command();
+  }
+
   private configureForm(): void {
     const { controls, formGroup, actions } = this.form;
 

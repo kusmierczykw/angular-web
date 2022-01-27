@@ -2,7 +2,7 @@ import { FormControl, ValidatorFn } from '@angular/forms';
 import { SimpleControlType } from '@shared/forms/components/simple-form-renderer/types';
 
 export class SimpleFormControl<ControlName> {
-  public readonly formControl: FormControl;
+  private _formControl!: FormControl;
 
   public constructor(
     public readonly name: ControlName,
@@ -13,7 +13,15 @@ export class SimpleFormControl<ControlName> {
     public readonly label?: string,
     public readonly placeholder?: string,
   ) {
-    this.formControl = this.buildFormControl();
+    this.configureControl();
+  }
+
+  public get formControl(): FormControl {
+    return this._formControl;
+  }
+
+  private configureControl(): void {
+    this._formControl = this.buildFormControl();
   }
 
   private buildFormControl(): FormControl {

@@ -16,7 +16,7 @@
         [class]="action?.style | actionButtonStyle"
         [disabled]="action?.disabled$ | async"
         [color]="action?.theme"
-        (click)="action.command()">
+        (click)="handleActionClick(action)">
         {{ action?.label }}
       </button>
     </ng-container>
