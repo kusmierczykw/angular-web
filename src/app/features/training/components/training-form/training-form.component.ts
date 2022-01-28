@@ -41,11 +41,19 @@ export class TrainingFormComponent implements OnInit {
           .required()
           .build(),
       )
-      .cancel((builder) => builder.command(() => {}).build())
+      .cancel((builder) =>
+        builder
+          .command({
+            execute: () => {},
+          })
+          .build(),
+      )
       .submit((builder) =>
         builder
-          .command((model) => {
-            console.log(model);
+          .command({
+            execute: (argument: TrainingModel) => {
+              console.log(argument);
+            },
           })
           .build(),
       )

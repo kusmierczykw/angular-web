@@ -5,7 +5,7 @@ import { ActionButton } from '@shared/buttons/components/action-button/models';
 import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { HtmlButtonType } from '@shared/buttons/types/html-button.type';
-import { ActionButtonCommand } from '@shared/buttons/components/action-button/types/action-button-command';
+import { ActionButtonCommand } from '@shared/buttons/components/action-button/interfaces';
 
 @Injectable({
   providedIn: 'root',

@@ -38,11 +38,11 @@ export class QuickFormRendererComponent<
   public handleSubmitClick(): void {
     const model = this.mapper.map(this.formGroup);
 
-    this.submit.command(model);
+    this.submit.command.execute(model);
   }
 
   public handleCancelClick(): void {
-    this.cancel?.command();
+    this.cancel?.command.execute();
   }
 
   private configure(): void {

@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums/action-button-style';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { HtmlButtonType } from '@shared/buttons/types/html-button.type';
-import { ActionButtonCommand } from '@shared/buttons/components/action-button/types/action-button-command';
+import { ActionButtonCommand } from '@shared/buttons/components/action-button/interfaces';
 
 export class ActionButton<CommandArgument = unknown> {
   public constructor(
