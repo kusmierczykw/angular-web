@@ -7,7 +7,7 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 import { merge, Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-simple-form-renderer',
+  selector: 'app-quick-form-renderer',
   templateUrl: './quick-form-renderer.component.html',
   styleUrls: ['./quick-form-renderer.component.scss'],
 })
