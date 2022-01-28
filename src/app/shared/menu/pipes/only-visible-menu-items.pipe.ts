@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MenuItem } from '@shared/menu/models';
-import { toObservable } from '@utils/rx/to-observable';
+import { toObservable } from '@utils/rxjs/operators';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 
 declare type MenuItemsSource = MenuItem[] | Observable<MenuItem[]>;

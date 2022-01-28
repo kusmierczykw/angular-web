@@ -7,7 +7,7 @@ import {
 import { SignInModel } from '@features/sign-in/models';
 import { SignInFormControl } from './sign-in-form.control';
 import { Observable } from 'rxjs';
-import { isValid } from '@shared/forms/operators';
+import { abstractControlStatus } from '@shared/forms/operators';
 
 export class SignInForm {
   public readonly form: FormGroup;
@@ -20,7 +20,7 @@ export class SignInForm {
   }
 
   public get isValid$(): Observable<boolean> {
-    return this.form.statusChanges.pipe(isValid);
+    return this.form.statusChanges.pipe(abstractControlStatus());
   }
 
   public toModel(): SignInModel {

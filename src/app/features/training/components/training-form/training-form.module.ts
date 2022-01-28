@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { SimpleFormRenderer } from '@shared/forms/components/simple-form-renderer';
+import { QuickFormRenderer } from '@shared/forms/components/quick-form-renderer';
 
 @NgModule({
   declarations: [TrainingFormComponent],
@@ -18,7 +18,7 @@ import { SimpleFormRenderer } from '@shared/forms/components/simple-form-rendere
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    SimpleFormRenderer,
+    QuickFormRenderer,
   ],
 })
 export class TrainingFormModule {}

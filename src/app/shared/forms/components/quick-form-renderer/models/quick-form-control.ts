@@ -1,7 +1,7 @@
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { SimpleControlType } from '@shared/forms/components/simple-form-renderer/types';
+import { SimpleControlType } from '@shared/forms/components/quick-form-renderer/types';
 
-export class SimpleFormControl<ControlName> {
+export class QuickFormControl<ControlName> {
   private _formControl!: FormControl;
 
   public constructor(

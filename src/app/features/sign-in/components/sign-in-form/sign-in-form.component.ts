@@ -4,7 +4,7 @@ import { SignInModel } from '../../models';
 import { SignInFormControl } from './sign-in-form.control';
 import { SignInForm } from './sign-in-form';
 import { Observable } from 'rxjs';
-import { negate } from '@core/operators';
+import { negate } from '@utils/rxjs/operators';
 
 @Component({
   selector: 'app-sign-in-form',

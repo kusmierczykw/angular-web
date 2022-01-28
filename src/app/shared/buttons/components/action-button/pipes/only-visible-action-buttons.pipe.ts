@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ActionButton } from '@shared/buttons/components/action-button/models';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
-import { toObservable } from '@utils/rx/to-observable';
+import { toObservable } from '@utils/rxjs/operators';
 
 declare type ActionButtonsSource = ActionButton[] | Observable<ActionButton[]>;
 

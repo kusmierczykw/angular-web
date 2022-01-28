@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { SimpleControlType } from '@shared/forms/components/simple-form-renderer/types';
-import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
+import { SimpleControlType } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SimpleControlBuilder<ControlName> {
+export class QuickControlBuilder<ControlName> {
   private _type!: SimpleControlType;
   private _name!: ControlName;
   private _validators!: ValidatorFn[];
@@ -87,10 +87,10 @@ export class SimpleControlBuilder<ControlName> {
     return this.type(SimpleControlType.TEXT).disabled(() => false);
   }
 
-  public build(): SimpleFormControl<ControlName> {
+  public build(): QuickFormControl<ControlName> {
     this.validate();
 
-    const control = new SimpleFormControl<ControlName>(
+    const control = new QuickFormControl<ControlName>(
       this._name,
       this._type,
       this._validators,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractControlRendererComponent } from '@shared/forms/components/simple-form-renderer/fragments/abstract-control-renderer.component';
-import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
+import { AbstractControlRendererComponent } from '@shared/forms/components/quick-form-renderer/fragments/abstract-control-renderer.component';
+import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 
 @Component({
   selector: 'app-control-renderer',
@@ -8,5 +8,5 @@ import { SimpleControlNameType } from '@shared/forms/components/simple-form-rend
   styleUrls: ['./control-renderer.component.scss'],
 })
 export class ControlRendererComponent<
-  ControlName extends SimpleControlNameType,
+  ControlName extends QuickControlNameType,
 > extends AbstractControlRendererComponent<ControlName> {}

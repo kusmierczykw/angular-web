@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup">
+  <div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2">
+    <ng-container *ngFor="let control of controls">
+      <app-control-renderer
+        [control]="control"
+        [formGroupRef]="formGroup"></app-control-renderer>
+    </ng-container>
+  </div>
+
+  <div class="row row-cols-auto justify-content-end gap-3">
+    <button
+      *ngIf="cancel.visibility$ | async"
+      mat-button
+      [type]="cancel.htmlButtonType"
+      [class]="cancel.style | actionButtonStyle"
+      [disabled]="cancel.disabled$ | async"
+      [color]="cancel.theme"
+      (click)="handleCancelClick()">
+      {{ cancel.label }}
+    </button>
+
+    <button
+      *ngIf="submit.visibility$ | async"
+      mat-button
+      [type]="submit.htmlButtonType"
+      [class]="submit.style | actionButtonStyle"
+      [disabled]="submitDisability$ | async"
+      [color]="submit.theme"
+      (click)="handleSubmitClick()">
+      {{ submit.label }}
+    </button>
+  </div>
+</form>

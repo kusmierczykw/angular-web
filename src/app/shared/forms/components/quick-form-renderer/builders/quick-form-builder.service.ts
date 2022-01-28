@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
-import { SimpleForm } from '@shared/forms/components/simple-form-renderer/models/simple-form';
+import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { ValidatorFn } from '@angular/forms';
 import { UniquenessException } from '@core/exceptions/uniqueness.exception';
 import { ActionButtonBuilder } from '@shared/buttons/components/action-button/builders';
 import { ActionButton } from '@shared/buttons/components/action-button/models';
-import { SimpleFormControl } from '@shared/forms/components/simple-form-renderer/models';
-import { SimpleControlNameType } from '@shared/forms/components/simple-form-renderer/types';
-import { SimpleControlBuilder } from '@shared/forms/components/simple-form-renderer/builders/simple-control-builder';
+import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
+import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-control-builder';
 import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
-  private _controls!: SimpleFormControl<ControlName>[];
+export class QuickFormBuilder<ControlName extends QuickControlNameType> {
+  private _controls!: QuickFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
-  private _actions!: ActionButton[];
+  private _submit!: ActionButton;
+  private _cancel!: ActionButton;
 
   public constructor(
     private readonly buttonBuilder: ActionButtonBuilder,
-    private readonly controlBuilder: SimpleControlBuilder<ControlName>,
+    private readonly controlBuilder: QuickControlBuilder<ControlName>,
   ) {
     this.reset();
   }
@@ -27,43 +28,30 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
   public reset(): this {
     this._controls = [];
     this._validators = [];
-    this._actions = [];
-
-    return this;
-  }
-
-  public action(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    const button = factory(this.buttonBuilder);
-
-    this._actions.push(button);
 
     return this;
   }
 
   public submit(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    const button = factory(
+    this._submit = factory(
       this.buttonBuilder.label('Zapisz').htmlButtonType('submit'),
     );
-
-    this._actions.push(button);
 
     return this;
   }
 
   public cancel(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    const button = factory(
+    this._cancel = factory(
       this.buttonBuilder.label('Anuluj').style(ActionButtonStyle.STROKED),
     );
-
-    this._actions.push(button);
 
     return this;
   }
 
   public controls(
     factory: (
-      builder: SimpleControlBuilder<ControlName>,
-    ) => SimpleFormControl<ControlName>[],
+      builder: QuickControlBuilder<ControlName>,
+    ) => QuickFormControl<ControlName>[],
   ): this {
     this._controls.push(...factory(this.controlBuilder));
 
@@ -72,8 +60,8 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
 
   public control(
     factory: (
-      builder: SimpleControlBuilder<ControlName>,
-    ) => SimpleFormControl<ControlName>,
+      builder: QuickControlBuilder<ControlName>,
+    ) => QuickFormControl<ControlName>,
   ): this {
     const control = factory(this.controlBuilder);
     const { name } = control;
@@ -97,11 +85,12 @@ export class SimpleFormBuilder<ControlName extends SimpleControlNameType> {
     return this;
   }
 
-  public build(): SimpleForm<ControlName> {
-    const form = new SimpleForm(
+  public build(): QuickForm<ControlName> {
+    const form = new QuickForm(
       this._controls,
       this._validators,
-      this._actions,
+      this._submit,
+      this._cancel,
     );
 
     this.reset();
