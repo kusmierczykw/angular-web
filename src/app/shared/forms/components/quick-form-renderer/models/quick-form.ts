@@ -4,6 +4,7 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { Observable, startWith } from 'rxjs';
 import { abstractControlStatus, isInvalid } from '@shared/forms/operators';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
 
 export class QuickForm<ControlName extends QuickControlNameType, Model> {
   private _formGroup!: FormGroup;
@@ -11,8 +12,9 @@ export class QuickForm<ControlName extends QuickControlNameType, Model> {
   public constructor(
     public readonly controls: QuickFormControl<ControlName>[],
     public readonly validators: ValidatorFn[],
+    public readonly mapper: QuickFormModelMapper<Model>,
     public readonly submit: ActionButton<Model>,
-    public readonly cancel: ActionButton,
+    public readonly cancel?: ActionButton,
   ) {
     this.configureForm();
   }

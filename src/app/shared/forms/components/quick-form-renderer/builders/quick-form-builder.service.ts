@@ -8,6 +8,8 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { QuickControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-control-builder';
 import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
+import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +17,9 @@ import { ActionButtonStyle } from '@shared/buttons/components/action-button/enum
 export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
   private _controls!: QuickFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
-  private _submit!: ActionButton<Model>;
-  private _cancel!: ActionButton;
+  private _submit?: ActionButton<Model>;
+  private _cancel?: ActionButton;
+  private _mapper?: QuickFormModelMapper<Model>;
 
   public constructor(
     private readonly buttonBuilder: ActionButtonBuilder,
@@ -28,6 +31,9 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
   public reset(): this {
     this._controls = [];
     this._validators = [];
+    this._submit = undefined;
+    this._cancel = undefined;
+    this._mapper = undefined;
 
     return this;
   }
@@ -81,10 +87,25 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
     return this;
   }
 
+  public mapper(factory: () => QuickFormModelMapper<Model>): this {
+    this._mapper = factory();
+
+    return this;
+  }
+
   public build(): QuickForm<ControlName, Model> {
+    if (!this._submit) {
+      throw new RequiredMethodCallException('submit');
+    }
+
+    if (!this._mapper) {
+      throw new RequiredMethodCallException('mapper');
+    }
+
     const form = new QuickForm(
       this._controls,
       this._validators,
+      this._mapper,
       this._submit,
       this._cancel,
     );

@@ -49,6 +49,9 @@ export class TrainingFormComponent implements OnInit {
           })
           .build(),
       )
+      .mapper(() => ({
+        map: () => new TrainingModel('test', new Date()),
+      }))
       .build();
   }
 }

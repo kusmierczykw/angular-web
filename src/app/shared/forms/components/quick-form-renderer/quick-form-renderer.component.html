@@ -9,14 +9,14 @@
 
   <div class="row row-cols-auto justify-content-end gap-3">
     <button
-      *ngIf="cancel.visibility$ | async"
+      *ngIf="cancel?.visibility$ | async"
       mat-button
-      [type]="cancel.htmlButtonType"
-      [class]="cancel.style | actionButtonStyle"
-      [disabled]="cancel.disabled$ | async"
-      [color]="cancel.theme"
+      [type]="cancel?.htmlButtonType"
+      [class]="cancel?.style | actionButtonStyle"
+      [disabled]="cancel?.disabled$ | async"
+      [color]="cancel?.theme"
       (click)="handleCancelClick()">
-      {{ cancel.label }}
+      {{ cancel?.label }}
     </button>
 
     <button

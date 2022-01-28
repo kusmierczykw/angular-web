@@ -9,7 +9,7 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 })
 export class QuickControlBuilder<ControlName, Value = unknown> {
   private _type!: SimpleControlType;
-  private _name!: ControlName;
+  private _name?: ControlName;
   private _validators!: ValidatorFn[];
   private _label?: string;
   private _placeholder?: string;
@@ -80,6 +80,7 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
 
   public reset(): this {
     this._validators = [];
+    this._name = undefined;
     this._value = undefined;
     this._label = undefined;
     this._placeholder = undefined;
@@ -88,7 +89,9 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
   }
 
   public build(): QuickFormControl<ControlName, Value> {
-    this.validate();
+    if (!this._name) {
+      throw new RequiredMethodCallException('init');
+    }
 
     const control = new QuickFormControl<ControlName, Value>(
       this._name,
@@ -103,15 +106,5 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
     this.reset();
 
     return control;
-  }
-
-  private validate(): void {
-    this.validateName();
-  }
-
-  private validateName(): void {
-    if (!this._name) {
-      throw new RequiredMethodCallException('init');
-    }
   }
 }

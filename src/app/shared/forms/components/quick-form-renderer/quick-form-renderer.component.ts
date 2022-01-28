@@ -5,6 +5,7 @@ import { ActionButton } from '@shared/buttons/components/action-button/models/ac
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { merge, Observable } from 'rxjs';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
 
 @Component({
   selector: 'app-quick-form-renderer',
@@ -21,30 +22,35 @@ export class QuickFormRendererComponent<
   public formGroup!: FormGroup;
   public controls!: QuickFormControl<ControlName>[];
   public submit!: ActionButton<Model>;
-  public cancel!: ActionButton;
+  public cancel?: ActionButton;
   public submitDisability$!: Observable<boolean>;
+
+  private mapper!: QuickFormModelMapper<Model>;
 
   public ngOnChanges(changes: SimpleChanges) {
     const { form } = changes;
 
     if (form) {
-      this.configureForm();
+      this.configure();
     }
   }
 
   public handleSubmitClick(): void {
-    this.submit.command();
+    const model = this.mapper.map(this.formGroup);
+
+    this.submit.command(model);
   }
 
   public handleCancelClick(): void {
-    this.cancel.command();
+    this.cancel?.command();
   }
 
-  private configureForm(): void {
+  private configure(): void {
     this.configureFormGroup();
     this.configureControls();
     this.configureSubmitAction();
     this.configureCancelAction();
+    this.configureModelMapper();
   }
 
   private configureFormGroup(): void {
@@ -71,5 +77,11 @@ export class QuickFormRendererComponent<
     const { cancel } = this.form;
 
     this.cancel = cancel;
+  }
+
+  private configureModelMapper(): void {
+    const { mapper } = this.form;
+
+    this.mapper = mapper;
   }
 }
