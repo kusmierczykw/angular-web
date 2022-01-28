@@ -1,11 +1,11 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { FormGroup } from '@angular/forms';
-import { ActionButton } from '@shared/buttons/components/action-button/models/action-button';
+import { ActionButton } from '@shared/buttons/components/action-button/models';
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { merge, Observable } from 'rxjs';
-import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces';
 
 @Component({
   selector: 'app-quick-form-renderer',
