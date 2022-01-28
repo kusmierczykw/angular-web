@@ -1,1 +1,1 @@
-export * from './action-button-builder.service';
+export * from './action-button-builder';

@@ -6,11 +6,13 @@ import { QuickControlNameType } from '@shared/forms/components/quick-form-render
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { merge, Observable } from 'rxjs';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces';
+import { ConfirmationService } from '@shared/confirmations/components/confirmation/services';
 
 @Component({
   selector: 'app-quick-form-renderer',
   templateUrl: './quick-form-renderer.component.html',
   styleUrls: ['./quick-form-renderer.component.scss'],
+  providers: [ConfirmationService],
 })
 export class QuickFormRendererComponent<
   ControlName extends QuickControlNameType,
@@ -27,6 +29,8 @@ export class QuickFormRendererComponent<
 
   private mapper!: QuickFormModelMapper<Model>;
 
+  public constructor(private readonly confirmation: ConfirmationService) {}
+
   public ngOnChanges(changes: SimpleChanges) {
     const { form } = changes;
 
@@ -42,7 +46,24 @@ export class QuickFormRendererComponent<
   }
 
   public handleCancelClick(): void {
-    this.cancel?.command.execute();
+    this.confirmation.show((builder) =>
+      builder
+        .title('Potwierdzenie')
+        .body('Czy na pewno chcesz przerwać uzupełnianie formularza?')
+        .reject((reject) =>
+          reject
+            .command({
+              execute: () => {},
+            })
+            .build(),
+        )
+        .accept((accept) =>
+          accept
+            .command({ execute: () => this.cancel?.command.execute() })
+            .build(),
+        )
+        .build(),
+    );
   }
 
   private configure(): void {

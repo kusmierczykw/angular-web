@@ -11,6 +11,7 @@ import { ControlRendererComponent } from '@shared/forms/components/quick-form-re
 import { DateControlRendererComponent } from '@shared/forms/components/quick-form-renderer/fragments/date-control-renderer';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SelectControlRendererComponent } from './fragments/select-control-renderer/select-control-renderer.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SelectControlRendererComponent } from './fragments/select-control-rende
     MatButtonModule,
     ActionButtonModule,
     MatDatepickerModule,
+    MatDialogModule,
   ],
   exports: [QuickFormRendererComponent],
 })
