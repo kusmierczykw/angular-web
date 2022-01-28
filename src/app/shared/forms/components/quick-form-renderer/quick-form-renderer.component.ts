@@ -13,13 +13,14 @@ import { merge, Observable } from 'rxjs';
 })
 export class QuickFormRendererComponent<
   ControlName extends QuickControlNameType,
+  Model,
 > implements OnChanges
 {
-  @Input() public form!: QuickForm<ControlName>;
+  @Input() public form!: QuickForm<ControlName, Model>;
 
   public formGroup!: FormGroup;
   public controls!: QuickFormControl<ControlName>[];
-  public submit!: ActionButton;
+  public submit!: ActionButton<Model>;
   public cancel!: ActionButton;
   public submitDisability$!: Observable<boolean>;
 

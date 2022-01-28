@@ -7,13 +7,13 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 @Injectable({
   providedIn: 'root',
 })
-export class QuickControlBuilder<ControlName> {
+export class QuickControlBuilder<ControlName, Value = unknown> {
   private _type!: SimpleControlType;
   private _name!: ControlName;
   private _validators!: ValidatorFn[];
   private _label?: string;
   private _placeholder?: string;
-  private _value?: unknown;
+  private _value?: Value;
   private _disabled?: boolean;
 
   public constructor() {
@@ -62,7 +62,7 @@ export class QuickControlBuilder<ControlName> {
     return this;
   }
 
-  public value<ValueType>(value: ValueType): this {
+  public value(value: Value): this {
     this._value = value;
 
     return this;
@@ -87,10 +87,10 @@ export class QuickControlBuilder<ControlName> {
     return this.type(SimpleControlType.TEXT).disabled(() => false);
   }
 
-  public build(): QuickFormControl<ControlName> {
+  public build(): QuickFormControl<ControlName, Value> {
     this.validate();
 
-    const control = new QuickFormControl<ControlName>(
+    const control = new QuickFormControl<ControlName, Value>(
       this._name,
       this._type,
       this._validators,

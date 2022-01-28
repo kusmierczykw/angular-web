@@ -12,10 +12,10 @@ import { ActionButtonStyle } from '@shared/buttons/components/action-button/enum
 @Injectable({
   providedIn: 'root',
 })
-export class QuickFormBuilder<ControlName extends QuickControlNameType> {
+export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
   private _controls!: QuickFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
-  private _submit!: ActionButton;
+  private _submit!: ActionButton<Model>;
   private _cancel!: ActionButton;
 
   public constructor(
@@ -32,9 +32,13 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType> {
     return this;
   }
 
-  public submit(factory: (builder: ActionButtonBuilder) => ActionButton): this {
+  public submit(
+    factory: (builder: ActionButtonBuilder<Model>) => ActionButton<Model>,
+  ): this {
     this._submit = factory(
-      this.buttonBuilder.label('Zapisz').htmlButtonType('submit'),
+      this.buttonBuilder
+        .label('Zapisz')
+        .htmlButtonType('submit') as ActionButtonBuilder<Model>,
     );
 
     return this;
@@ -48,22 +52,14 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType> {
     return this;
   }
 
-  public controls(
+  public control<Value>(
     factory: (
-      builder: QuickControlBuilder<ControlName>,
-    ) => QuickFormControl<ControlName>[],
+      builder: QuickControlBuilder<ControlName, Value>,
+    ) => QuickFormControl<ControlName, Value>,
   ): this {
-    this._controls.push(...factory(this.controlBuilder));
-
-    return this;
-  }
-
-  public control(
-    factory: (
-      builder: QuickControlBuilder<ControlName>,
-    ) => QuickFormControl<ControlName>,
-  ): this {
-    const control = factory(this.controlBuilder);
+    const control = factory(
+      this.controlBuilder as QuickControlBuilder<ControlName, Value>,
+    );
     const { name } = control;
 
     this.validateControlExists(name);
@@ -85,7 +81,7 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType> {
     return this;
   }
 
-  public build(): QuickForm<ControlName> {
+  public build(): QuickForm<ControlName, Model> {
     const form = new QuickForm(
       this._controls,
       this._validators,

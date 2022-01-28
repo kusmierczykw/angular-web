@@ -5,13 +5,13 @@ import { QuickControlNameType } from '@shared/forms/components/quick-form-render
 import { Observable, startWith } from 'rxjs';
 import { abstractControlStatus, isInvalid } from '@shared/forms/operators';
 
-export class QuickForm<ControlName extends QuickControlNameType> {
+export class QuickForm<ControlName extends QuickControlNameType, Model> {
   private _formGroup!: FormGroup;
 
   public constructor(
     public readonly controls: QuickFormControl<ControlName>[],
     public readonly validators: ValidatorFn[],
-    public readonly submit: ActionButton,
+    public readonly submit: ActionButton<Model>,
     public readonly cancel: ActionButton,
   ) {
     this.configureForm();

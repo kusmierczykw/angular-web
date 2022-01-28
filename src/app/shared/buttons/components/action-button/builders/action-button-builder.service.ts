@@ -5,15 +5,16 @@ import { ActionButton } from '@shared/buttons/components/action-button/models';
 import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { HtmlButtonType } from '@shared/buttons/types/html-button.type';
+import { ActionButtonCommand } from '@shared/buttons/components/action-button/types/action-button-command';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ActionButtonBuilder {
+export class ActionButtonBuilder<CommandArgument = unknown> {
   private _label!: string;
   private _visibility$!: Observable<boolean>;
   private _disabled$!: Observable<boolean>;
-  private _command!: () => void;
+  private _command!: ActionButtonCommand<CommandArgument>;
   private _style!: ActionButtonStyle;
   private _theme!: ThemePalette;
   private _htmlButtonType!: HtmlButtonType;
@@ -22,10 +23,10 @@ export class ActionButtonBuilder {
     this.reset();
   }
 
-  public build(): ActionButton {
+  public build(): ActionButton<CommandArgument> {
     this.validate();
 
-    const button = new ActionButton(
+    const button = new ActionButton<CommandArgument>(
       this._label,
       this._visibility$,
       this._disabled$,
@@ -58,7 +59,7 @@ export class ActionButtonBuilder {
     return this;
   }
 
-  public command(command: () => void): this {
+  public command(command: ActionButtonCommand<CommandArgument>): this {
     this._command = command;
 
     return this;
