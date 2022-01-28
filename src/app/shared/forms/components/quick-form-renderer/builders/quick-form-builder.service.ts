@@ -94,25 +94,36 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
   }
 
   public build(): QuickForm<ControlName, Model> {
-    if (!this._submit) {
-      throw new RequiredMethodCallException('submit');
-    }
-
-    if (!this._mapper) {
-      throw new RequiredMethodCallException('mapper');
-    }
+    this.validate();
 
     const form = new QuickForm(
       this._controls,
       this._validators,
-      this._mapper,
-      this._submit,
+      this._mapper!,
+      this._submit!,
       this._cancel,
     );
 
     this.reset();
 
     return form;
+  }
+
+  private validate(): void {
+    this.validateSubmit();
+    this.validateMapper();
+  }
+
+  private validateSubmit(): void {
+    if (!this._submit) {
+      throw new RequiredMethodCallException('submit');
+    }
+  }
+
+  private validateMapper(): void {
+    if (!this._mapper) {
+      throw new RequiredMethodCallException('mapper');
+    }
   }
 
   private validateControlExists(name: ControlName): void {

@@ -11,10 +11,10 @@ import { ActionButtonCommand } from '@shared/buttons/components/action-button/in
   providedIn: 'root',
 })
 export class ActionButtonBuilder<CommandArgument = unknown> {
-  private _label!: string;
+  private _label?: string;
   private _visibility$!: Observable<boolean>;
   private _disabled$!: Observable<boolean>;
-  private _command!: ActionButtonCommand<CommandArgument>;
+  private _command?: ActionButtonCommand<CommandArgument>;
   private _style!: ActionButtonStyle;
   private _theme!: ThemePalette;
   private _htmlButtonType!: HtmlButtonType;
@@ -23,14 +23,27 @@ export class ActionButtonBuilder<CommandArgument = unknown> {
     this.reset();
   }
 
+  public reset(): this {
+    this._command = undefined;
+    this._label = undefined;
+
+    this.visibility(() => of(true));
+    this.disabled(() => of(false));
+    this.style(ActionButtonStyle.FLAT);
+    this.theme('primary');
+    this.htmlButtonType('button');
+
+    return this;
+  }
+
   public build(): ActionButton<CommandArgument> {
     this.validate();
 
     const button = new ActionButton<CommandArgument>(
-      this._label,
+      this._label!,
       this._visibility$,
       this._disabled$,
-      this._command,
+      this._command!,
       this._style,
       this._theme,
       this._htmlButtonType,
@@ -81,14 +94,6 @@ export class ActionButtonBuilder<CommandArgument = unknown> {
     this._htmlButtonType = type;
 
     return this;
-  }
-
-  public reset(): this {
-    return this.visibility(() => of(true))
-      .disabled(() => of(false))
-      .style(ActionButtonStyle.FLAT)
-      .theme('primary')
-      .htmlButtonType('button');
   }
 
   private validate(): void {

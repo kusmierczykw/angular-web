@@ -9,8 +9,8 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 })
 export class QuickControlBuilder<ControlName, Value = unknown> {
   private _type!: SimpleControlType;
-  private _name?: ControlName;
   private _validators!: ValidatorFn[];
+  private _name?: ControlName;
   private _label?: string;
   private _placeholder?: string;
   private _value?: Value;
@@ -18,6 +18,19 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
 
   public constructor() {
     this.reset();
+  }
+
+  public reset(): this {
+    this._validators = [];
+    this._name = undefined;
+    this._value = undefined;
+    this._label = undefined;
+    this._placeholder = undefined;
+
+    this.type(SimpleControlType.TEXT);
+    this.disabled(() => false);
+
+    return this;
   }
 
   public init(name: ControlName): this {
@@ -78,23 +91,11 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
     return this.addValidator(Validators.required);
   }
 
-  public reset(): this {
-    this._validators = [];
-    this._name = undefined;
-    this._value = undefined;
-    this._label = undefined;
-    this._placeholder = undefined;
-
-    return this.type(SimpleControlType.TEXT).disabled(() => false);
-  }
-
   public build(): QuickFormControl<ControlName, Value> {
-    if (!this._name) {
-      throw new RequiredMethodCallException('init');
-    }
+    this.validate();
 
     const control = new QuickFormControl<ControlName, Value>(
-      this._name,
+      this._name!,
       this._type,
       this._validators,
       this._disabled,
@@ -106,5 +107,15 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
     this.reset();
 
     return control;
+  }
+
+  private validate(): void {
+    this.validateName();
+  }
+
+  private validateName(): void {
+    if (!this._name) {
+      throw new RequiredMethodCallException('init');
+    }
   }
 }
