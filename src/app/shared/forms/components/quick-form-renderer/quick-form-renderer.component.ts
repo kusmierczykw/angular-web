@@ -60,10 +60,10 @@ export class QuickFormRendererComponent<
 
   private configureSubmitAction(): void {
     const { submit, isInvalid$ } = this.form;
-    const submitDisabilitySource = merge(this.submit.disabled$, isInvalid$);
+    const disabilitySource = merge(submit.disabled$, isInvalid$);
 
     this.submit = submit;
-    this.submitDisability$ = submitDisabilitySource;
+    this.submitDisability$ = disabilitySource;
   }
 
   private configureCancelAction(): void {
