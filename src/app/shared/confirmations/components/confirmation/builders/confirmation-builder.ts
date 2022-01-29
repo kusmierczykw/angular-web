@@ -4,15 +4,22 @@ import { ActionButton } from '@shared/buttons/components/action-button/models';
 import { ActionButtonBuilder } from '@shared/buttons/components/action-button/builders';
 import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfirmationBuilder {
+  private readonly DEFAULT_CONFIG: MatDialogConfig = {
+    disableClose: true,
+    width: '32rem',
+  };
+
   private _title?: string;
   private _body?: string;
   private _accept!: ActionButton;
   private _reject!: ActionButton;
+  private _config!: MatDialogConfig;
 
   public constructor(
     private readonly actionButtonBuilder: ActionButtonBuilder,
@@ -21,6 +28,10 @@ export class ConfirmationBuilder {
   }
 
   public reset(): this {
+    this._title = undefined;
+    this._body = undefined;
+    this._config = this.DEFAULT_CONFIG;
+
     return this;
   }
 
@@ -58,6 +69,7 @@ export class ConfirmationBuilder {
       this._body!,
       this._accept!,
       this._reject!,
+      this._config,
     );
 
     this.reset();

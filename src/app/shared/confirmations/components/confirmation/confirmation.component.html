@@ -1,1 +1,15 @@
-<h2>Potwierdzenie</h2>
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content>
+  {{ body }}
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [color]="accept.theme" (click)="handleAcceptClick()">
+    {{ accept.label }}
+  </button>
+  
+  <button mat-button [color]="reject.theme" (click)="handleRejectClick()">
+    {{ reject.label }}
+  </button>
+</mat-dialog-actions>

@@ -15,7 +15,10 @@ export class ConfirmationService {
 
   public show(factory: (builder: ConfirmationBuilder) => Confirmation): void {
     const confirmation = factory(this.confirmationBuilder);
+    const { config } = confirmation;
 
-    this.dialog.open(ConfirmationComponent, { data: confirmation });
+    this.dialog
+      .open(ConfirmationComponent, { ...config, data: confirmation })
+      .afterClosed();
   }
 }

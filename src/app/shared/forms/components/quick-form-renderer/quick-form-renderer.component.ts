@@ -59,7 +59,9 @@ export class QuickFormRendererComponent<
         )
         .accept((accept) =>
           accept
-            .command({ execute: () => this.cancel?.command.execute() })
+            .command({
+              execute: () => {},
+            })
             .build(),
         )
         .build(),
