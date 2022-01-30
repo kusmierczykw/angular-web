@@ -3,4 +3,5 @@ export enum TrainingFormControl {
   STARTED_AT = 'fcStartedAt',
   FISHED_AT = 'fcFinishedAt',
   QUANTITY = 'fcQuantity',
+  GROUP = 'fcGroup',
 }

@@ -4,7 +4,7 @@ import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/m
 import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 import { Observable, startWith } from 'rxjs';
 import { abstractControlStatus, isInvalid } from '@shared/forms/operators';
-import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model-mapper';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 
 export class QuickForm<ControlName extends QuickControlName, Model> {

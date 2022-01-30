@@ -1,1 +1,12 @@
-<p>select-control-renderer works!</p>
+<ng-container [formGroup]="formGroupRef">
+  <mat-form-field appearance="outline">
+    <mat-label *ngIf="control.label">{{ control.label }}</mat-label>
+    <mat-select [formControlName]="$any(control.name)">
+      <mat-option
+        *ngFor="let option of config.optionsProvider.options$ | async"
+        [value]="option.value">
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

@@ -10,7 +10,7 @@ import { Button } from '@shared/buttons/components/button/models';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { QuickFormControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-form-control-builder';
 import { ButtonStyle } from '@shared/buttons/components/button/enums';
-import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model-mapper';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders';
 import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';

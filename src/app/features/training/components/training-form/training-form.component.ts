@@ -5,6 +5,8 @@ import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/q
 import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/builders';
 import { TrainingModel } from '@features/training/models/training.model';
 import { TrainingFormModelMapper } from '@features/training/components/training-form/training-form-model.mapper';
+import { of } from 'rxjs';
+import { SelectOption } from '@shared/forms/components/quick-form-renderer/models/select-option';
 
 @Component({
   selector: 'app-training-form',
@@ -57,6 +59,22 @@ export class TrainingFormComponent implements OnInit {
         control
           .initInteger(TrainingFormControl.QUANTITY)
           .label('Ilość razy w tygodniu')
+          .required()
+          .build(),
+      )
+      .control((control) =>
+        control
+          .initSelect(TrainingFormControl.GROUP)
+          .selectConfig({
+            optionsProvider: {
+              options$: of([
+                new SelectOption<string>('Kobiety', 'woman'),
+                new SelectOption<string>('Mężczyźni', 'man'),
+                new SelectOption<string>('Dzieci', 'children'),
+              ]),
+            },
+          })
+          .label('Grupa docelowa')
           .required()
           .build(),
       )

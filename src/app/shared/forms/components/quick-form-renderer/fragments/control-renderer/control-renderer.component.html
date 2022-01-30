@@ -20,6 +20,13 @@
     </app-number-control-renderer>
   </ng-container>
 
+  <ng-container *ngSwitchCase="QuickControlType.SELECT">
+    <app-select-control-renderer
+      [control]="control"
+      [formGroupRef]="formGroupRef">
+    </app-select-control-renderer>
+  </ng-container>
+
   <ng-container *ngSwitchDefault>
     Brak zdefiniowanej kontrolki formularza dla typu {{ control.type }}.
   </ng-container>

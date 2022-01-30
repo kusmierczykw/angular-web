@@ -11,14 +11,17 @@ export class TrainingFormModelMapper
   implements QuickFormModelMapper<TrainingModel>
 {
   public map(form: FormGroup): TrainingModel {
-    const { NAME, FISHED_AT, STARTED_AT } = TrainingFormControl;
+    const { NAME, FISHED_AT, STARTED_AT, GROUP, QUANTITY } =
+      TrainingFormControl;
     const { controls } = form;
     const {
       [NAME]: { value: name },
       [STARTED_AT]: { value: startedAt },
       [FISHED_AT]: { value: finishedAt },
+      [QUANTITY]: { value: quantity },
+      [GROUP]: { value: group },
     } = controls;
 
-    return new TrainingModel(name, startedAt, finishedAt);
+    return new TrainingModel(name, startedAt, finishedAt, quantity, group);
   }
 }

@@ -4,8 +4,11 @@ import { ValidatorFn, Validators } from '@angular/forms';
 import { QuickControlType } from '@shared/forms/components/quick-form-renderer/enums';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { QuickControlConfig } from '@shared/forms/components/quick-form-renderer/types';
-import { TextControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/text-control-config';
-import { NumberControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/number-control-config';
+import {
+  NumberControlConfig,
+  SelectControlConfig,
+  TextControlConfig,
+} from '@shared/forms/components/quick-form-renderer/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -66,11 +69,19 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
     return this.init(name).type(QuickControlType.DATE);
   }
 
+  public initSelect(name: ControlName): this {
+    return this.init(name).type(QuickControlType.SELECT);
+  }
+
   public textConfig(config: TextControlConfig): this {
     return this.config(config);
   }
 
   public numberConfig(config: NumberControlConfig): this {
+    return this.config(config);
+  }
+
+  public selectConfig(config: SelectControlConfig): this {
     return this.config(config);
   }
 
@@ -143,6 +154,7 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
     this.validateName();
     this.validateTextConfig();
     this.validateNumberConfig();
+    this.validateSelectConfig();
   }
 
   private validateName(): void {
@@ -168,6 +180,16 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
 
     if (!this._config) {
       throw new RequiredMethodCallException('numberConfig');
+    }
+  }
+
+  private validateSelectConfig(): void {
+    if (this._type !== QuickControlType.SELECT) {
+      return;
+    }
+
+    if (!this._config) {
+      throw new RequiredMethodCallException('selectConfig');
     }
   }
 }

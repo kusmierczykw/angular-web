@@ -13,6 +13,7 @@ import { SelectControlRendererComponent } from './fragments/select-control-rende
 import { ButtonModule } from '@shared/buttons/components/button/button.module';
 import { ConfirmationModule } from '@shared/confirmations/components/confirmation';
 import { NumberControlRendererComponent } from './fragments/number-control-renderer/number-control-renderer.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NumberControlRendererComponent } from './fragments/number-control-rende
     MatDatepickerModule,
     ButtonModule,
     ConfirmationModule,
+    MatSelectModule,
   ],
   exports: [QuickFormRendererComponent],
 })

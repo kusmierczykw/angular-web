@@ -1,4 +1,10 @@
-import { TextControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/text-control-config';
-import { NumberControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/number-control-config';
+import {
+  NumberControlConfig,
+  SelectControlConfig,
+  TextControlConfig,
+} from '@shared/forms/components/quick-form-renderer/interfaces';
 
-export type QuickControlConfig = TextControlConfig | NumberControlConfig;
+export type QuickControlConfig =
+  | TextControlConfig
+  | NumberControlConfig
+  | SelectControlConfig;
