@@ -3,6 +3,8 @@ import { ConfirmationBuilder } from '@shared/confirmations/components/confirmati
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from '@shared/confirmations/components/confirmation';
+import { Observable } from 'rxjs';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +15,13 @@ export class ConfirmationService {
     private readonly dialog: MatDialog,
   ) {}
 
-  public show(factory: (builder: ConfirmationBuilder) => Confirmation): void {
+  public show(
+    factory: (builder: ConfirmationBuilder) => Confirmation,
+  ): Observable<ConfirmationResult> {
     const confirmation = factory(this.confirmationBuilder);
     const { config } = confirmation;
 
-    this.dialog
+    return this.dialog
       .open(ConfirmationComponent, { ...config, data: confirmation })
       .afterClosed();
   }

@@ -1,12 +1,15 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { FormGroup } from '@angular/forms';
-import { ActionButton } from '@shared/buttons/components/action-button/models';
+import { Button } from '@shared/buttons/components/button/models';
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
-import { merge, Observable } from 'rxjs';
+import { filter, merge, Observable } from 'rxjs';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { ConfirmationService } from '@shared/confirmations/components/confirmation/services';
+import { once } from '@utils/rxjs/operators';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
 
 @Component({
   selector: 'app-quick-form-renderer',
@@ -23,13 +26,16 @@ export class QuickFormRendererComponent<
 
   public formGroup!: FormGroup;
   public controls!: QuickFormControl<ControlName>[];
-  public submit!: ActionButton<Model>;
-  public cancel?: ActionButton;
+  public submit!: Button<Model>;
+  public cancel?: Button;
+  public cancellationConfirmation?: Confirmation;
   public submitDisability$!: Observable<boolean>;
 
   private mapper!: QuickFormModelMapper<Model>;
 
-  public constructor(private readonly confirmation: ConfirmationService) {}
+  public constructor(
+    private readonly confirmationService: ConfirmationService,
+  ) {}
 
   public ngOnChanges(changes: SimpleChanges) {
     const { form } = changes;
@@ -46,26 +52,23 @@ export class QuickFormRendererComponent<
   }
 
   public handleCancelClick(): void {
-    this.confirmation.show((builder) =>
-      builder
-        .title('Potwierdzenie')
-        .body('Czy na pewno chcesz przerwać uzupełnianie formularza?')
-        .reject((reject) =>
-          reject
-            .command({
-              execute: () => {},
-            })
-            .build(),
-        )
-        .accept((accept) =>
-          accept
-            .command({
-              execute: () => {},
-            })
-            .build(),
-        )
-        .build(),
-    );
+    if (this.cancellationConfirmation) {
+      this.confirmAndCancelCommandExecute();
+
+      return;
+    }
+
+    this.cancelCommandExecute();
+  }
+
+  private confirmAndCancelCommandExecute(): void {
+    this.confirmationService
+      .show(() => this.cancellationConfirmation!)
+      .pipe(
+        once(),
+        filter((result) => result === ConfirmationResult.ACCEPT),
+      )
+      .subscribe(() => this.cancelCommandExecute());
   }
 
   private configure(): void {
@@ -97,14 +100,19 @@ export class QuickFormRendererComponent<
   }
 
   private configureCancelAction(): void {
-    const { cancel } = this.form;
+    const { cancel, cancellationConfirmation } = this.form;
 
     this.cancel = cancel;
+    this.cancellationConfirmation = cancellationConfirmation;
   }
 
   private configureModelMapper(): void {
     const { mapper } = this.form;
 
     this.mapper = mapper;
+  }
+
+  private cancelCommandExecute(): void {
+    this.cancel?.command.execute();
   }
 }

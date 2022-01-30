@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
-import { ActionButton } from '@shared/buttons/components/action-button/models';
-import { ActionButtonBuilder } from '@shared/buttons/components/action-button/builders';
-import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
+import { Button } from '@shared/buttons/components/button/models';
+import { ButtonBuilder } from '@shared/buttons/components/button/builders';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { ButtonStyle } from '@shared/buttons/components/button/enums';
 
 @Injectable({
   providedIn: 'root',
@@ -17,20 +17,28 @@ export class ConfirmationBuilder {
 
   private _title?: string;
   private _body?: string;
-  private _accept!: ActionButton;
-  private _reject!: ActionButton;
+  private _accept?: Button;
+  private _reject?: Button;
   private _config!: MatDialogConfig;
 
-  public constructor(
-    private readonly actionButtonBuilder: ActionButtonBuilder,
-  ) {
+  public constructor(private readonly actionButtonBuilder: ButtonBuilder) {
     this.reset();
   }
 
   public reset(): this {
-    this._title = undefined;
+    this._title = 'Potwierdzenie';
     this._body = undefined;
     this._config = this.DEFAULT_CONFIG;
+    this._accept = this.acceptButtonBuilder()
+      .command({
+        execute: () => {},
+      })
+      .build();
+    this._reject = this.rejectButtonBuilder()
+      .command({
+        execute: () => {},
+      })
+      .build();
 
     return this;
   }
@@ -47,16 +55,14 @@ export class ConfirmationBuilder {
     return this;
   }
 
-  public accept(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    this._accept = factory(this.actionButtonBuilder.label('Tak'));
+  public accept(factory: (builder: ButtonBuilder) => Button): this {
+    this._accept = factory(this.acceptButtonBuilder());
 
     return this;
   }
 
-  public reject(factory: (builder: ActionButtonBuilder) => ActionButton): this {
-    this._reject = factory(
-      this.actionButtonBuilder.label('Nie').style(ActionButtonStyle.RAISED),
-    );
+  public reject(factory: (builder: ButtonBuilder) => Button): this {
+    this._reject = factory(this.rejectButtonBuilder());
 
     return this;
   }
@@ -77,11 +83,17 @@ export class ConfirmationBuilder {
     return confirmation;
   }
 
+  private acceptButtonBuilder(): ButtonBuilder {
+    return this.actionButtonBuilder.label('Tak');
+  }
+
+  private rejectButtonBuilder(): ButtonBuilder {
+    return this.actionButtonBuilder.label('Nie').style(ButtonStyle.STROKED);
+  }
+
   private validate(): void {
     this.validateTitle();
     this.validateBody();
-    this.validateAccept();
-    this.validateReject();
   }
 
   private validateTitle(): void {
@@ -93,18 +105,6 @@ export class ConfirmationBuilder {
   private validateBody(): void {
     if (!this._body) {
       throw new RequiredMethodCallException('body');
-    }
-  }
-
-  private validateAccept(): void {
-    if (!this._accept) {
-      throw new RequiredMethodCallException('accept');
-    }
-  }
-
-  private validateReject(): void {
-    if (!this._reject) {
-      throw new RequiredMethodCallException('reject');
     }
   }
 }

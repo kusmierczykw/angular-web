@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { ValidatorFn } from '@angular/forms';
 import { UniquenessException } from '@core/exceptions/uniqueness.exception';
-import { ActionButtonBuilder } from '@shared/buttons/components/action-button/builders';
-import { ActionButton } from '@shared/buttons/components/action-button/models';
+import { ButtonBuilder } from '@shared/buttons/components/button/builders';
+import { Button } from '@shared/buttons/components/button/models';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { QuickControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-control-builder';
-import { ActionButtonStyle } from '@shared/buttons/components/action-button/enums';
+import { ButtonStyle } from '@shared/buttons/components/button/enums';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models';
+import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +19,15 @@ import { RequiredMethodCallException } from '@core/exceptions/required-method-ca
 export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
   private _controls!: QuickFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
-  private _submit?: ActionButton<Model>;
-  private _cancel?: ActionButton;
+  private _submit?: Button<Model>;
+  private _cancel?: Button;
   private _mapper?: QuickFormModelMapper<Model>;
+  private _cancellationConfirmation?: Confirmation;
 
   public constructor(
-    private readonly buttonBuilder: ActionButtonBuilder,
+    private readonly buttonBuilder: ButtonBuilder,
     private readonly controlBuilder: QuickControlBuilder<ControlName>,
+    private readonly confirmationBuilder: ConfirmationBuilder,
   ) {
     this.reset();
   }
@@ -34,25 +38,34 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
     this._submit = undefined;
     this._cancel = undefined;
     this._mapper = undefined;
+    this._cancellationConfirmation = undefined;
 
     return this;
   }
 
   public submit(
-    factory: (builder: ActionButtonBuilder<Model>) => ActionButton<Model>,
+    factory: (builder: ButtonBuilder<Model>) => Button<Model>,
   ): this {
     this._submit = factory(
       this.buttonBuilder
         .label('Zapisz')
-        .htmlButtonType('submit') as ActionButtonBuilder<Model>,
+        .htmlButtonType('submit') as ButtonBuilder<Model>,
     );
 
     return this;
   }
 
-  public cancel(factory: (builder: ActionButtonBuilder) => ActionButton): this {
+  public cancellationConfirmation(
+    factory: (builder: ConfirmationBuilder) => Confirmation,
+  ): this {
+    this._cancellationConfirmation = factory(this.confirmationBuilder);
+
+    return this;
+  }
+
+  public cancel(factory: (builder: ButtonBuilder) => Button): this {
     this._cancel = factory(
-      this.buttonBuilder.label('Anuluj').style(ActionButtonStyle.STROKED),
+      this.buttonBuilder.label('Anuluj').style(ButtonStyle.STROKED),
     );
 
     return this;
@@ -102,6 +115,7 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
       this._mapper!,
       this._submit!,
       this._cancel,
+      this._cancellationConfirmation,
     );
 
     this.reset();

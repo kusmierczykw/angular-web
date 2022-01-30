@@ -1,10 +1,11 @@
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
-import { ActionButton } from '@shared/buttons/components/action-button/models/action-button';
+import { Button } from '@shared/buttons/components/button/models/button';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
 import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
 import { Observable, startWith } from 'rxjs';
 import { abstractControlStatus, isInvalid } from '@shared/forms/operators';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 
 export class QuickForm<ControlName extends QuickControlNameType, Model> {
   private _formGroup!: FormGroup;
@@ -13,8 +14,9 @@ export class QuickForm<ControlName extends QuickControlNameType, Model> {
     public readonly controls: QuickFormControl<ControlName>[],
     public readonly validators: ValidatorFn[],
     public readonly mapper: QuickFormModelMapper<Model>,
-    public readonly submit: ActionButton<Model>,
-    public readonly cancel?: ActionButton,
+    public readonly submit: Button<Model>,
+    public readonly cancel?: Button,
+    public readonly cancellationConfirmation?: Confirmation,
   ) {
     this.configureForm();
   }

@@ -27,29 +27,34 @@ export class TrainingFormComponent implements OnInit {
 
   private configureForm(): void {
     this.form = this.simpleFormBuilder
-      .control((builder) =>
-        builder
+      .control((control) =>
+        control
           .initText(TrainingFormControl.NAME)
           .label('Nazwa')
           .required()
           .build(),
       )
-      .control((builder) =>
-        builder
+      .control((control) =>
+        control
           .initDate(TrainingFormControl.STARTED_AT)
           .label('Data rozpoczęcia')
           .required()
           .build(),
       )
-      .cancel((builder) =>
-        builder
+      .cancellationConfirmation((confirmation) =>
+        confirmation
+          .body('Czy na pewno chcesz przerwać uzupełnianie formularza?')
+          .build(),
+      )
+      .cancel((cancel) =>
+        cancel
           .command({
             execute: () => {},
           })
           .build(),
       )
-      .submit((builder) =>
-        builder
+      .submit((submit) =>
+        submit
           .command({
             execute: (argument: TrainingModel) => {
               console.log(argument);

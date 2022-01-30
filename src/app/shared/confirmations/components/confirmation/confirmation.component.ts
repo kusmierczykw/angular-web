@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
-import { ActionButton } from '@shared/buttons/components/action-button/models';
+import { Button } from '@shared/buttons/components/button/models';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
 
 @Component({
   selector: 'app-confirmation',
@@ -11,8 +12,8 @@ import { ActionButton } from '@shared/buttons/components/action-button/models';
 export class ConfirmationComponent {
   public title!: string;
   public body!: string;
-  public accept!: ActionButton;
-  public reject!: ActionButton;
+  public accept!: Button;
+  public reject!: Button;
 
   public constructor(
     @Inject(MAT_DIALOG_DATA) private readonly confirmation: Confirmation,
@@ -28,12 +29,11 @@ export class ConfirmationComponent {
 
   public handleAcceptClick(): void {
     this.accept.command.execute();
-
-    this.dialogRef.close();
+    this.dialogRef.close(ConfirmationResult.ACCEPT);
   }
 
   public handleRejectClick(): void {
-    this.accept.command.execute();
-    this.dialogRef.close();
+    this.reject.command.execute();
+    this.dialogRef.close(ConfirmationResult.REJECT);
   }
 }

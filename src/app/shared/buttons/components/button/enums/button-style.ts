@@ -1,4 +1,4 @@
-export enum ActionButtonStyle {
+export enum ButtonStyle {
   FLAT = 'FLAT',
   RAISED = 'RAISED',
   STROKED = 'STROKED',
