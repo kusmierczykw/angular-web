@@ -41,11 +41,6 @@ export class TrainingFormComponent implements OnInit {
           .required()
           .build(),
       )
-      .cancellationConfirmation((confirmation) =>
-        confirmation
-          .body('Czy na pewno chcesz przerwać uzupełnianie formularza?')
-          .build(),
-      )
       .cancel((cancel) =>
         cancel
           .command({

@@ -38,7 +38,8 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
     this._submit = undefined;
     this._cancel = undefined;
     this._mapper = undefined;
-    this._cancellationConfirmation = undefined;
+    this._cancellationConfirmation =
+      this.cancellationConfirmationBuilder().build();
 
     return this;
   }
@@ -55,10 +56,18 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
     return this;
   }
 
+  public disableCancellationConfirmation(): this {
+    this._cancellationConfirmation = undefined;
+
+    return this;
+  }
+
   public cancellationConfirmation(
     factory: (builder: ConfirmationBuilder) => Confirmation,
   ): this {
-    this._cancellationConfirmation = factory(this.confirmationBuilder);
+    const builder = this.cancellationConfirmationBuilder();
+
+    this._cancellationConfirmation = factory(builder);
 
     return this;
   }
@@ -150,5 +159,11 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
     }
 
     throw new UniquenessException(`The control ${name} must have unique name.`);
+  }
+
+  private cancellationConfirmationBuilder(): ConfirmationBuilder {
+    return this.confirmationBuilder
+      .title('Potwierdzenie')
+      .body('Czy na pewno chcesz przerwać uzupełnianie formularza?');
   }
 }
