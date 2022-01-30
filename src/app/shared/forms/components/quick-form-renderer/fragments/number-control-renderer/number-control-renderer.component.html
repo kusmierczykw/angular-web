@@ -3,7 +3,10 @@
     <mat-label *ngIf="control.label">{{ control.label }}</mat-label>
     <input
       matInput
+      type="number"
       [formControlName]="$any(control.name)"
-      [type]="config.type" />
+      [min]="config.min!"
+      [max]="config.max!"
+      [step]="config.step!" />
   </mat-form-field>
 </ng-container>

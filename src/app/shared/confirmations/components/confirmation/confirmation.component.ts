@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { Button } from '@shared/buttons/components/button/models';
-import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum';
 
 @Component({
   selector: 'app-confirmation',
@@ -17,7 +17,7 @@ export class ConfirmationComponent {
 
   public constructor(
     @Inject(MAT_DIALOG_DATA) private readonly confirmation: Confirmation,
-    private dialogRef: MatDialogRef<ConfirmationComponent>,
+    private readonly dialogRef: MatDialogRef<ConfirmationComponent>,
   ) {
     const { title, body, accept, reject } = this.confirmation;
 

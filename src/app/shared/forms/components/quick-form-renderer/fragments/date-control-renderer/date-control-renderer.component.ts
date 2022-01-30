@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControlRendererComponent } from '@shared/forms/components/quick-form-renderer/fragments/abstract-control-renderer.component';
-import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 
 @Component({
   selector: 'app-date-control-renderer',
@@ -8,5 +8,5 @@ import { QuickControlNameType } from '@shared/forms/components/quick-form-render
   styleUrls: ['./date-control-renderer.component.scss'],
 })
 export class DateControlRendererComponent<
-  ControlName extends QuickControlNameType,
+  ControlName extends QuickControlName,
 > extends AbstractControlRendererComponent<ControlName> {}

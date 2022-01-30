@@ -1,2 +1,2 @@
-export * from './simple-control.type';
-export * from './quick-control-name.type';
+export * from './quick-control.name';
+export * from './quick-control.config';

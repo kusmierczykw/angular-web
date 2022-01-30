@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { ButtonStyle } from '@shared/buttons/components/button/enums/button-style';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
-import { HtmlButtonType } from '@shared/buttons/types/html-button.type';
+import { HtmlButtonType } from '@shared/buttons/types';
 import { ButtonCommand } from '@shared/buttons/components/button/interfaces';
 
 export class Button<CommandArgument = unknown> {

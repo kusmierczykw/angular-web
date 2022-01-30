@@ -2,14 +2,14 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { FormGroup } from '@angular/forms';
 import { Button } from '@shared/buttons/components/button/models';
-import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { filter, merge, Observable } from 'rxjs';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { ConfirmationService } from '@shared/confirmations/components/confirmation/services';
 import { once } from '@utils/rxjs/operators';
-import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum';
 
 @Component({
   selector: 'app-quick-form-renderer',
@@ -18,7 +18,7 @@ import { ConfirmationResult } from '@shared/confirmations/components/confirmatio
   providers: [ConfirmationService],
 })
 export class QuickFormRendererComponent<
-  ControlName extends QuickControlNameType,
+  ControlName extends QuickControlName,
   Model,
 > implements OnChanges
 {

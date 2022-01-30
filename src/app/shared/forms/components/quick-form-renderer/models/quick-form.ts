@@ -1,13 +1,13 @@
 import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { Button } from '@shared/buttons/components/button/models/button';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
-import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 import { Observable, startWith } from 'rxjs';
 import { abstractControlStatus, isInvalid } from '@shared/forms/operators';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 
-export class QuickForm<ControlName extends QuickControlNameType, Model> {
+export class QuickForm<ControlName extends QuickControlName, Model> {
   private _formGroup!: FormGroup;
 
   public constructor(
@@ -44,7 +44,7 @@ export class QuickForm<ControlName extends QuickControlNameType, Model> {
   }
 
   private buildFormGroup(): FormGroup {
-    const controls: { [key: QuickControlNameType]: FormControl } =
+    const controls: { [key: QuickControlName]: FormControl } =
       this.controls.reduce(
         (controls: {}, control: QuickFormControl<ControlName>) => ({
           ...controls,

@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { ValidatorFn } from '@angular/forms';
-import { UniquenessException } from '@core/exceptions/uniqueness.exception';
+import {
+  RequiredMethodCallException,
+  UniquenessException,
+} from '@core/exceptions';
 import { ButtonBuilder } from '@shared/buttons/components/button/builders';
 import { Button } from '@shared/buttons/components/button/models';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
-import { QuickControlNameType } from '@shared/forms/components/quick-form-renderer/types';
-import { QuickControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-control-builder';
+import { QuickFormControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-form-control-builder';
 import { ButtonStyle } from '@shared/buttons/components/button/enums';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model.mapper';
-import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
+export class QuickFormBuilder<ControlName extends QuickControlName, Model> {
   private _controls!: QuickFormControl<ControlName>[];
   private _validators!: ValidatorFn[];
   private _submit?: Button<Model>;
@@ -26,7 +28,7 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
 
   public constructor(
     private readonly buttonBuilder: ButtonBuilder,
-    private readonly controlBuilder: QuickControlBuilder<ControlName>,
+    private readonly controlBuilder: QuickFormControlBuilder<ControlName>,
     private readonly confirmationBuilder: ConfirmationBuilder,
   ) {
     this.reset();
@@ -82,11 +84,11 @@ export class QuickFormBuilder<ControlName extends QuickControlNameType, Model> {
 
   public control<Value>(
     factory: (
-      builder: QuickControlBuilder<ControlName, Value>,
+      builder: QuickFormControlBuilder<ControlName, Value>,
     ) => QuickFormControl<ControlName, Value>,
   ): this {
     const control = factory(
-      this.controlBuilder as QuickControlBuilder<ControlName, Value>,
+      this.controlBuilder as QuickFormControlBuilder<ControlName, Value>,
     );
     const { name } = control;
 

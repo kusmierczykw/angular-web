@@ -3,10 +3,10 @@ import { MatDialogConfig } from '@angular/material/dialog';
 
 export class Confirmation {
   public constructor(
-    public title: string,
-    public body: string,
-    public accept: Button,
-    public reject: Button,
-    public config: MatDialogConfig,
+    public readonly title: string,
+    public readonly body: string,
+    public readonly accept: Button,
+    public readonly reject: Button,
+    public readonly config: MatDialogConfig,
   ) {}
 }

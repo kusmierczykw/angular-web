@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
-import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { RequiredMethodCallException } from '@core/exceptions';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { SimpleControlType } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlType } from '@shared/forms/components/quick-form-renderer/enums';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
+import { QuickControlConfig } from '@shared/forms/components/quick-form-renderer/types';
+import { TextControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/text-control-config';
+import { NumberControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/number-control-config';
 
 @Injectable({
   providedIn: 'root',
 })
-export class QuickControlBuilder<ControlName, Value = unknown> {
-  private _type!: SimpleControlType;
+export class QuickFormControlBuilder<ControlName, Value = unknown> {
+  private _type!: QuickControlType;
   private _validators!: ValidatorFn[];
   private _name?: ControlName;
   private _label?: string;
   private _placeholder?: string;
   private _value?: Value;
   private _disabled?: boolean;
+  private _config?: QuickControlConfig;
 
   public constructor() {
     this.reset();
@@ -26,8 +30,9 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
     this._value = undefined;
     this._label = undefined;
     this._placeholder = undefined;
+    this._config = undefined;
 
-    this.type(SimpleControlType.TEXT);
+    this.type(QuickControlType.TEXT);
     this.disabled(() => false);
 
     return this;
@@ -40,18 +45,42 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
   }
 
   public initText(name: ControlName): this {
-    return this.init(name).type(SimpleControlType.TEXT);
+    return this.init(name).type(QuickControlType.TEXT).textConfig({
+      type: 'text',
+    });
   }
 
-  public initNumber(name: ControlName): this {
-    return this.init(name).type(SimpleControlType.NUMBER);
+  public initFloat(name: ControlName): this {
+    return this.init(name).type(QuickControlType.NUMBER).numberConfig({
+      step: 0.1,
+    });
+  }
+
+  public initInteger(name: ControlName): this {
+    return this.init(name).type(QuickControlType.NUMBER).numberConfig({
+      step: 1,
+    });
   }
 
   public initDate(name: ControlName): this {
-    return this.init(name).type(SimpleControlType.DATE);
+    return this.init(name).type(QuickControlType.DATE);
   }
 
-  public type(type: SimpleControlType): this {
+  public textConfig(config: TextControlConfig): this {
+    return this.config(config);
+  }
+
+  public numberConfig(config: NumberControlConfig): this {
+    return this.config(config);
+  }
+
+  public config(config: QuickControlConfig): this {
+    this._config = { ...this._config, ...config };
+
+    return this;
+  }
+
+  public type(type: QuickControlType): this {
     this._type = type;
 
     return this;
@@ -102,6 +131,7 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
       this._value,
       this._label,
       this._placeholder,
+      this._config,
     );
 
     this.reset();
@@ -111,11 +141,33 @@ export class QuickControlBuilder<ControlName, Value = unknown> {
 
   private validate(): void {
     this.validateName();
+    this.validateTextConfig();
+    this.validateNumberConfig();
   }
 
   private validateName(): void {
     if (!this._name) {
       throw new RequiredMethodCallException('init');
+    }
+  }
+
+  private validateTextConfig(): void {
+    if (this._type !== QuickControlType.TEXT) {
+      return;
+    }
+
+    if (!this._config) {
+      throw new RequiredMethodCallException('textConfig');
+    }
+  }
+
+  private validateNumberConfig(): void {
+    if (this._type !== QuickControlType.NUMBER) {
+      return;
+    }
+
+    if (!this._config) {
+      throw new RequiredMethodCallException('numberConfig');
     }
   }
 }

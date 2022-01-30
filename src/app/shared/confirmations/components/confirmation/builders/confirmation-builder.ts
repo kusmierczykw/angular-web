@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { Button } from '@shared/buttons/components/button/models';
 import { ButtonBuilder } from '@shared/buttons/components/button/builders';
-import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { RequiredMethodCallException } from '@core/exceptions';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { ButtonStyle } from '@shared/buttons/components/button/enums';
 

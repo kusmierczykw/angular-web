@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { isObservable, Observable, of } from 'rxjs';
 import { RouterLinkActiveOptions } from '@shared/menu/types';
-import { RequiredParameterException } from '@core/exceptions/required-parameter.exception';
+import { RequiredParameterException } from '@core/exceptions';
 
 @Injectable({
   providedIn: 'root',

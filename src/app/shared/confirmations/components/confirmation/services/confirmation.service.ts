@@ -4,7 +4,7 @@ import { Confirmation } from '@shared/confirmations/components/confirmation/mode
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from '@shared/confirmations/components/confirmation';
 import { Observable } from 'rxjs';
-import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum';
 
 @Injectable({
   providedIn: 'root',

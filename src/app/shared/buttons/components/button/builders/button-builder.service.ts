@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { RequiredMethodCallException } from '@core/exceptions';
 import { Button } from '@shared/buttons/components/button/models';
 import { ButtonStyle } from '@shared/buttons/components/button/enums';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
-import { HtmlButtonType } from '@shared/buttons/types/html-button.type';
+import { HtmlButtonType } from '@shared/buttons/types';
 import { ButtonCommand } from '@shared/buttons/components/button/interfaces';
 
 @Injectable({

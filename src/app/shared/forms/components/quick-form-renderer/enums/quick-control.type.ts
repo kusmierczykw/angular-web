@@ -1,4 +1,4 @@
-export enum SimpleControlType {
+export enum QuickControlType {
   NUMBER = 'NUMBER',
   TEXT = 'TEXT',
   DATE = 'DATE',

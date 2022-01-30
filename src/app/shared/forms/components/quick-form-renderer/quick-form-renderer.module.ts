@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SelectControlRendererComponent } from './fragments/select-control-renderer/select-control-renderer.component';
 import { ButtonModule } from '@shared/buttons/components/button/button.module';
 import { ConfirmationModule } from '@shared/confirmations/components/confirmation';
+import { NumberControlRendererComponent } from './fragments/number-control-renderer/number-control-renderer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ConfirmationModule } from '@shared/confirmations/components/confirmatio
     ControlRendererComponent,
     DateControlRendererComponent,
     SelectControlRendererComponent,
+    NumberControlRendererComponent,
   ],
   imports: [
     CommonModule,

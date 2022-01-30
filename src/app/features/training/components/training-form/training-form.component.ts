@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
 import { FormBuilder } from '@angular/forms';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/builders';
 import { TrainingModel } from '@features/training/models/training.model';
+import { TrainingFormModelMapper } from '@features/training/components/training-form/training-form-model.mapper';
 
 @Component({
   selector: 'app-training-form',
@@ -11,9 +12,13 @@ import { TrainingModel } from '@features/training/models/training.model';
   styleUrls: ['./training-form.component.scss'],
 })
 export class TrainingFormComponent implements OnInit {
+  @Output() public readonly submitClick = new EventEmitter<TrainingModel>();
+  @Output() public readonly cancelClick = new EventEmitter<void>();
+
   public form!: QuickForm<TrainingFormControl, TrainingModel>;
 
   public constructor(
+    private readonly mapper: TrainingFormModelMapper,
     private readonly formBuilder: FormBuilder,
     private readonly simpleFormBuilder: QuickFormBuilder<
       TrainingFormControl,
@@ -41,25 +46,35 @@ export class TrainingFormComponent implements OnInit {
           .required()
           .build(),
       )
+      .control((control) =>
+        control
+          .initDate(TrainingFormControl.FISHED_AT)
+          .label('Data zakończenia')
+          .required()
+          .build(),
+      )
+      .control((control) =>
+        control
+          .initInteger(TrainingFormControl.QUANTITY)
+          .label('Ilość razy w tygodniu')
+          .required()
+          .build(),
+      )
       .cancel((cancel) =>
         cancel
           .command({
-            execute: () => {},
+            execute: () => this.cancelClick.emit(),
           })
           .build(),
       )
       .submit((submit) =>
         submit
           .command({
-            execute: (argument: TrainingModel) => {
-              console.log(argument);
-            },
+            execute: (model: TrainingModel) => this.submitClick.emit(model),
           })
           .build(),
       )
-      .mapper(() => ({
-        map: () => new TrainingModel('test', new Date()),
-      }))
+      .mapper(() => this.mapper)
       .build();
   }
 }
