@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControlRendererComponent } from '@shared/forms/components/quick-form-renderer/fragments/abstract-control-renderer.component';
+import { AbstractControlRendererComponent } from '@shared/forms/components/quick-form-renderer/fragments/controls/abstract-control-renderer.component';
 import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 import { NumberControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/number-control-config';
 

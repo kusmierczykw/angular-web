@@ -21,6 +21,7 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
   private _placeholder?: string;
   private _value?: Value;
   private _disabled?: boolean;
+  private _hint?: string;
   private _config?: QuickControlConfig;
 
   public constructor() {
@@ -33,6 +34,7 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
     this._value = undefined;
     this._label = undefined;
     this._placeholder = undefined;
+    this._hint = undefined;
     this._config = undefined;
 
     this.type(QuickControlType.TEXT);
@@ -115,6 +117,12 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
     return this;
   }
 
+  public hint(hint: string): this {
+    this._hint = hint;
+
+    return this;
+  }
+
   public value(value: Value): this {
     this._value = value;
 
@@ -142,6 +150,7 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
       this._value,
       this._label,
       this._placeholder,
+      this._hint,
       this._config,
     );
 

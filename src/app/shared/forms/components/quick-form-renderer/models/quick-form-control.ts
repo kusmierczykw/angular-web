@@ -13,6 +13,7 @@ export class QuickFormControl<ControlName, Value = unknown> {
     public readonly value?: Value,
     public readonly label?: string,
     public readonly placeholder?: string,
+    public readonly hint?: string,
     public readonly config?: QuickControlConfig,
   ) {
     this.configureControl();

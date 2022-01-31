@@ -68,13 +68,15 @@ export class TrainingFormComponent implements OnInit {
           .selectConfig({
             optionsProvider: {
               options$: of([
+                new SelectOption<string>('Dzieci', 'children'),
                 new SelectOption<string>('Kobiety', 'woman'),
                 new SelectOption<string>('Mężczyźni', 'man'),
-                new SelectOption<string>('Dzieci', 'children'),
+                new SelectOption<string>('Kobiety w ciąży', 'pregnant'),
               ]),
             },
           })
           .label('Grupa docelowa')
+          .hint('Grupa osób, do których skierowany jest trening.')
           .required()
           .build(),
       )

@@ -1,9 +1,0 @@
-<ng-container [formGroup]="formGroupRef">
-  <mat-form-field appearance="outline">
-    <mat-label *ngIf="control.label">{{ control.label }}</mat-label>
-    <input
-      matInput
-      [formControlName]="$any(control.name)"
-      [type]="config.type" />
-  </mat-form-field>
-</ng-container>
