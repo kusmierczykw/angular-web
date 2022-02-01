@@ -129,6 +129,12 @@ export class QuickFormControlBuilder<ControlName, Value = unknown> {
     return this;
   }
 
+  public validators(validators: ValidatorFn[]): this {
+    validators.forEach((validator) => this.addValidator(validator));
+    
+    return this;
+  }
+
   public addValidator(validator: ValidatorFn): this {
     this._validators.push(validator);
 

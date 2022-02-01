@@ -9,6 +9,9 @@
       [max]="config.max!"
       [step]="config.step!" />
     <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
-    <mat-error *ngIf="errors">{{ errors | validationErrors }}</mat-error>
+    <mat-error *ngIf="errors">
+      <app-validator-errors-renderer [errors]="errors">
+      </app-validator-errors-renderer>
+    </mat-error>
   </mat-form-field>
 </ng-container>

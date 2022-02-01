@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/builders';
 import { TrainingModel } from '@features/training/models/training.model';
@@ -59,6 +59,7 @@ export class TrainingFormComponent implements OnInit {
         control
           .initInteger(TrainingFormControl.QUANTITY)
           .label('Ilość razy w tygodniu')
+          .validators([Validators.min(1), Validators.max(10)])
           .required()
           .build(),
       )

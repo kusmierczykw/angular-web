@@ -14,7 +14,7 @@ import { ButtonModule } from '@shared/buttons/components/button/button.module';
 import { ConfirmationModule } from '@shared/confirmations/components/confirmation';
 import { NumberControlRendererComponent } from './fragments/controls/number-control-renderer/number-control-renderer.component';
 import { MatSelectModule } from '@angular/material/select';
-import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
+import { ValidatorModule } from '@shared/forms/components/validator';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
     DateControlRendererComponent,
     SelectControlRendererComponent,
     NumberControlRendererComponent,
-    ValidationErrorsPipe,
   ],
   imports: [
     CommonModule,
@@ -36,6 +35,7 @@ import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
     ButtonModule,
     ConfirmationModule,
     MatSelectModule,
+    ValidatorModule,
   ],
   exports: [QuickFormRendererComponent],
 })
