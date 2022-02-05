@@ -1,5 +1,5 @@
-FROM node:16
+FROM node:16-alpine
 
 RUN npm install -g @angular/cli
 
-WORKDIR /app
+WORKDIR /e-karta-zdrowia

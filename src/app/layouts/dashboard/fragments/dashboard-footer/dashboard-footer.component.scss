@@ -1,9 +1,13 @@
+$_footer-border-radius: 0;
+$_footer-padding: 1rem;
+$_footer-background-color: white;
+
 :host {
   .dashboard-footer {
+    background-color: $_footer-background-color;
+    border-radius: $_footer-border-radius;
+    padding: $_footer-padding;
     display: flex;
-    padding: 1rem;
     flex-direction: column;
-    background-color: white;
-    border-radius: 1rem;
   }
 }

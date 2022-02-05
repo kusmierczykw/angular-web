@@ -1,8 +1,4 @@
 <div class="dashboard-sidebar">
-  <div class="text-center">
-    <img [src]="Image.FITNESS_LOGO | imageUrl" [style.width.rem]="6" />
-  </div>
-
   <div class="dashboard-sidebar__menu">
     <ng-container *ngFor="let item of menu$ | onlyVisibleMenuItems$ | async">
       <app-menu-item [item]="item"></app-menu-item>

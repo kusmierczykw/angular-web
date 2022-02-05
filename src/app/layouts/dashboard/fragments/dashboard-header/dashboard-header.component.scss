@@ -8,7 +8,6 @@ $_menu-item-color: material.get-color-from-palette(material.$blue-palette, 500);
     padding: 1rem;
     align-items: center;
     background-color: white;
-    border-radius: 1rem;
 
     ::ng-deep {
       .menu-item {

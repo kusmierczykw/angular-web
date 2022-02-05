@@ -2,7 +2,7 @@
 @use 'src/app/styles/themes/material/mixins/button' as material-button;
 
 $_sidebar-height: 100vh;
-$_sidebar-border-radius: 1rem;
+$_sidebar-border-radius: 0;
 $_sidebar-background-color: #ffffff;
 $_sidebar-menu-item-width: 16rem;
 $_sidebar-menu-item-icon-margin: 0.5rem;

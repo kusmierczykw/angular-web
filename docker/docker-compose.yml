@@ -6,9 +6,9 @@ services:
     ports:
       - "4200:4200"
     volumes:
-      - ./..:/app
+      - ./..:/e-karta-zdrowia
     tty: true
     networks:
-      - gym
+      - e-karta-zdrowia
 networks:
-  gym:
+  e-karta-zdrowia:

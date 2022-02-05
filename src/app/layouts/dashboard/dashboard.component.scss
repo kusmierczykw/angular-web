@@ -1,5 +1,4 @@
 .dashboard {
-  padding: 2rem;
   background-color: #f9fbff;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -11,14 +10,13 @@
 
   & > aside {
     grid-area: sidebar;
-    margin-right: 2rem;
   }
 
   & > header {
     grid-area: header;
     position: sticky;
-    top: 2rem;
     z-index: 1;
+    top: 0;
   }
 
   & > footer {
@@ -31,7 +29,7 @@
 
   &__sidebar {
     position: sticky;
-    top: 2rem;
+    top: 0;
   }
 
   &__header {
