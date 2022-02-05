@@ -10,6 +10,6 @@ fi
 cd docker || exit 0
 
 # Run scripts inside docker
-docker-compose run angular --rm npm run format && npm run eslint:fix
+docker-compose run --rm angular npm run format && npm run eslint:fix
 
 cd - > /dev/null || exit 0

@@ -2,18 +2,39 @@
 
 NETWORK_NAME="e-karta-zdrowia"
 
-if [ ! "$(command -v docker)" ]; then
-  echo "You have not Docker installed. Please install Docker environment."
+init() {
+  cd docker || exit
+}
 
-  exit 255
-fi
+destroy() {
+  cd - >/dev/null || exit 0
+}
 
-cd docker && docker-compose down -v
-cd - > /dev/null || exit 0
+check_docker_config() {
+  if [ ! "$(command -v docker)" ]; then
+    echo "You have not Docker installed. Please install Docker environment."
 
-if docker network ls | grep -q $NETWORK_NAME; then
-  docker network remove $NETWORK_NAME > /dev/null
-fi
+    exit 255
+  fi
+}
 
-echo "The project was successfully stopped."
+remove_network() {
+  if docker network ls --format "{{.Name}}" | grep -q ^$NETWORK_NAME$; then
+    docker network remove $NETWORK_NAME >/dev/null
+  fi
+}
 
+containers_down() {
+  docker-compose down -v
+}
+
+print_success_message() {
+  echo "The project was successfully stopped."
+}
+
+init
+check_docker_config
+containers_down
+remove_network
+print_success_message
+destroy

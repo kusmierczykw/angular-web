@@ -2,16 +2,35 @@
 
 NETWORK_NAME="e-karta-zdrowia"
 
-if [ ! "$(command -v docker)" ]; then
-  echo "You have not Docker installed. Please install Docker environment."
+init() {
+  cd docker || exit
+}
 
-  exit 255
-fi
+destroy() {
+  cd - >/dev/null || exit 0
+}
 
-if docker network ls | grep $NETWORK_NAME; then
-  docker network create $NETWORK_NAME > /dev/null
-fi
+check_docker_config() {
+  if [ ! "$(command -v docker)" ]; then
+    echo "You have not Docker installed. Please install Docker environment."
 
-cd docker && docker-compose up -d
-docker-compose exec angular sh
-cd - > /dev/null || exit 0
+    exit 255
+  fi
+}
+
+create_network() {
+  if docker network ls --format "{{.Name}}" | grep -q ^$NETWORK_NAME$; then
+    docker network create $NETWORK_NAME >/dev/null
+  fi
+}
+
+run_containers() {
+  docker-compose up -d
+  docker-compose exec angular sh
+}
+
+init
+check_docker_config
+create_network
+run_containers
+destroy

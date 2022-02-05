@@ -1,14 +1,17 @@
 version: "3.8"
 services:
   angular:
+    container_name: e-karta-zdrowia-web
     build:
       context: angular
     ports:
-      - "4200:4200"
+      - "${ANGULAR_PORT}:4200"
     volumes:
       - ./..:/e-karta-zdrowia
     tty: true
     networks:
       - e-karta-zdrowia
+
 networks:
   e-karta-zdrowia:
+      name: e-karta-zdrowia
