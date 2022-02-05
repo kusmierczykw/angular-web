@@ -1,0 +1,15 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+if [ ! "$(command -v docker)" ]; then
+  echo "You have not Docker installed. Please install Docker environment."
+
+  exit 255
+fi
+
+cd docker || exit 0
+
+# Run scripts inside docker
+docker-compose run angular --rm npm run format && npm run eslint:fix
+
+cd - > /dev/null || exit 0
