@@ -7,14 +7,14 @@ init() {
 }
 
 destroy() {
-  cd - >/dev/null || exit 0
+  cd - >/dev/null || exit
 }
 
 check_docker_config() {
   if [ ! "$(command -v docker)" ]; then
     echo "You have not Docker installed. Please install Docker environment."
 
-    exit 255
+    exit
   fi
 }
 
