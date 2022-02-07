@@ -68,6 +68,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private registerSidebarMenu(): void {
     this.sidebarMenuService.register(this.sidebarMenuProvider.getMenu());
+    this.sidebarMenuService.registerAccountMenu(
+      this.sidebarMenuProvider.getAccountMenu(),
+    );
   }
 
   private registerTitle(): void {

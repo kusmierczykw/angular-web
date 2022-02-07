@@ -24,11 +24,15 @@ export class DashboardSidebarMenuProviderService {
         .build(),
 
       this.builder
-        .label('Treningi')
+        .label('Historia badań')
+        .routerLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
         .icon(Icon.ACTIVITY)
-        .routerLink(this.routeProvider.getRoute(RoutePath.TRAININGS))
         .build(),
+    ];
+  }
 
+  public getAccountMenu(): MenuItem[] {
+    return [
       this.builder
         .label('Konfiguracja')
         .icon(Icon.GEAR_WIDE_CONNECTED)
@@ -37,6 +41,13 @@ export class DashboardSidebarMenuProviderService {
 
       this.builder
         .label('Guidebook')
+        .icon(Icon.BOOK_HALF)
+        .routerLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
+        .visibility(() => false)
+        .build(),
+
+      this.builder
+        .label('Wyloguj')
         .icon(Icon.BOOK_HALF)
         .routerLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
         .build(),

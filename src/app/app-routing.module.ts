@@ -25,34 +25,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('@pages/dashboard-page').then((m) => m.DashboardPageModule),
       },
-      {
-        path: RoutePathFragment.TRAININGS,
-        data: {
-          [RouteData.BREADCRUMB]: 'Trening',
-        },
-        children: [
-          {
-            path: RoutePathFragment.ADD,
-            data: {
-              [RouteData.BREADCRUMB]: 'Dodaj trening',
-            },
-            loadChildren: () =>
-              import('@pages/training-add-page').then(
-                (m) => m.TrainingAddPageModule,
-              ),
-          },
-          {
-            path: '',
-            data: {
-              [RouteData.BREADCRUMB]: null,
-            },
-            loadChildren: () =>
-              import('@pages/trainings-page').then(
-                (m) => m.TrainingsPageModule,
-              ),
-          },
-        ],
-      },
     ],
   },
   {

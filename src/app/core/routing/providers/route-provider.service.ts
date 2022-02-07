@@ -31,17 +31,6 @@ export class RouteProviderService {
       RoutePathFragment.AUTH,
       RoutePathFragment.SIGN_IN,
     ],
-    [RoutePath.TRAININGS]: [
-      RoutePathFragment.ROOT,
-      RoutePathFragment.DASHBOARD,
-      RoutePathFragment.TRAININGS,
-    ],
-    [RoutePath.TRAINING_ADD]: [
-      RoutePathFragment.ROOT,
-      RoutePathFragment.DASHBOARD,
-      RoutePathFragment.TRAININGS,
-      RoutePathFragment.ADD,
-    ],
   };
 
   public getRoute(path: RoutePath, params?: Params): RouterLink {

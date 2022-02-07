@@ -7,6 +7,5 @@ export enum RoutePathFragment {
   ROOT = '/',
   SETTINGS = 'settings',
   SIGN_IN = 'sign-in',
-  TRAININGS = 'trainings',
   WILDCARD = '**',
 }

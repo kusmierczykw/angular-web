@@ -14,11 +14,13 @@ export class DashboardSidebarComponent {
   public readonly Icon = Icon;
   public readonly Image = Image;
   public readonly menu$: Observable<MenuItem[]>;
+  public readonly accountMenu$: Observable<MenuItem[]>;
   public readonly sidebarToggle: boolean = false;
 
   public constructor(
     private readonly menuService: DashboardSidebarMenuService,
   ) {
     this.menu$ = this.menuService.menu$;
+    this.accountMenu$ = this.menuService.accountMenu$;
   }
 }
