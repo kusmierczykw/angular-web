@@ -8,7 +8,8 @@
   <div class="my-auto"></div>
 
   <div class="dashboard-sidebar__menu">
-    <ng-container *ngFor="let item of accountMenu$ | onlyVisibleMenuItems$ | async">
+    <ng-container
+      *ngFor="let item of accountMenu$ | onlyVisibleMenuItems$ | async">
       <app-menu-item [item]="item"></app-menu-item>
     </ng-container>
   </div>
