@@ -34,7 +34,7 @@ export class DashboardSidebarMenuProviderService {
   public getAccountMenu(): MenuItem[] {
     return [
       this.builder
-        .label('Konfiguracja')
+        .label('Ustawienia')
         .icon(Icon.GEAR_WIDE_CONNECTED)
         .routerLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
         .build(),
@@ -48,7 +48,7 @@ export class DashboardSidebarMenuProviderService {
 
       this.builder
         .label('Wyloguj')
-        .icon(Icon.BOOK_HALF)
+        .icon(Icon.BOX_ARROW_LEFT)
         .routerLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
         .build(),
     ];

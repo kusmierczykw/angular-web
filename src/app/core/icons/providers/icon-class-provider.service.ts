@@ -9,6 +9,7 @@ export class IconClassProviderService {
     [Icon.ACTIVITY]: 'bi bi-activity',
     [Icon.BELL]: 'bi bi-bell-fill',
     [Icon.BOOK_HALF]: 'bi bi-book-half',
+    [Icon.BOX_ARROW_LEFT]: 'bi bi-box-arrow-left',
     [Icon.BRICKS]: 'bi bi-bricks',
     [Icon.BUILDING]: 'bi bi-building',
     [Icon.CALENDAR]: 'bi bi-calendar',
