@@ -5,4 +5,5 @@ export enum RoutePath {
   ROOT = 'ROOT',
   SETTINGS = 'SETTINGS',
   SIGN_IN = 'SIGN_IN',
+  SIGN_OUT = 'SIGN_OUT',
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SignInModel } from '../../models';
+import { SignIn } from '../../models';
 import { SignInFormControl } from './sign-in-form.control';
 import { SignInForm } from './sign-in-form';
 import { Observable } from 'rxjs';
@@ -13,10 +13,10 @@ import { negate } from '@utils/rxjs/operators';
 })
 export class SignInFormComponent implements OnInit {
   @Input()
-  public model?: SignInModel;
+  public model?: SignIn;
 
   @Output()
-  public submitClick = new EventEmitter<SignInModel>();
+  public submitClick = new EventEmitter<SignIn>();
 
   public readonly SignInFormControl = SignInFormControl;
 

@@ -4,7 +4,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { SignInModel } from '@features/sign-in/models';
+import { SignIn } from '@features/sign-in/models';
 import { SignInFormControl } from './sign-in-form.control';
 import { Observable } from 'rxjs';
 import { abstractControlStatus } from '@shared/forms/operators';
@@ -14,7 +14,7 @@ export class SignInForm {
 
   public constructor(
     private readonly builder: FormBuilder,
-    private readonly model?: SignInModel,
+    private readonly model?: SignIn,
   ) {
     this.form = this.build();
   }
@@ -23,7 +23,7 @@ export class SignInForm {
     return this.form.statusChanges.pipe(abstractControlStatus());
   }
 
-  public toModel(): SignInModel {
+  public toModel(): SignIn {
     const username: string = this.getControlValue(
       SignInFormControl.FC_USERNAME,
     );
@@ -31,7 +31,7 @@ export class SignInForm {
       SignInFormControl.FC_PASSWORD,
     );
 
-    return new SignInModel(username, password);
+    return new SignIn(username, password);
   }
 
   private build(): FormGroup {

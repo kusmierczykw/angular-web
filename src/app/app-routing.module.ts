@@ -8,10 +8,20 @@ import { RouteData } from '@core/routing/data/route-data';
 
 const routes: Routes = [
   {
-    path: RoutePathFragment.SIGN_IN,
-    component: AuthComponent,
-    loadChildren: () =>
-      import('@pages/sign-in-page').then((m) => m.SignInPageModule),
+    path: RoutePathFragment.AUTH,
+    children: [
+      {
+        path: RoutePathFragment.SIGN_IN,
+        component: AuthComponent,
+        loadChildren: () =>
+          import('@pages/auth/sign-in-page').then((m) => m.SignInPageModule),
+      },
+      {
+        path: RoutePathFragment.SIGN_OUT,
+        loadChildren: () =>
+          import('@pages/auth/sign-out-page').then((m) => m.SignOutPageModule),
+      },
+    ],
   },
   {
     path: RoutePathFragment.DASHBOARD,

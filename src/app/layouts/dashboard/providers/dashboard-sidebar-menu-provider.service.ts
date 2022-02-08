@@ -49,7 +49,7 @@ export class DashboardSidebarMenuProviderService {
       this.builder
         .label('Wyloguj')
         .icon(Icon.BOX_ARROW_LEFT)
-        .routerLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
+        .routerLink(this.routeProvider.getRoute(RoutePath.SIGN_OUT))
         .build(),
     ];
   }

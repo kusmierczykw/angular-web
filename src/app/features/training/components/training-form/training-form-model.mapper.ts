@@ -1,5 +1,5 @@
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces';
-import { TrainingModel } from '@features/training/models/training.model';
+import { Training } from '@features/training/models/training';
 import { FormGroup } from '@angular/forms';
 import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
 import { Injectable } from '@angular/core';
@@ -7,10 +7,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class TrainingFormModelMapper
-  implements QuickFormModelMapper<TrainingModel>
-{
-  public map(form: FormGroup): TrainingModel {
+export class TrainingFormModelMapper implements QuickFormModelMapper<Training> {
+  public map(form: FormGroup): Training {
     const { NAME, FISHED_AT, STARTED_AT, GROUP, QUANTITY } =
       TrainingFormControl;
     const { controls } = form;
@@ -22,6 +20,6 @@ export class TrainingFormModelMapper
       [GROUP]: { value: group },
     } = controls;
 
-    return new TrainingModel(name, startedAt, finishedAt, quantity, group);
+    return new Training(name, startedAt, finishedAt, quantity, group);
   }
 }

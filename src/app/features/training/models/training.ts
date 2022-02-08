@@ -1,4 +1,4 @@
-export class TrainingModel {
+export class Training {
   public constructor(
     public readonly name: string,
     public readonly startedAt: Date,

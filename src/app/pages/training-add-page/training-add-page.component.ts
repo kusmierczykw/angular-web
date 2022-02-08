@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { TrainingModel } from '@features/training/models/training.model';
-import { NavigationService } from '@core/routing/services';
-import { RoutePath } from '@core/routing/paths';
+import { Training } from '@features/training/models/training';
 
 @Component({
   selector: 'app-training-add-page',
@@ -9,13 +7,9 @@ import { RoutePath } from '@core/routing/paths';
   styleUrls: ['./training-add-page.component.scss'],
 })
 export class TrainingAddPageComponent {
-  public constructor(private readonly navigateService: NavigationService) {}
-
-  public handleSubmitClick(model: TrainingModel): void {
+  public handleSubmitClick(model: Training): void {
     console.log(model);
   }
 
-  public handleCancelClick(): void {
-    this.navigateService.navigate(RoutePath.TRAININGS);
-  }
+  public handleCancelClick(): void {}
 }

@@ -31,6 +31,11 @@ export class RouteProviderService {
       RoutePathFragment.AUTH,
       RoutePathFragment.SIGN_IN,
     ],
+    [RoutePath.SIGN_OUT]: [
+      RoutePathFragment.ROOT,
+      RoutePathFragment.AUTH,
+      RoutePathFragment.SIGN_OUT,
+    ],
   };
 
   public getRoute(path: RoutePath, params?: Params): RouterLink {

@@ -3,7 +3,7 @@ import { TrainingFormControl } from '@features/training/components/training-form
 import { FormBuilder, Validators } from '@angular/forms';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/builders';
-import { TrainingModel } from '@features/training/models/training.model';
+import { Training } from '@features/training/models/training';
 import { TrainingFormModelMapper } from '@features/training/components/training-form/training-form-model.mapper';
 import { of } from 'rxjs';
 import { SelectOption } from '@shared/forms/components/quick-form-renderer/models/select-option';
@@ -14,17 +14,17 @@ import { SelectOption } from '@shared/forms/components/quick-form-renderer/model
   styleUrls: ['./training-form.component.scss'],
 })
 export class TrainingFormComponent implements OnInit {
-  @Output() public readonly submitClick = new EventEmitter<TrainingModel>();
+  @Output() public readonly submitClick = new EventEmitter<Training>();
   @Output() public readonly cancelClick = new EventEmitter<void>();
 
-  public form!: QuickForm<TrainingFormControl, TrainingModel>;
+  public form!: QuickForm<TrainingFormControl, Training>;
 
   public constructor(
     private readonly mapper: TrainingFormModelMapper,
     private readonly formBuilder: FormBuilder,
     private readonly simpleFormBuilder: QuickFormBuilder<
       TrainingFormControl,
-      TrainingModel
+      Training
     >,
   ) {}
 
@@ -91,7 +91,7 @@ export class TrainingFormComponent implements OnInit {
       .submit((submit) =>
         submit
           .command({
-            execute: (model: TrainingModel) => this.submitClick.emit(model),
+            execute: (model: Training) => this.submitClick.emit(model),
           })
           .build(),
       )
