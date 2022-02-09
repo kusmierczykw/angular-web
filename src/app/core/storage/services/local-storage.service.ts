@@ -6,33 +6,29 @@ import { ValueDoesNotExistsException } from '@core/storage/exceptions/value-does
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStorageService<Value = unknown> implements Storage<Value> {
-  private readonly localStorage = localStorage;
+export class LocalStorageService implements Storage {
+  private readonly _localStorage = localStorage;
 
   public clear(): void {
-    this.localStorage.clear();
+    this._localStorage.clear();
   }
 
-  // TODO Deserialize based on concrete type.
-  public get(key: StorageKey): Value {
-    const deserialized = this.localStorage.getItem(key.toString());
+  public get(key: StorageKey): string {
+    const value = this._localStorage.getItem(key.toString());
 
-    if (!deserialized) {
+    if (!value) {
       throw new ValueDoesNotExistsException(key);
     }
 
-    return JSON.parse(deserialized) as Value;
+    return value;
   }
 
   public remove(key: StorageKey): void {
-    this.localStorage.removeItem(key.toString());
+    this._localStorage.removeItem(key.toString());
   }
 
-  // TODO Serialize based on concrete type.
-  public set(key: StorageKey, value: Value): void {
-    const serialized = JSON.stringify(value);
-
-    this.localStorage.setItem(key.toString(), serialized);
+  public set(key: StorageKey, value: string): void {
+    this._localStorage.setItem(key.toString(), value);
   }
 
   public exists(key: StorageKey): boolean {

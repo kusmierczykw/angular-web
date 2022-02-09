@@ -1,5 +1,5 @@
 <div class="dashboard-sidebar">
-  <div class="dashboard-sidebar__menu my-auto">
+  <div class="dashboard-sidebar__menu">
     <ng-container *ngFor="let item of menu$ | onlyVisibleMenuItems$ | async">
       <app-menu-item [item]="item"></app-menu-item>
     </ng-container>

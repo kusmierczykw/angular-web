@@ -20,8 +20,12 @@ export class AuthService {
     return of(void 0).pipe(
       tap({
         next: () => {
-          this.token.setToken(new Token());
-          this.token.setRefreshToken(new RefreshToken());
+          this.token.setToken(
+            new Token('30437e0c-54f7-447f-9607-8aa0eaac4aca'),
+          );
+          this.token.setRefreshToken(
+            new RefreshToken('3db92c93-6a41-4cb0-9d86-030f5ce37c58'),
+          );
           this.userContext.set(new UserContext());
         },
       }),
@@ -32,8 +36,12 @@ export class AuthService {
     return of(void 0).pipe(
       tap({
         next: () => {
-          this.token.setToken(new Token());
-          this.token.setRefreshToken(new RefreshToken());
+          this.token.setToken(
+            new Token('2d23593e-1bc2-4a32-9b26-743da1b0bb67'),
+          );
+          this.token.setRefreshToken(
+            new RefreshToken('a8239d62-2731-4145-b71b-8e382ab75003'),
+          );
           this.userContext.set(new UserContext());
         },
       }),
