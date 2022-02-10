@@ -4,15 +4,15 @@
       <img
         alt="Page not found image."
         class="img-fluid"
-        [style.maxHeight.rem]="20"
+        [style.maxHeight.rem]="15"
         [src]="NOT_FOUND_IMAGE | imageUrl" />
 
       <div class="p-5">
         <div class="display-1">404</div>
-        <div class="display-6">Ta strona nie istnieje ...</div>
+        <div class="display-6">Żądana strona nie istnieje</div>
         <p class="my-3">
-          Niestety nie znaleziono strony, której szukasz. Sprawdź, czy
-          wprowadziłeś poprawny adres.
+          Niestety nie znaleziono strony, której szukasz. <br />
+          Sprawdź, czy został wprowadzony poprawny adres.
         </p>
 
         <a mat-flat-button color="primary" [routerLink]="ROOT_PATH">

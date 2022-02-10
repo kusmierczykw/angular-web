@@ -4,47 +4,44 @@
 $_sidebar-height: 100vh;
 $_sidebar-border-radius: 0;
 $_sidebar-background-color: #ffffff;
-$_sidebar-menu-item-width: 16rem;
+$_sidebar-menu-item-width: 14rem;
 $_sidebar-menu-item-icon-margin: 0.5rem;
 $_sidebar-menu-item-size: 4rem;
 $_sidebar-menu-item-font-size: 1.25rem;
-$_sidebar-menu-item-color: material.get-color-from-palette(
+$_sidebar-menu-item-color: inherit;
+$_sidebar-menu-item-active-color: material.get-color-from-palette(
   material.$blue-palette,
   500
 );
 
 @mixin active-item-pointer() {
-  $_sidebar-pointer-background-color: #f9fbff;
-  $_sidebar-pointer-background-size: 3rem;
+  $_sidebar-pointer-box-shadow: -0.35rem 0 1rem 1rem
+    rgba(material.get-color-from-palette(material.$blue-palette, 500), 0.2);
   $_sidebar-pointer-dot-size: 0.75rem;
-  $_sidebar-pointer-background-position: -1.5rem;
+  $_sidebar-pointer-dot-position: -2.35rem;
+  $_sidebar-pointer-dot-background: material.get-color-from-palette(
+    material.$blue-palette,
+    500
+  );
 
-  &:before,
   &:after {
     content: '';
     position: absolute;
   }
 
   &:after {
-    background-color: $_sidebar-menu-item-color;
+    background-color: $_sidebar-pointer-dot-background;
     width: $_sidebar-pointer-dot-size;
     height: $_sidebar-pointer-dot-size;
     border-radius: $_sidebar-pointer-dot-size;
-    right: 0;
-  }
-
-  &:before {
-    box-shadow: 0 0 5rem 0 #f9fbff;
-    background-color: $_sidebar-pointer-background-color;
-    width: $_sidebar-pointer-background-size;
-    height: $_sidebar-pointer-background-size;
-    border-radius: $_sidebar-pointer-background-size;
-    right: $_sidebar-pointer-background-position;
+    left: $_sidebar-pointer-dot-position;
+    box-shadow: $_sidebar-pointer-box-shadow;
   }
 }
 
 :host {
   .dashboard-sidebar {
+    padding: 2rem;
     height: $_sidebar-height;
     border-radius: $_sidebar-border-radius;
     background-color: $_sidebar-background-color;
@@ -64,6 +61,7 @@ $_sidebar-menu-item-color: material.get-color-from-palette(
         width: $_sidebar-menu-item-width;
         height: $_sidebar-menu-item-size;
         justify-content: flex-start;
+        color: $_sidebar-menu-item-color;
 
         &__icon {
           font-size: $_sidebar-menu-item-font-size;
@@ -73,7 +71,7 @@ $_sidebar-menu-item-color: material.get-color-from-palette(
         &.active {
           @include active-item-pointer;
 
-          color: $_sidebar-menu-item-color;
+          color: $_sidebar-menu-item-active-color;
           position: relative;
         }
 

@@ -21,11 +21,13 @@ export class DashboardSidebarMenuProviderService {
         .icon(Icon.DASHBOARD)
         .routerLink(this.routeProvider.getRoute(RoutePath.DASHBOARD))
         .routerLinkActiveOptions({ exact: true })
+        .ripple(false)
         .build(),
 
       this.builder
         .label('Historia badań')
         .routerLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
+        .ripple(false)
         .icon(Icon.ACTIVITY)
         .build(),
     ];
@@ -37,12 +39,14 @@ export class DashboardSidebarMenuProviderService {
         .label('Ustawienia')
         .icon(Icon.GEAR_WIDE_CONNECTED)
         .routerLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
+        .ripple(false)
         .build(),
 
       this.builder
         .label('Guidebook')
         .icon(Icon.BOOK_HALF)
         .routerLink(this.routeProvider.getRoute(RoutePath.GUIDEBOOK))
+        .ripple(false)
         .visibility(() => false)
         .build(),
 
@@ -50,6 +54,7 @@ export class DashboardSidebarMenuProviderService {
         .label('Wyloguj')
         .icon(Icon.BOX_ARROW_LEFT)
         .routerLink(this.routeProvider.getRoute(RoutePath.SIGN_OUT))
+        .ripple(false)
         .build(),
     ];
   }
