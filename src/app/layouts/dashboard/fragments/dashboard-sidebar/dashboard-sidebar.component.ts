@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { Icon } from '@core/icons/enums';
-import { DashboardSidebarMenuService } from '@layouts/dashboard/services';
+import {
+  DashboardSidebarMenuService,
+  DashboardSidebarToggleService,
+} from '@layouts/dashboard/services';
 import { Observable } from 'rxjs';
 import { Image } from '@core/images/enums';
 import { MenuItem } from '@shared/menu/models';
+import { negate } from '@utils/rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-sidebar',
@@ -15,12 +19,16 @@ export class DashboardSidebarComponent {
   public readonly Image = Image;
   public readonly menu$: Observable<MenuItem[]>;
   public readonly accountMenu$: Observable<MenuItem[]>;
-  public readonly sidebarToggle: boolean = false;
+  public readonly sidebarExpand$: Observable<boolean>;
+  public readonly sidebarCollapse$: Observable<boolean>;
 
   public constructor(
-    private readonly menuService: DashboardSidebarMenuService,
+    private readonly sidebarToggle: DashboardSidebarToggleService,
+    private readonly sidebarMenu: DashboardSidebarMenuService,
   ) {
-    this.menu$ = this.menuService.menu$;
-    this.accountMenu$ = this.menuService.accountMenu$;
+    this.menu$ = this.sidebarMenu.menu$;
+    this.accountMenu$ = this.sidebarMenu.accountMenu$;
+    this.sidebarExpand$ = this.sidebarToggle.toggle$;
+    this.sidebarCollapse$ = this.sidebarToggle.toggle$.pipe(negate());
   }
 }

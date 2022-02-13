@@ -18,6 +18,8 @@ export class IconClassProviderService {
     [Icon.CHEVRON_RIGHT]: 'bi bi-chevron-right',
     [Icon.DASHBOARD]: 'bi bi-columns-gap',
     [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
+    [Icon.LAYOUT_SIDEBAR]: 'bi bi-layout-sidebar',
+    [Icon.LAYOUT_SIDEBAR_REVERSE]: 'bi bi-layout-sidebar-reverse',
     [Icon.RECORD]: 'bi bi-record',
     [Icon.RECORD_PARTIALLY_FILL]: 'bi bi-record2',
     [Icon.USERS]: 'bi bi-people',

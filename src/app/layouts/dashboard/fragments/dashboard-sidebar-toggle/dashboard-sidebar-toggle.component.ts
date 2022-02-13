@@ -11,17 +11,17 @@ import { DashboardSidebarToggleService } from '@layouts/dashboard/services/dashb
 export class DashboardSidebarToggleComponent {
   public readonly Icon = Icon;
   public readonly expandLabel: string = 'Rozwiń';
-  public readonly collapseLabel: string = 'Rozwiń';
-  public readonly expandIcon: Icon = Icon.RECORD;
-  public readonly collapseIcon: Icon = Icon.RECORD_PARTIALLY_FILL;
+  public readonly collapseLabel: string = 'Zwiń';
+  public readonly expandIcon: Icon = Icon.LAYOUT_SIDEBAR;
+  public readonly collapseIcon: Icon = Icon.LAYOUT_SIDEBAR_REVERSE;
   public readonly toggle$: Observable<boolean>;
   public readonly label$: Observable<string>;
   public readonly icon$: Observable<Icon>;
 
   public constructor(
-    private readonly sidebarToggleService: DashboardSidebarToggleService,
+    private readonly sidebarToggle: DashboardSidebarToggleService,
   ) {
-    this.toggle$ = this.sidebarToggleService.toggle$;
+    this.toggle$ = this.sidebarToggle.toggle$;
     this.label$ = this.labelSource$;
     this.icon$ = this.iconSource$;
   }
@@ -47,6 +47,6 @@ export class DashboardSidebarToggleComponent {
   }
 
   private toggle(): void {
-    this.sidebarToggleService.toggle();
+    this.sidebarToggle.toggle();
   }
 }

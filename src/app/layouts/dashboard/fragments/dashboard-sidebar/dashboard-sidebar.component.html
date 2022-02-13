@@ -1,4 +1,11 @@
-<div class="dashboard-sidebar">
+<div
+  class="dashboard-sidebar"
+  [class.dashboard-sidebar--collapse]="sidebarCollapse$ | async"
+  [class.dashboard-sidebar--expand]="sidebarExpand$ | async">
+  <div class="dashboard-sidebar__toggle align-self-end">
+    <app-dashboard-sidebar-toggle></app-dashboard-sidebar-toggle>
+  </div>
+
   <div class="dashboard-sidebar__menu my-auto">
     <ng-container *ngFor="let item of menu$ | onlyVisibleMenuItems$ | async">
       <app-menu-item [item]="item"></app-menu-item>
@@ -11,10 +18,4 @@
       <app-menu-item [item]="item"></app-menu-item>
     </ng-container>
   </div>
-
-  <ng-container *ngIf="sidebarToggle">
-    <div class="dashboard-sidebar__toggle">
-      <app-dashboard-sidebar-toggle></app-dashboard-sidebar-toggle>
-    </div>
-  </ng-container>
 </div>

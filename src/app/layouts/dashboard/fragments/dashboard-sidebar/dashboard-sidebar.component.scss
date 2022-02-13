@@ -4,7 +4,9 @@
 $_sidebar-height: 100vh;
 $_sidebar-border-radius: 0;
 $_sidebar-background-color: #ffffff;
-$_sidebar-menu-item-width: 14rem;
+$_sidebar-padding: 1rem;
+$_sidebar-expand-menu-item-width: 14rem;
+$_sidebar-collapse-menu-item-width: 2rem;
 $_sidebar-menu-item-icon-margin: 0.5rem;
 $_sidebar-menu-item-size: 4rem;
 $_sidebar-menu-item-font-size: 1.25rem;
@@ -18,7 +20,7 @@ $_sidebar-menu-item-active-color: material.get-color-from-palette(
   $_sidebar-pointer-box-shadow: -0.35rem 0 1rem 1rem
     rgba(material.get-color-from-palette(material.$blue-palette, 500), 0.2);
   $_sidebar-pointer-dot-size: 0.75rem;
-  $_sidebar-pointer-dot-position: -2.35rem;
+  $_sidebar-pointer-dot-position: -1.35rem;
   $_sidebar-pointer-dot-background: material.get-color-from-palette(
     material.$blue-palette,
     500
@@ -41,7 +43,7 @@ $_sidebar-menu-item-active-color: material.get-color-from-palette(
 
 :host {
   .dashboard-sidebar {
-    padding: 2rem;
+    padding: $_sidebar-padding;
     height: $_sidebar-height;
     border-radius: $_sidebar-border-radius;
     background-color: $_sidebar-background-color;
@@ -58,7 +60,6 @@ $_sidebar-menu-item-active-color: material.get-color-from-palette(
 
     ::ng-deep {
       .menu-item {
-        width: $_sidebar-menu-item-width;
         height: $_sidebar-menu-item-size;
         justify-content: flex-start;
         color: $_sidebar-menu-item-color;
@@ -75,7 +76,34 @@ $_sidebar-menu-item-active-color: material.get-color-from-palette(
           position: relative;
         }
 
+        &:hover {
+          color: $_sidebar-menu-item-active-color;
+        }
+
         @include material-button.remove-hover-background;
+      }
+    }
+
+    &--expand {
+      ::ng-deep {
+        .menu-item {
+          width: $_sidebar-expand-menu-item-width;
+
+          &__label {
+          }
+        }
+      }
+    }
+
+    &--collapse {
+      ::ng-deep {
+        .menu-item {
+          width: $_sidebar-collapse-menu-item-width;
+
+          &__label {
+            display: none;
+          }
+        }
       }
     }
   }
