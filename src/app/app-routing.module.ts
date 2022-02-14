@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RoutePathFragment } from '@core/routing/paths';
+import { RoutePathFragment, RoutePathParam } from '@core/routing/paths';
 import { AuthComponent } from '@layouts/auth';
 import { DashboardComponent } from '@layouts/dashboard';
 import { BlankComponent } from '@layouts/blank';
 import { RouteData } from '@core/routing/data/route-data';
+import { breadcrumbVariable } from '@shared/breadcrumbs/utils/breadcrumb-variable';
+import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
 
 const routes: Routes = [
   {
@@ -24,34 +26,80 @@ const routes: Routes = [
     ],
   },
   {
-    path: RoutePathFragment.DASHBOARD,
-    component: DashboardComponent,
-    children: [
-      {
-        path: '',
-        data: {
-          [RouteData.BREADCRUMB]: 'Dashboard',
-        },
-        loadChildren: () =>
-          import('@pages/dashboard-page').then((m) => m.DashboardPageModule),
-      },
-    ],
-  },
-  {
     path: RoutePathFragment.GUIDEBOOK,
     loadChildren: () =>
-      import('@pages/guidebook-page').then((m) => m.GuidebookPageModule),
+      import('@pages/guidebook/guidebook-page').then(
+        (m) => m.GuidebookPageModule,
+      ),
   },
   {
     path: '',
-    redirectTo: RoutePathFragment.DASHBOARD,
-    pathMatch: 'full',
+    component: DashboardComponent,
+    children: [
+      {
+        path: RoutePathFragment.DASHBOARD,
+        children: [
+          {
+            path: '',
+            data: {
+              [RouteData.BREADCRUMB]: 'Dashboard',
+            },
+            loadChildren: () =>
+              import('@pages/dashboard/dashboard-page').then(
+                (m) => m.DashboardPageModule,
+              ),
+          },
+        ],
+      },
+      {
+        path: RoutePathFragment.PATIENTS,
+        data: {
+          [RouteData.BREADCRUMB]: 'Pacjenci',
+        },
+        children: [
+          {
+            path: `:${RoutePathParam.ID}`,
+            data: {
+              [RouteData.BREADCRUMB]: breadcrumbVariable(
+                RouteBreadcrumbVariable.DETAILS,
+              ),
+            },
+            loadChildren: () =>
+              import('@pages/patient/patient-details-page').then(
+                (m) => m.PatientDetailsPageModule,
+              ),
+          },
+          {
+            path: RoutePathFragment.ADD,
+            loadChildren: () =>
+              import('@pages/patient/patient-add-page').then(
+                (m) => m.PatientAddPageModule,
+              ),
+          },
+          {
+            path: '',
+            data: {
+              [RouteData.BREADCRUMB]: null,
+            },
+            loadChildren: () =>
+              import('@pages/patient/patients-page').then(
+                (m) => m.PatientsPageModule,
+              ),
+          },
+        ],
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: RoutePathFragment.DASHBOARD,
+      },
+    ],
   },
   {
     path: RoutePathFragment.NOT_FOUND,
     component: BlankComponent,
     loadChildren: () =>
-      import('@pages/not-found-page').then((m) => m.NotFoundPageModule),
+      import('@pages/error/not-found-page').then((m) => m.NotFoundPageModule),
   },
   {
     path: RoutePathFragment.WILDCARD,

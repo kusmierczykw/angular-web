@@ -24,6 +24,12 @@ export class DashboardSidebarMenuProviderService {
         .build(),
 
       this.builder
+        .label('Pacjenci')
+        .routerLink(this.routeProvider.getRoute(RoutePath.PATIENTS))
+        .icon(Icon.PEOPLE_FILL)
+        .build(),
+
+      this.builder
         .label('Historia badań')
         .routerLink(this.routeProvider.getRoute(RoutePath.SETTINGS))
         .icon(Icon.ACTIVITY)

@@ -20,6 +20,7 @@ export class RouteProviderService {
       RoutePathFragment.ROOT,
       RoutePathFragment.NOT_FOUND,
     ],
+    [RoutePath.PATIENTS]: [RoutePathFragment.ROOT, RoutePathFragment.PATIENTS],
     [RoutePath.ROOT]: [RoutePathFragment.ROOT],
     [RoutePath.SETTINGS]: [
       RoutePathFragment.ROOT,

@@ -4,6 +4,7 @@ export enum RoutePathFragment {
   DASHBOARD = 'dashboard',
   GUIDEBOOK = 'guidebook',
   NOT_FOUND = '404',
+  PATIENTS = 'patients',
   ROOT = '/',
   SETTINGS = 'settings',
   SIGN_IN = 'sign-in',
