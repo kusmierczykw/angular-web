@@ -5,7 +5,6 @@ import { AuthComponent } from '@layouts/auth';
 import { DashboardComponent } from '@layouts/dashboard';
 import { BlankComponent } from '@layouts/blank';
 import { RouteData } from '@core/routing/data/route-data';
-import { breadcrumbVariable } from '@shared/breadcrumbs/utils/breadcrumb-variable';
 import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
 
 const routes: Routes = [
@@ -60,9 +59,7 @@ const routes: Routes = [
           {
             path: `:${RoutePathParam.ID}`,
             data: {
-              [RouteData.BREADCRUMB]: breadcrumbVariable(
-                RouteBreadcrumbVariable.DETAILS,
-              ),
+              [RouteData.BREADCRUMB]: RouteBreadcrumbVariable.DETAILS,
             },
             loadChildren: () =>
               import('@pages/patient/patient-details-page').then(

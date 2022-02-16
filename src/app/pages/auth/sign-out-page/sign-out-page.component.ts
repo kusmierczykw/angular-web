@@ -11,7 +11,7 @@ import { RoutePath } from '@core/routing/paths';
 export class SignOutPageComponent implements OnInit {
   public constructor(
     private readonly auth: AuthService,
-    private readonly navigateService: NavigationService,
+    private readonly navigate: NavigationService,
   ) {}
 
   public ngOnInit() {
@@ -23,6 +23,6 @@ export class SignOutPageComponent implements OnInit {
   }
 
   private navigateToSignInPage(): void {
-    this.navigateService.navigate(RoutePath.SIGN_IN);
+    this.navigate.navigate(RoutePath.SIGN_IN);
   }
 }

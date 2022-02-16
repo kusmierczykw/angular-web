@@ -33,9 +33,7 @@ export class QuickFormRendererComponent<
 
   private mapper!: QuickFormModelMapper<Model>;
 
-  public constructor(
-    private readonly confirmationService: ConfirmationService,
-  ) {}
+  public constructor(private readonly confirmation: ConfirmationService) {}
 
   public ngOnChanges(changes: SimpleChanges) {
     const { form } = changes;
@@ -62,7 +60,7 @@ export class QuickFormRendererComponent<
   }
 
   private confirmAndCancelCommandExecute(): void {
-    this.confirmationService
+    this.confirmation
       .show(() => this.cancellationConfirmation!)
       .pipe(
         once(),

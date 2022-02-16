@@ -17,10 +17,10 @@ export class DashboardHeaderComponent {
   public readonly title$: Observable<Title>;
 
   public constructor(
-    private readonly menuService: DashboardHeaderMenuService,
-    private readonly titleService: TitleService,
+    private readonly menu: DashboardHeaderMenuService,
+    private readonly title: TitleService,
   ) {
-    this.menu$ = this.menuService.menu$;
-    this.title$ = this.titleService.title$;
+    this.menu$ = this.menu.menu$;
+    this.title$ = this.title.title$;
   }
 }

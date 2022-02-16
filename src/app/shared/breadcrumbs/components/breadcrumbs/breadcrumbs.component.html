@@ -4,7 +4,7 @@
       class="breadcrumb__item"
       [ngClass]="{ 'breadcrumb__item--last': isLast }">
       <a class="breadcrumb__link" [routerLink]="breadcrumb.routerLink">
-        <span>{{ breadcrumb.label }}</span>
+        <span>{{ breadcrumb.label | breadcrumbLabelVariable }}</span>
       </a>
 
       <ng-container *ngIf="!isLast">
