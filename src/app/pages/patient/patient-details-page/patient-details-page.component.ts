@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbVariableSubstituteService } from '@shared/breadcrumbs/components/breadcrumbs/services/breadcrumb-variable-substitute.service';
+import { BreadcrumbValueProviderService } from '@shared/breadcrumbs/components/breadcrumbs/services/breadcrumb-value-provider.service';
 import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
+import { toObservable } from '@utils/rxjs/operators';
 
 @Component({
   selector: 'app-patient-details-page',
@@ -9,13 +10,17 @@ import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-var
 })
 export class PatientDetailsPageComponent implements OnInit {
   public constructor(
-    private readonly breadcrumbVariableSubstitute: BreadcrumbVariableSubstituteService,
+    private readonly breadcrumbValueProvider: BreadcrumbValueProviderService,
   ) {}
 
   public ngOnInit(): void {
-    this.breadcrumbVariableSubstitute.substitute(
-      RouteBreadcrumbVariable.DETAILS,
-      'Wojciech',
+    this.breadcrumbValueProvider.setValueFor(
+      RouteBreadcrumbVariable.FIRST_NAME,
+      () => toObservable('Wojciech'),
+    );
+    this.breadcrumbValueProvider.setValueFor(
+      RouteBreadcrumbVariable.LAST_NAME,
+      () => toObservable('Kuśmierczyk'),
     );
   }
 }

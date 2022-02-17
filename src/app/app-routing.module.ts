@@ -59,7 +59,7 @@ const routes: Routes = [
           {
             path: `:${RoutePathParam.ID}`,
             data: {
-              [RouteData.BREADCRUMB]: RouteBreadcrumbVariable.DETAILS,
+              [RouteData.BREADCRUMB]: `Użytkownik ${RouteBreadcrumbVariable.FIRST_NAME} ${RouteBreadcrumbVariable.LAST_NAME}`,
             },
             loadChildren: () =>
               import('@pages/patient/patient-details-page').then(

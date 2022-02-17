@@ -1,1 +1,1 @@
-export * from './breadcrumb-label-variable.pipe';
+export * from './breadcrumb-variables-substitution.pipe';

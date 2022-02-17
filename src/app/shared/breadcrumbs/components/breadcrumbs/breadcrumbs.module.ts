@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 import { IconsModule } from '@core/icons/icons.module';
-import { BreadcrumbLabelVariablePipe } from './pipes';
+import { BreadcrumbVariablesSubstitutionPipe } from './pipes';
 
 @NgModule({
-  declarations: [BreadcrumbsComponent, BreadcrumbLabelVariablePipe],
+  declarations: [BreadcrumbsComponent, BreadcrumbVariablesSubstitutionPipe],
   exports: [BreadcrumbsComponent],
   imports: [CommonModule, RouterModule, IconsModule],
 })
