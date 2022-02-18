@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
-import { BehaviorSubject, EMPTY, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export class BreadcrumbValueProviderService {
         const value = values.get(variable);
 
         if (!value) {
-          return EMPTY;
+          return of(variable);
         }
 
         return value;
