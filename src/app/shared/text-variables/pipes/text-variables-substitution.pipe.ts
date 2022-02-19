@@ -39,7 +39,7 @@ export class TextVariablesSubstitutionPipe implements PipeTransform {
     const variables = this.stringVariable.fetchVariablesFormText(label);
     const variablesWithValuesSource = variables.map((variable) => {
       return this.textValueProvider
-        .getValueFor(variable)
+        .fetchValue(variable)
         .pipe(map((value) => [variable, value]));
     });
 

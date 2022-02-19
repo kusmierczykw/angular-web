@@ -9,7 +9,7 @@ export class TextValueProviderService {
     new Map<string, Observable<string>>(),
   );
 
-  public setValueFor(
+  public registerValue(
     variable: string,
     valueFactory: () => Observable<string>,
   ): void {
@@ -20,7 +20,7 @@ export class TextValueProviderService {
     this.valuesSource$.next(values);
   }
 
-  public getValueFor(variable: string): Observable<string> {
+  public fetchValue(variable: string): Observable<string> {
     return this.valuesSource$.pipe(
       switchMap((values) => {
         const value = values.get(variable);
@@ -34,7 +34,7 @@ export class TextValueProviderService {
     );
   }
 
-  public clearValueFor(variable: string): void {
+  public unregisterValue(variable: string): void {
     const values = this.valuesSource$.getValue();
 
     values.delete(variable);

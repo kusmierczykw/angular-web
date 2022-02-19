@@ -57,6 +57,16 @@ const routes: Routes = [
         },
         children: [
           {
+            path: RoutePathFragment.ADD,
+            data: {
+              [RouteData.BREADCRUMB]: 'Dodaj',
+            },
+            loadChildren: () =>
+              import('@pages/patient/patient-add-page').then(
+                (m) => m.PatientAddPageModule,
+              ),
+          },
+          {
             path: `:${RoutePathParam.ID}`,
             data: {
               [RouteData.BREADCRUMB]: `Użytkownik ${RouteBreadcrumbVariable.FIRST_NAME} ${RouteBreadcrumbVariable.LAST_NAME}`,
@@ -64,13 +74,6 @@ const routes: Routes = [
             loadChildren: () =>
               import('@pages/patient/patient-details-page').then(
                 (m) => m.PatientDetailsPageModule,
-              ),
-          },
-          {
-            path: RoutePathFragment.ADD,
-            loadChildren: () =>
-              import('@pages/patient/patient-add-page').then(
-                (m) => m.PatientAddPageModule,
               ),
           },
           {
