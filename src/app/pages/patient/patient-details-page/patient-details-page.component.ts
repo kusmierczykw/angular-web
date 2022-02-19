@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreadcrumbValueProviderService } from '@shared/breadcrumbs/components/breadcrumbs/services/breadcrumb-value-provider.service';
+import { TextValueProviderService } from '@shared/text-variables/services/text-value-provider.service';
 import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
 import { toObservable } from '@utils/rxjs/operators';
 
@@ -10,17 +10,15 @@ import { toObservable } from '@utils/rxjs/operators';
 })
 export class PatientDetailsPageComponent implements OnInit {
   public constructor(
-    private readonly breadcrumbValueProvider: BreadcrumbValueProviderService,
+    private readonly textValueProvider: TextValueProviderService,
   ) {}
 
   public ngOnInit(): void {
-    this.breadcrumbValueProvider.setValueFor(
-      RouteBreadcrumbVariable.FIRST_NAME,
-      () => toObservable('Wojciech'),
+    this.textValueProvider.setValueFor(RouteBreadcrumbVariable.FIRST_NAME, () =>
+      toObservable('Wojciech'),
     );
-    this.breadcrumbValueProvider.setValueFor(
-      RouteBreadcrumbVariable.LAST_NAME,
-      () => toObservable('Kuśmierczyk'),
+    this.textValueProvider.setValueFor(RouteBreadcrumbVariable.LAST_NAME, () =>
+      toObservable('Kuśmierczyk'),
     );
   }
 }

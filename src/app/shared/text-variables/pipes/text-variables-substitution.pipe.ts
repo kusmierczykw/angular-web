@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BreadcrumbValueProviderService } from '@shared/breadcrumbs/components/breadcrumbs/services/breadcrumb-value-provider.service';
-import { combineLatest, EMPTY, map, Observable, startWith } from 'rxjs';
-import { BreadcrumbVariableService } from '@shared/breadcrumbs/utils/breadcrumb-variable.service';
-import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
+import {
+  TextValueProviderService,
+  TextVariableService,
+} from '@shared/text-variables/services';
+import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { debounce } from '@utils/rxjs/operators/debounce';
 
 @Pipe({
-  name: 'breadcrumbVariablesSubstitution$',
+  name: 'textVariablesSubstitution$',
 })
-export class BreadcrumbVariablesSubstitutionPipe implements PipeTransform {
+export class TextVariablesSubstitutionPipe implements PipeTransform {
   public constructor(
-    private readonly breadcrumbVariable: BreadcrumbVariableService,
-    private readonly breadcrumbValueProvider: BreadcrumbValueProviderService,
+    private readonly stringVariable: TextVariableService,
+    private readonly textValueProvider: TextValueProviderService,
   ) {}
 
   public transform(label: string): Observable<string> {
@@ -34,14 +35,10 @@ export class BreadcrumbVariablesSubstitutionPipe implements PipeTransform {
 
   private variablesSubstitutes(
     label: string,
-  ): Observable<Array<[RouteBreadcrumbVariable, string]>> {
-    const variables = this.breadcrumbVariable.fetchVariablesFormText(label);
+  ): Observable<Array<[string, string]>> {
+    const variables = this.stringVariable.fetchVariablesFormText(label);
     const variablesWithValuesSource = variables.map((variable) => {
-      if (!this.breadcrumbVariable.isVariable(variable)) {
-        return EMPTY;
-      }
-
-      return this.breadcrumbValueProvider
+      return this.textValueProvider
         .getValueFor(variable)
         .pipe(map((value) => [variable, value]));
     });
@@ -53,6 +50,6 @@ export class BreadcrumbVariablesSubstitutionPipe implements PipeTransform {
 
   private onlyAvailableSubstitutes = (
     substitutes: Array<string[] | null>,
-  ): Array<[RouteBreadcrumbVariable, string]> =>
-    substitutes.filter(Boolean) as Array<[RouteBreadcrumbVariable, string]>;
+  ): Array<[string, string]> =>
+    substitutes.filter(Boolean) as Array<[string, string]>;
 }

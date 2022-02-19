@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BreadcrumbValueProviderService {
+export class TextValueProviderService {
   private valuesSource$ = new BehaviorSubject(
-    new Map<RouteBreadcrumbVariable, Observable<string>>(),
+    new Map<string, Observable<string>>(),
   );
 
   public setValueFor(
-    variable: RouteBreadcrumbVariable,
+    variable: string,
     valueFactory: () => Observable<string>,
   ): void {
     const values = this.valuesSource$.getValue();
@@ -21,7 +20,7 @@ export class BreadcrumbValueProviderService {
     this.valuesSource$.next(values);
   }
 
-  public getValueFor(variable: RouteBreadcrumbVariable): Observable<string> {
+  public getValueFor(variable: string): Observable<string> {
     return this.valuesSource$.pipe(
       switchMap((values) => {
         const value = values.get(variable);
@@ -35,7 +34,7 @@ export class BreadcrumbValueProviderService {
     );
   }
 
-  public clearValueFor(variable: RouteBreadcrumbVariable): void {
+  public clearValueFor(variable: string): void {
     const values = this.valuesSource$.getValue();
 
     values.delete(variable);
