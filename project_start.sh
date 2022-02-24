@@ -19,7 +19,7 @@ check_docker_config() {
 }
 
 create_network() {
-  if docker network ls --format "{{.Name}}" | grep -q ^$NETWORK_NAME$; then
+  if ! docker network ls --format "{{.Name}}" | grep -q ^$NETWORK_NAME$; then
     docker network create $NETWORK_NAME >/dev/null
   fi
 }
