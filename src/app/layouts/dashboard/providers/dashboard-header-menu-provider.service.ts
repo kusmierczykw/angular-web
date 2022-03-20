@@ -1,6 +1,6 @@
-import { MenuItem } from '@shared/menu/models';
 import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
 import { Injectable } from '@angular/core';
+import { MenuItem } from '@shared/menu/models/menu-item';
 
 @Injectable({
   providedIn: 'root',

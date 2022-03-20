@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
-import { QuickControlType } from '@shared/forms/components/quick-form-renderer/enums';
+import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
+import { QuickControlType } from '../../enums/quick-control.type';
 
 @Component({
   template: '',

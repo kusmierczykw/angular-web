@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ImageUrlPipe } from '@core/images/pipes';
+import { ImageUrlPipe } from '@core/images/pipes/image-url.pipe';
 
 @NgModule({
   declarations: [ImageUrlPipe],

@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { RequiredMethodCallException } from '@core/exceptions';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { QuickControlType } from '@shared/forms/components/quick-form-renderer/enums';
-import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
-import { QuickControlConfig } from '@shared/forms/components/quick-form-renderer/types';
-import {
-  NumberControlConfig,
-  SelectControlConfig,
-  TextControlConfig,
-} from '@shared/forms/components/quick-form-renderer/interfaces';
+import { QuickControlType } from '../enums/quick-control.type';
+import { QuickControlConfig } from '@shared/forms/components/quick-form-renderer/types/quick-control.config';
+import { TextControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/text-control-config';
+import { NumberControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/number-control-config';
+import { SelectControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/select-control-config';
+import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
+import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 
 @Injectable({
   providedIn: 'root',

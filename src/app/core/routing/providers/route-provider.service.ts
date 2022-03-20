@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
-import { RoutePath, RoutePathFragment } from '@core/routing/paths';
 import { RouterLink } from '@core/routing/types/router-link';
+import { RoutePath } from '@core/routing/paths/route-path';
+import { RoutePathFragment } from '@core/routing/paths/route-path-fragment';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { FormControl, ValidatorFn } from '@angular/forms';
-import { QuickControlType } from '@shared/forms/components/quick-form-renderer/enums';
-import { QuickControlConfig } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlType } from '@shared/forms/components/quick-form-renderer/enums/quick-control.type';
+import { QuickControlConfig } from '@shared/forms/components/quick-form-renderer/types/quick-control.config';
 
 export class QuickFormControl<ControlName, Value = unknown> {
   private _formControl!: FormControl;

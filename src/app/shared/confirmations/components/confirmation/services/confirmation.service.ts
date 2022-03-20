@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders';
-import { Confirmation } from '@shared/confirmations/components/confirmation/models';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationComponent } from '@shared/confirmations/components/confirmation';
 import { Observable } from 'rxjs';
-import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models/confirmation';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
+import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders/confirmation-builder';
+import { ConfirmationComponent } from '@shared/confirmations/components/confirmation/confirmation.component';
 
 @Injectable({
   providedIn: 'root',

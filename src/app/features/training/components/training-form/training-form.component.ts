@@ -2,11 +2,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
 import { FormBuilder, Validators } from '@angular/forms';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
-import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/builders';
 import { Training } from '@features/training/models/training';
 import { TrainingFormModelMapper } from '@features/training/components/training-form/training-form-model.mapper';
 import { of } from 'rxjs';
 import { SelectOption } from '@shared/forms/components/quick-form-renderer/models/select-option';
+import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-form-builder';
 
 @Component({
   selector: 'app-training-form',

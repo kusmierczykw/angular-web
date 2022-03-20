@@ -1,11 +1,11 @@
-import { MenuItem } from '@shared/menu/models';
 import { RouterLink } from '@core/routing/types/router-link';
-import { Icon } from '@core/icons/enums';
 import { Injectable } from '@angular/core';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { isObservable, Observable, of } from 'rxjs';
-import { RouterLinkActiveOptions } from '@shared/menu/types';
-import { RequiredParameterException } from '@core/exceptions';
+import { Icon } from '@core/icons/enums/icon';
+import { RouterLinkActiveOptions } from '@shared/menu/types/router-link-active.options';
+import { MenuItem } from '@shared/menu/models/menu-item';
+import { RequiredParameterException } from '@core/exceptions/required-parameter.exception';
 
 @Injectable({
   providedIn: 'root',

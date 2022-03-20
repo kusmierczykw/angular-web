@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@core/auth/services';
-import { NavigationService } from '@core/routing/services';
-import { RoutePath } from '@core/routing/paths';
+import { AuthService } from '@core/auth/services/auth.service';
+import { NavigationService } from '@core/routing/services/navigation.service';
+import { RoutePath } from '@core/routing/paths/route-path';
 
 @Component({
   selector: 'app-sign-out-page',

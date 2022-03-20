@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MenuItem } from '@shared/menu/models';
 import { StyleClass } from '@core/types/style-class';
+import { MenuItem } from '@shared/menu/models/menu-item';
 
 @Component({
   selector: 'app-menu-item',

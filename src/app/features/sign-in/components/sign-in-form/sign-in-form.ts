@@ -4,10 +4,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { SignIn } from '@features/sign-in/models';
 import { SignInFormControl } from './sign-in-form.control';
 import { Observable } from 'rxjs';
-import { abstractControlStatus } from '@shared/forms/operators';
+import { SignIn } from '@features/sign-in/models/sign.in';
+import { abstractControlStatus } from '@shared/forms/operators/abstract-control-status';
 
 export class SignInForm {
   public readonly form: FormGroup;

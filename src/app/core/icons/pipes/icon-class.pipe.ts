@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Icon } from '@core/icons/enums';
 import { IconClassProviderService } from '@core/icons/providers/icon-class-provider.service';
+import { Icon } from '@core/icons/enums/icon';
 
 @Pipe({
   name: 'iconClass',

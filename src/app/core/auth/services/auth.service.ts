@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { UserContextService } from './user-context.service';
 import { TokenService } from './token.service';
-import { RefreshToken, Token, UserContext } from '@core/auth/models';
+import { Token } from '@core/auth/models/token';
+import { RefreshToken } from '@core/auth/models/refresh-token';
+import { UserContext } from '@core/auth/models/user-context';
 
 @Injectable({
   providedIn: 'root',

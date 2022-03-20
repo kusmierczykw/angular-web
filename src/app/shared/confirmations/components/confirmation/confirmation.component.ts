@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Confirmation } from '@shared/confirmations/components/confirmation/models';
-import { Button } from '@shared/buttons/components/button/models';
-import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum';
+import { Button } from '@shared/buttons/components/button/models/button';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models/confirmation';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
 
 @Component({
   selector: 'app-confirmation',

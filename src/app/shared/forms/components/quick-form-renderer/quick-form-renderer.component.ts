@@ -1,15 +1,15 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { FormGroup } from '@angular/forms';
-import { Button } from '@shared/buttons/components/button/models';
-import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
-import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { filter, merge, Observable } from 'rxjs';
-import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces';
-import { Confirmation } from '@shared/confirmations/components/confirmation/models';
-import { ConfirmationService } from '@shared/confirmations/components/confirmation/services';
-import { once } from '@utils/rxjs/operators';
-import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum';
+import { ConfirmationService } from '@shared/confirmations/components/confirmation/services/confirmation.service';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types/quick-control.name';
+import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
+import { Button } from '@shared/buttons/components/button/models/button';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models/confirmation';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model-mapper';
+import { once } from '@utils/rxjs/operators/once';
+import { ConfirmationResult } from '@shared/confirmations/components/confirmation/enum/confirmation.result';
 
 @Component({
   selector: 'app-quick-form-renderer',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Icon } from '@core/icons/enums';
 import { map, Observable } from 'rxjs';
 import { DashboardSidebarToggleService } from '@layouts/dashboard/services/dashboard-sidebar-toggle.service';
+import { Icon } from '@core/icons/enums/icon';
 
 @Component({
   selector: 'app-dashboard-sidebar-toggle',
@@ -12,8 +12,8 @@ export class DashboardSidebarToggleComponent {
   public readonly Icon = Icon;
   public readonly expandLabel: string = 'Rozwiń';
   public readonly collapseLabel: string = 'Zwiń';
-  public readonly expandIcon: Icon = Icon.LAYOUT_SIDEBAR;
-  public readonly collapseIcon: Icon = Icon.LAYOUT_SIDEBAR_REVERSE;
+  public readonly expandIcon = Icon.LAYOUT_SIDEBAR;
+  public readonly collapseIcon = Icon.LAYOUT_SIDEBAR_REVERSE;
   public readonly toggle$: Observable<boolean>;
   public readonly label$: Observable<string>;
   public readonly icon$: Observable<Icon>;

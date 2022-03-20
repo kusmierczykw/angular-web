@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TextValueProviderService } from '@shared/text-variables/services';
 import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
-import { toObservable } from '@utils/rxjs/operators';
+import { TextValueProviderService } from '@shared/text-variables/services/text-value-provider.service';
+import { toObservable } from '@utils/rxjs/operators/to-observable';
 
 @Component({
   selector: 'app-patient-details-page',

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlankLayoutModule } from '@layouts/blank';
-import { DashboardModule } from '@layouts/dashboard';
+import { DashboardModule } from '@layouts/dashboard/dashboard.module';
+import { BlankModule } from '@layouts/blank/blank.module';
+import { AuthModule } from '@layouts/auth/auth.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, BlankLayoutModule, DashboardModule],
-  exports: [BlankLayoutModule, DashboardModule],
+  imports: [CommonModule, BlankModule, DashboardModule, AuthModule],
+  exports: [BlankModule, DashboardModule],
 })
 export class LayoutsModule {}

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NavigationExtras, Params, Router } from '@angular/router';
-import { RouteProviderService } from '@core/routing/providers';
-import { RoutePath } from '@core/routing/paths';
 import { from, Observable } from 'rxjs';
+import { RouteProviderService } from '@core/routing/providers/route-provider.service';
+import { RoutePath } from '@core/routing/paths/route-path';
 
 @Injectable({
   providedIn: 'root',

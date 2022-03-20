@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RoutePath } from '@core/routing/paths';
 import { Params } from '@angular/router';
-import { RouteProviderService } from '@core/routing/providers';
-import { RouterLink } from '@core/routing/types';
+import { RouteProviderService } from '@core/routing/providers/route-provider.service';
+import { RouterLink } from '@core/routing/types/router-link';
+import { RoutePath } from '@core/routing/paths/route-path';
 
 @Pipe({
   name: 'routerLink',

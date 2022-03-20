@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ValidationErrorType } from '@shared/forms/components/validator/enums';
 import { ValidationErrorVariable } from '@shared/forms/components/validator/enums/validation-error.variable';
+import { ValidationErrorType } from '@shared/forms/components/validator/enums/validation-error-type';
 
 type Argument = { [key in ValidationErrorVariable]: string | number };
 

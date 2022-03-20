@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@core/storage/interfaces';
-import { StorageKey } from '@core/storage/models';
 import { ValueDoesNotExistsException } from '@core/storage/exceptions/value-does-not-exists.exception';
+import { StorageKey } from '@core/storage/models/storage-key';
+import { Storage } from '@core/storage/interfaces/storage.interface';
 
 @Injectable({
   providedIn: 'root',

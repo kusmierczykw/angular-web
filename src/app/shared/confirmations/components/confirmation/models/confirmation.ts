@@ -1,5 +1,5 @@
-import { Button } from '@shared/buttons/components/button/models';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { Button } from '@shared/buttons/components/button/models/button';
 
 export class Confirmation {
   public constructor(

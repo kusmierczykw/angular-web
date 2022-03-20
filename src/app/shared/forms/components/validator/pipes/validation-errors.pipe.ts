@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
-import { ValidationErrorsProvider } from '@shared/forms/components/validator/providers';
-import { ValidationErrorType } from '@shared/forms/components/validator/enums';
+import { ValidationErrorsProvider } from '@shared/forms/components/validator/providers/validation-errors.provider';
+import { ValidationErrorType } from '@shared/forms/components/validator/enums/validation-error-type';
 
 @Pipe({
   name: 'validationErrors',

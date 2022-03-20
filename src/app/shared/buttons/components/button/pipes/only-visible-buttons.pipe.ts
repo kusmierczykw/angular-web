@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Button } from '@shared/buttons/components/button/models';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
-import { toObservable } from '@utils/rxjs/operators';
+import { Button } from '@shared/buttons/components/button/models/button';
+import { toObservable } from '@utils/rxjs/operators/to-observable';
 
 declare type ButtonsSource = Button[] | Observable<Button[]>;
 

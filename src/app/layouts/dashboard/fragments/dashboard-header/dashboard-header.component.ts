@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Icon } from '@core/icons/enums';
+import { Icon } from '@core/icons/enums/icon';
 import { Observable } from 'rxjs';
-import { DashboardHeaderMenuService } from '@layouts/dashboard/services';
-import { MenuItem } from '@shared/menu/models';
-import { TitleService } from '@features/title/services';
-import { Title } from '@features/title/models';
+import { MenuItem } from '@shared/menu/models/menu-item';
+import { Title } from '@features/title/models/title';
+import { DashboardHeaderMenuService } from '@layouts/dashboard/services/dashboard-header-menu.service';
+import { TitleService } from '@features/title/services/title.service';
 
 @Component({
   selector: 'app-dashboard-header',

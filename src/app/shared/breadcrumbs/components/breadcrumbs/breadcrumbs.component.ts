@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Breadcrumb } from '@shared/breadcrumbs/models';
-import { Icon } from '@core/icons/enums';
+import { Icon } from '@core/icons/enums/icon';
+import { Breadcrumb } from '@shared/breadcrumbs/models/breadcrumb';
 
 @Component({
   selector: 'app-breadcrumbs',

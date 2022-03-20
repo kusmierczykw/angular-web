@@ -1,9 +1,9 @@
-import { MenuItem } from '@shared/menu/models';
-import { Icon } from '@core/icons/enums';
-import { RoutePath } from '@core/routing/paths';
 import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
-import { RouteProviderService } from '@core/routing/providers';
 import { Injectable } from '@angular/core';
+import { MenuItem } from '@shared/menu/models/menu-item';
+import { RouteProviderService } from '@core/routing/providers/route-provider.service';
+import { Icon } from '@core/icons/enums/icon';
+import { RoutePath } from '@core/routing/paths/route-path';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ButtonStyle } from '@shared/buttons/components/button/enums';
 import { ButtonStyleProviderService } from '@shared/buttons/components/button/providers/button-style-provider.service';
+import { ButtonStyle } from '@shared/buttons/components/button/enums/button-style';
 
 @Pipe({
   name: 'buttonStyle',

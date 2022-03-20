@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Image } from '../enums';
+import { Image } from '@core/images/enums/image';
 
 @Injectable({
   providedIn: 'root',

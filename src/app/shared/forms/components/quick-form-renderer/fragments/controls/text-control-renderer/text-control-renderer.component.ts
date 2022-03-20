@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
 import { AbstractControlRendererComponent } from '@shared/forms/components/quick-form-renderer/fragments/controls/abstract-control-renderer.component';
 import { TextControlConfig } from '@shared/forms/components/quick-form-renderer/interfaces/text-control-config';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types/quick-control.name';
 
 @Component({
   selector: 'app-text-control-renderer',

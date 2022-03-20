@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuItemComponent } from '@shared/menu/components';
 import { IconsModule } from '@core/icons/icons.module';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { OnlyVisibleMenuItemsPipe } from '@shared/menu/pipes';
+import { MenuItemComponent } from '@shared/menu/components/menu-item/menu-item.component';
+import { OnlyVisibleMenuItemsPipe } from '@shared/menu/pipes/only-visible-menu-items.pipe';
 
 @NgModule({
   declarations: [MenuItemComponent, OnlyVisibleMenuItemsPipe],

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PatientDetailsPageRoutingModule } from './patient-details-page-routing.module';
 import { PatientDetailsPageComponent } from './patient-details-page.component';
 

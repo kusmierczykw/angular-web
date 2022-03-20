@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Confirmation } from '@shared/confirmations/components/confirmation/models';
-import { Button } from '@shared/buttons/components/button/models';
-import { ButtonBuilder } from '@shared/buttons/components/button/builders';
-import { RequiredMethodCallException } from '@core/exceptions';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { ButtonStyle } from '@shared/buttons/components/button/enums';
+import { Button } from '@shared/buttons/components/button/models/button';
+import { ButtonBuilder } from '@shared/buttons/components/button/builders/button-builder.service';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models/confirmation';
+import { ButtonStyle } from '@shared/buttons/components/button/enums/button-style';
+import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 
 @Injectable({
   providedIn: 'root',

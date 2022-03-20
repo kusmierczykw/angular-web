@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { QuickForm } from '@shared/forms/components/quick-form-renderer/models/quick-form';
 import { ValidatorFn } from '@angular/forms';
-import {
-  RequiredMethodCallException,
-  UniquenessException,
-} from '@core/exceptions';
-import { ButtonBuilder } from '@shared/buttons/components/button/builders';
-import { Button } from '@shared/buttons/components/button/models';
-import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models';
 import { QuickFormControlBuilder } from '@shared/forms/components/quick-form-renderer/builders/quick-form-control-builder';
-import { ButtonStyle } from '@shared/buttons/components/button/enums';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model-mapper';
-import { Confirmation } from '@shared/confirmations/components/confirmation/models';
-import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders';
-import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types';
+import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types/quick-control.name';
+import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
+import { Button } from '@shared/buttons/components/button/models/button';
+import { Confirmation } from '@shared/confirmations/components/confirmation/models/confirmation';
+import { ButtonBuilder } from '@shared/buttons/components/button/builders/button-builder.service';
+import { ConfirmationBuilder } from '@shared/confirmations/components/confirmation/builders/confirmation-builder';
+import { ButtonStyle } from '@shared/buttons/components/button/enums/button-style';
+import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
+import { UniquenessException } from '@core/exceptions/uniqueness.exception';
 
 @Injectable({
   providedIn: 'root',

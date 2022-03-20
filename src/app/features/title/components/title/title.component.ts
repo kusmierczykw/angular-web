@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Title } from '@features/title/models';
+import { Title } from '@features/title/models/title';
 
 @Component({
   selector: 'app-title',

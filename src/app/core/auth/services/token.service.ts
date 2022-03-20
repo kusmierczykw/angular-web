@@ -1,10 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { RefreshToken, Token } from '@core/auth/models';
-import { STORAGE_TOKEN } from '@core/storage/tokens';
-import { Storage } from '@core/storage/interfaces';
-import { StorageKey } from '@core/storage/models';
 import { JsonParserService } from '@core/json/json-parser.service';
 import { Observable, ReplaySubject } from 'rxjs';
+import { StorageKey } from '@core/storage/models/storage-key';
+import { Token } from '@core/auth/models/token';
+import { RefreshToken } from '@core/auth/models/refresh-token';
+import { STORAGE_TOKEN } from '@core/storage/tokens/storage.token';
+import { Storage } from '@core/storage/interfaces/storage.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Breadcrumb } from '@shared/breadcrumbs/models';
 import { ActivatedRoute } from '@angular/router';
 import { RouteData } from '@core/routing/data/route-data';
-import { RouterLink } from '@core/routing/types';
+import { Breadcrumb } from '@shared/breadcrumbs/models/breadcrumb';
+import { RouterLink } from '@core/routing/types/router-link';
 
 @Injectable({
   providedIn: 'root',

@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { Icon } from '@core/icons/enums';
-import {
-  DashboardSidebarMenuService,
-  DashboardSidebarToggleService,
-} from '@layouts/dashboard/services';
 import { Observable } from 'rxjs';
-import { Image } from '@core/images/enums';
-import { MenuItem } from '@shared/menu/models';
-import { negate } from '@utils/rxjs/operators';
+import { MenuItem } from '@shared/menu/models/menu-item';
+import { DashboardSidebarToggleService } from '@layouts/dashboard/services/dashboard-sidebar-toggle.service';
+import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
+import { negate } from '@utils/rxjs/operators/negate';
+import { Icon } from '@core/icons/enums/icon';
+import { Image } from '@core/images/enums/image';
 
 @Component({
   selector: 'app-dashboard-sidebar',

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Image } from '@core/images/enums';
-import { RouteProviderService } from '@core/routing/providers';
+import { Image } from '@core/images/enums/image';
 import { RouterLink } from '@core/routing/types/router-link';
-import { RoutePath } from '@core/routing/paths';
+import { RouteProviderService } from '@core/routing/providers/route-provider.service';
+import { RoutePath } from '@core/routing/paths/route-path';
 
 @Component({
   selector: 'app-not-found-page',
@@ -10,7 +10,7 @@ import { RoutePath } from '@core/routing/paths';
   styleUrls: ['./not-found-page.component.scss'],
 })
 export class NotFoundPageComponent {
-  public readonly NOT_FOUND_IMAGE: Image = Image.UNDRAW_TAKEN;
+  public readonly NOT_FOUND_IMAGE = Image.UNDRAW_TAKEN;
   public readonly ROOT_PATH: RouterLink;
 
   public constructor(private readonly routeProvider: RouteProviderService) {

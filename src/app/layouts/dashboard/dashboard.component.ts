@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  DashboardHeaderMenuService,
-  DashboardSidebarMenuService,
-} from '@layouts/dashboard/services';
-import { TitleService } from '@features/title/services';
-import { Title } from '@features/title/models';
 import { DashboardHeaderMenuProviderService } from '@layouts/dashboard/providers/dashboard-header-menu-provider.service';
 import { DashboardSidebarMenuProviderService } from '@layouts/dashboard/providers/dashboard-sidebar-menu-provider.service';
 import { filter, map, Observable, startWith } from 'rxjs';
-import { Breadcrumb } from '@shared/breadcrumbs/models';
 import { NavigationEnd, Router } from '@angular/router';
-import { BreadcrumbsProviderService } from '@shared/breadcrumbs/providers';
 import { ScrollTopService } from '@core/routing/services/scroll-top.service';
+import { TitleService } from '@features/title/services/title.service';
+import { Breadcrumb } from '@shared/breadcrumbs/models/breadcrumb';
+import { BreadcrumbsProviderService } from '@shared/breadcrumbs/providers/breadcrumbs-provider.service';
+import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
+import { DashboardHeaderMenuService } from '@layouts/dashboard/services/dashboard-header-menu.service';
+import { Title } from '@features/title/models/title';
 
 @Component({
   selector: 'app-dashboard',

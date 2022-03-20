@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SignIn } from '../../models';
 import { SignInFormControl } from './sign-in-form.control';
 import { SignInForm } from './sign-in-form';
 import { Observable } from 'rxjs';
-import { negate } from '@utils/rxjs/operators';
+import { SignIn } from '@features/sign-in/models/sign.in';
+import { negate } from '@utils/rxjs/operators/negate';
 
 @Component({
   selector: 'app-sign-in-form',

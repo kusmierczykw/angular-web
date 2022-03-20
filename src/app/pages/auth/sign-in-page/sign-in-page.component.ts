@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Image } from '@core/images/enums';
-import { SignIn } from '@features/sign-in/models';
-import { NavigationService } from '@core/routing/services';
-import { RoutePath } from '@core/routing/paths';
-import { AuthService } from '@core/auth/services';
+import { Image } from '@core/images/enums/image';
+import { AuthService } from '@core/auth/services/auth.service';
+import { NavigationService } from '@core/routing/services/navigation.service';
+import { SignIn } from '@features/sign-in/models/sign.in';
+import { RoutePath } from '@core/routing/paths/route-path';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -11,7 +11,7 @@ import { AuthService } from '@core/auth/services';
   styleUrls: ['./sign-in-page.component.scss'],
 })
 export class SignInPageComponent {
-  public readonly SING_IN_IMAGE: Image = Image.UNDRAW_TRAVEL_TOGETHER;
+  public readonly SING_IN_IMAGE = Image.UNDRAW_TRAVEL_TOGETHER;
 
   public constructor(
     private readonly auth: AuthService,

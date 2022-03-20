@@ -1,10 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {
-  TextValueProviderService,
-  TextVariableService,
-} from '@shared/text-variables/services';
 import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { debounce } from '@utils/rxjs/operators/debounce';
+import { TextVariableService } from '@shared/text-variables/services/text-variable.service';
+import { TextValueProviderService } from '@shared/text-variables/services/text-value-provider.service';
 
 @Pipe({
   name: 'textVariablesSubstitution$',

@@ -1,4 +1,4 @@
-import { RouterLink } from '@core/routing/types';
+import { RouterLink } from '@core/routing/types/router-link';
 
 export class Breadcrumb {
   public constructor(

@@ -7,4 +7,4 @@ import { RouterModule } from '@angular/router';
   declarations: [BlankComponent],
   imports: [CommonModule, RouterModule],
 })
-export class BlankLayoutModule {}
+export class BlankModule {}
