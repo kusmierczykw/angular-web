@@ -12,22 +12,24 @@ export class ApiMessageBuilder {
     this._message = undefined;
     this._title = undefined;
 
-    return this;
-  }
-
-  public init(defaultMessage: string): this {
-    this.defaultMessage(defaultMessage);
+    this.default('Wystąpił nieznany błąd.');
 
     return this;
   }
 
-  public defaultMessage(defaultMessage: string): this {
-    this._defaultMessage = defaultMessage;
+  public default(message: string): this {
+    this._defaultMessage = message;
 
     return this;
   }
 
-  public errorResponse(error: HttpErrorResponse): this {
+  public success(message: string): this {
+    this._message = message;
+
+    return this;
+  }
+
+  public error(error: HttpErrorResponse): this {
     return this;
   }
 
@@ -42,11 +44,11 @@ export class ApiMessageBuilder {
   }
 
   public build(): ApiMessage {
-    if (!this._defaultMessage) {
-      throw new RequiredMethodCallException('init or defaultMessage');
-    }
-
     if (!this._message) {
+      if (!this._defaultMessage) {
+        throw new RequiredMethodCallException('default');
+      }
+
       this._message = this._defaultMessage;
     }
 
