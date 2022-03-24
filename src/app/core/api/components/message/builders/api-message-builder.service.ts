@@ -45,9 +45,10 @@ export class ApiMessageBuilderService {
   }
 
   public httpError(error: HttpErrorResponse): this {
-    this.httpErrorProcessor.init(error).extract();
+    const httpError = this.httpErrorProcessor.init(error).extract();
+    const { message } = httpError;
 
-    this.title('Błąd').default('Wystąpił nieznany błąd.');
+    this.title('Błąd').default('Wystąpił nieznany błąd.').message(message);
 
     return this;
   }
