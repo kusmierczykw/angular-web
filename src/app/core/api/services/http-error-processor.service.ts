@@ -25,7 +25,7 @@ export class HttpErrorProcessorService {
     return this;
   }
 
-  public extract(): HttpError {
+  public extractHttpError(): HttpError {
     this.validate();
 
     const { error } = this._error!;

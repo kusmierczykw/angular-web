@@ -11,6 +11,6 @@ export class ApiMessageHandlerService {
   public handle(
     factory: (builder: ApiMessageBuilderService) => ApiMessage,
   ): void {
-    factory(this.builder.reset());
+    factory(this.builder);
   }
 }

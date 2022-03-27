@@ -18,6 +18,10 @@ export class ApiMessageBuilderService {
     this.reset();
   }
 
+  public newInstance(): ApiMessageBuilderService {
+    return new ApiMessageBuilderService(this.httpErrorProcessor);
+  }
+
   public reset(): this {
     this._defaultMessage = undefined;
     this._message = undefined;
@@ -45,7 +49,7 @@ export class ApiMessageBuilderService {
   }
 
   public httpError(error: HttpErrorResponse): this {
-    const httpError = this.httpErrorProcessor.init(error).extract();
+    const httpError = this.httpErrorProcessor.init(error).extractHttpError();
     const { message } = httpError;
 
     this.title('Błąd').default('Wystąpił nieznany błąd.').message(message);
