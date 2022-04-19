@@ -11,8 +11,7 @@ export class BreadcrumbsProviderService {
   public constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly activatedRouteHelper: ActivatedRouteHelperService,
-  ) {
-  }
+  ) {}
 
   public buildFromActivatedRoute(
     activatedRoute: ActivatedRoute = this.activatedRoute,
