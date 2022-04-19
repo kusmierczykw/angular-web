@@ -3,6 +3,11 @@ import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { debounce } from '@utils/rxjs/operators/debounce';
 import { TextVariableService } from '@shared/text-variables/services/text-variable.service';
 import { TextValueProviderService } from '@shared/text-variables/services/text-value-provider.service';
+import { Nullish } from '@utils/types/nullish';
+import { Tuple } from '@utils/types/tuple';
+
+type VariableValue = Tuple<string>;
+type NullishVariableValue = Nullish<VariableValue>;
 
 @Pipe({
   name: 'textVariablesSubstitution$',
@@ -33,13 +38,14 @@ export class TextVariablesSubstitutionPipe implements PipeTransform {
 
   private variablesSubstitutes(
     label: string,
-  ): Observable<Array<[string, string]>> {
+  ): Observable<Array<VariableValue>> {
     const variables = this.stringVariable.fetchVariablesFormText(label);
-    const variablesWithValuesSource = variables.map((variable) => {
-      return this.textValueProvider
-        .fetchValue(variable)
-        .pipe(map((value) => [variable, value]));
-    });
+    const variablesWithValuesSource: Array<Observable<NullishVariableValue>> =
+      variables.map((variable) => {
+        return this.textValueProvider
+          .fetchValue(variable)
+          .pipe(map((value) => [variable, value]));
+      });
 
     return combineLatest(variablesWithValuesSource).pipe(
       map((substitutes) => this.onlyAvailableSubstitutes(substitutes)),
@@ -47,7 +53,7 @@ export class TextVariablesSubstitutionPipe implements PipeTransform {
   }
 
   private onlyAvailableSubstitutes = (
-    substitutes: Array<string[] | null>,
-  ): Array<[string, string]> =>
-    substitutes.filter(Boolean) as Array<[string, string]>;
+    substitutes: Array<NullishVariableValue>,
+  ): Array<VariableValue> =>
+    substitutes.filter(Boolean) as Array<VariableValue>;
 }

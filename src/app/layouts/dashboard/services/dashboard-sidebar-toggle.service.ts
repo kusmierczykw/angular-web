@@ -14,7 +14,7 @@ export class DashboardSidebarToggleService {
   }
 
   public toggle(): void {
-    const toggle: boolean = this.toggleSource$.getValue();
+    const toggle = this.toggleSource$.getValue();
 
     this.toggleSource$.next(!toggle);
   }
