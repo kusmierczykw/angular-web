@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RouteData } from '@core/routing/data/route-data';
 import { Breadcrumb } from '@shared/breadcrumbs/models/breadcrumb';
 import { RouterLink } from '@core/routing/types/router-link';
+import { ActivatedRouteHelperService } from '@core/routing/helpers/activated-route-helper.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreadcrumbsProviderService {
-  public constructor(private readonly activatedRoute: ActivatedRoute) {}
+  public constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly activatedRouteHelper: ActivatedRouteHelperService,
+  ) {
+  }
 
   public buildFromActivatedRoute(
     activatedRoute: ActivatedRoute = this.activatedRoute,
@@ -17,11 +21,11 @@ export class BreadcrumbsProviderService {
   }
 
   private createBreadcrumbs(
-    route: ActivatedRoute,
+    activatedRoute: ActivatedRoute,
     routerLink: RouterLink = ['/'],
     breadcrumbs: Breadcrumb[] = [],
   ): Breadcrumb[] {
-    const { children } = route;
+    const { children } = activatedRoute;
 
     if (children.length === 0) {
       return breadcrumbs;
@@ -29,13 +33,13 @@ export class BreadcrumbsProviderService {
 
     children.forEach((child: ActivatedRoute) => {
       const snapshot = child.snapshot;
-      const routeURL: string[] = snapshot.url.map((segment) => segment.path);
+      const fragment = snapshot.url.map((segment) => segment.path);
 
-      if (routeURL.length > 0) {
-        routerLink = [...routerLink, ...routeURL];
+      if (fragment.length > 0) {
+        routerLink = [...routerLink, ...fragment];
       }
 
-      const label: string = snapshot.data[RouteData.BREADCRUMB] as string;
+      const label = this.activatedRouteHelper.breadcrumbFromSnapshot(snapshot);
 
       if (label) {
         breadcrumbs.push({ label, routerLink });
