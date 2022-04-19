@@ -5,10 +5,12 @@ import { RouteData } from '@core/routing/data/route-data';
 import { isString } from '@utils/is-string';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActivatedRouteHelperService {
-  public breadcrumbFromSnapshot(snapshot: ActivatedRouteSnapshot): Nullish<string> {
+  public breadcrumbFromSnapshot(
+    snapshot: ActivatedRouteSnapshot,
+  ): Nullish<string> {
     const result = this.dataFromSnapshot(snapshot, RouteData.BREADCRUMB);
 
     if (isString(result)) {
@@ -18,7 +20,10 @@ export class ActivatedRouteHelperService {
     return;
   }
 
-  public dataFromSnapshot<T>(snapshot: ActivatedRouteSnapshot, dataKey: RouteData): Nullish<T> {
+  public dataFromSnapshot<T>(
+    snapshot: ActivatedRouteSnapshot,
+    dataKey: RouteData,
+  ): Nullish<T> {
     return snapshot.data[dataKey];
   }
 }
