@@ -2,7 +2,7 @@ import { Training } from '@features/training/models/training';
 import { FormGroup } from '@angular/forms';
 import { TrainingFormControl } from '@features/training/components/training-form/training-form.control';
 import { Injectable } from '@angular/core';
-import { QuickFormModelMapper } from '@shared/forms/quick-form-renderer/interfaces/quick-form-model-mapper';
+import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model-mapper';
 
 @Injectable({
   providedIn: 'root',
