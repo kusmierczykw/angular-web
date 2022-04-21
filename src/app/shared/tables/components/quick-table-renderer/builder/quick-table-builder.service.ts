@@ -19,6 +19,18 @@ export class QuickTableBuilderService<ColumnKey> {
     return new QuickTableBuilderService(this.columnBuilder.newInstance());
   }
 
+  public columns(
+    factory: (
+      builder: QuickTableColumnBuilderService<ColumnKey>,
+    ) => TableColumn<ColumnKey>[],
+  ): this {
+    const columns = factory(this.columnBuilder);
+
+    this._columns = [...this._columns, ...columns];
+
+    return this;
+  }
+
   public column(
     factory: (
       builder: QuickTableColumnBuilderService<ColumnKey>,

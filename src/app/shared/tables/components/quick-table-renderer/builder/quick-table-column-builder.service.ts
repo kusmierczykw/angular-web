@@ -8,9 +8,9 @@ import { CssClass } from '@utils/types/css-class';
 @Injectable({
   providedIn: 'root',
 })
-export class QuickTableColumnBuilderService<Key> {
+export class QuickTableColumnBuilderService<ColumnKey> {
   private _label: Nullish<string>;
-  private _key: Nullish<Key>;
+  private _key: Nullish<ColumnKey>;
   private _type: Nullish<TableColumnType>;
   private _cssClass: Nullish<CssClass>;
 
@@ -22,19 +22,19 @@ export class QuickTableColumnBuilderService<Key> {
     return new QuickTableColumnBuilderService();
   }
 
-  public initColumn(key: Key, label: string): this {
+  public initColumn(key: ColumnKey, label: string): this {
     this.key(key).label(label);
 
     return this;
   }
 
-  public initTextColumn(key: Key, label: string): this {
+  public initTextColumn(key: ColumnKey, label: string): this {
     this.initColumn(key, label).type(TableColumnType.TEXT);
 
     return this;
   }
 
-  public key(key: Key): this {
+  public key(key: ColumnKey): this {
     this._key = key;
 
     return this;
@@ -64,13 +64,13 @@ export class QuickTableColumnBuilderService<Key> {
     return this;
   }
 
-  public build(): TableColumn<Key> {
+  public build(): TableColumn<ColumnKey> {
     this.validateKey();
     this.validateLabel();
     this.validateType();
 
     return new TableColumn(
-      this._key as Key,
+      this._key as ColumnKey,
       this._label as string,
       this._type as TableColumnType,
       this._cssClass as CssClass,
@@ -82,7 +82,7 @@ export class QuickTableColumnBuilderService<Key> {
       return;
     }
 
-    throw new RequiredMethodCallException('key');
+    throw new RequiredMethodCallException('key or initColumn');
   }
 
   private validateLabel(): void {
@@ -90,7 +90,7 @@ export class QuickTableColumnBuilderService<Key> {
       return;
     }
 
-    throw new RequiredMethodCallException('label');
+    throw new RequiredMethodCallException('label or initColumn');
   }
 
   private validateType(): void {

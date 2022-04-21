@@ -6,5 +6,6 @@ import { QuickTableRendererModule } from '@shared/tables/components/quick-table-
 @NgModule({
   declarations: [PatientsListComponent],
   imports: [CommonModule, QuickTableRendererModule],
+  exports: [PatientsListComponent],
 })
 export class PatientsListModule {}

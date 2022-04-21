@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuickTableBuilderService } from '@shared/tables/components/quick-table-renderer/builder/quick-table-builder.service';
 import { PatientKey } from '@features/patient/types/patient-key';
+import { QuickTable } from '@shared/tables/components/quick-table-renderer/models/quick-table';
 
 @Component({
   selector: 'app-patients-list',
@@ -13,6 +14,6 @@ export class PatientsListComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.quickTableBuilder.column((builder) => builder.build());
+    const quickTable: QuickTable<PatientKey> = this.quickTableBuilder.build();
   }
 }
