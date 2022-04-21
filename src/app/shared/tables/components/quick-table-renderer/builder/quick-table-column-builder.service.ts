@@ -12,7 +12,9 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   private _label: Nullish<string>;
   private _key: Nullish<ColumnKey>;
   private _type: Nullish<TableColumnType>;
-  private _cssClass: Nullish<CssClass>;
+  private _cssClass!: CssClass[];
+  private _visible!: boolean;
+  private _width: Nullish<string>;
 
   public constructor() {
     this.reset();
@@ -22,16 +24,15 @@ export class QuickTableColumnBuilderService<ColumnKey> {
     return new QuickTableColumnBuilderService();
   }
 
-  public initColumn(key: ColumnKey, label: string): this {
-    this.key(key).label(label);
-
-    return this;
+  public init(key: ColumnKey): this {
+    return this.key(key).type(TableColumnType.TEXT);
   }
 
-  public initTextColumn(key: ColumnKey, label: string): this {
-    this.initColumn(key, label).type(TableColumnType.TEXT);
-
-    return this;
+  public initOrdinaryColumn(key?: ColumnKey): this {
+    return this.key(key ?? ('ordinary' as unknown as ColumnKey))
+      .type(TableColumnType.ORDINARY)
+      .label('#')
+      .width('5rem');
   }
 
   public key(key: ColumnKey): this {
@@ -53,13 +54,32 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   }
 
   public cssClass(cssClass: CssClass): this {
-    this._cssClass = cssClass;
+    this._cssClass = [...this._cssClass, cssClass];
 
     return this;
   }
 
+  public width(width: string): this {
+    this._width = width;
+
+    return this;
+  }
+
+  public stickyLeft(): this {
+    return this.cssClass('sticky-left');
+  }
+
+  public stickyRight(): this {
+    return this.cssClass('sticky-right');
+  }
+
   public reset(): this {
-    this._label = this._key = this._type = this._cssClass = undefined;
+    this._label = undefined;
+    this._key = undefined;
+    this._type = undefined;
+    this._cssClass = [];
+    this._width = undefined;
+    this._visible = true;
 
     return this;
   }
@@ -68,13 +88,20 @@ export class QuickTableColumnBuilderService<ColumnKey> {
     this.validateKey();
     this.validateLabel();
     this.validateType();
+    this.validateWidth();
 
-    return new TableColumn(
+    const column = new TableColumn(
       this._key as ColumnKey,
       this._label as string,
       this._type as TableColumnType,
-      this._cssClass as CssClass,
+      this._cssClass,
+      this._visible,
+      this._width as string,
     );
+
+    this.reset();
+
+    return column;
   }
 
   private validateKey(): void {
@@ -99,5 +126,13 @@ export class QuickTableColumnBuilderService<ColumnKey> {
     }
 
     throw new RequiredMethodCallException('type');
+  }
+
+  private validateWidth(): void {
+    if (this._width) {
+      return;
+    }
+
+    throw new RequiredMethodCallException('width');
   }
 }

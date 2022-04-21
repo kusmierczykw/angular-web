@@ -5,5 +5,6 @@ export enum TableColumnType {
   DATE,
   DATE_TIME,
   NUMBER,
+  ORDINARY,
   TEXT,
 }

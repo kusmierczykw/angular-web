@@ -1,21 +1,33 @@
-<mat-table [dataSource]="[]">
-  <ng-container matColumnDef="username">
-    <mat-header-cell *matHeaderCellDef> User name</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.username }} </mat-cell>
-  </ng-container>
+<div [style.overflow-x]="'auto'">
+  <mat-table [dataSource]="data">
+    <mat-header-row
+      *matHeaderRowDef="columns | onlyVisibleColumns | columnKeys">
+    </mat-header-row>
+    <mat-row
+      *matRowDef="
+        let model;
+        columns: columns | onlyVisibleColumns | columnKeys
+      ">
+    </mat-row>
 
-  <ng-container matColumnDef="age">
-    <mat-header-cell *matHeaderCellDef> Age</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.age }} </mat-cell>
-  </ng-container>
+    <ng-container *ngFor="let column of columns | onlyVisibleColumns">
+      <ng-container matColumnDef="{{ column.key }}">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="column.cssClass"
+          [style.flex-basis]="column.width"
+          [style.flex-shrink]="0">
+          {{ column.label }}
+        </mat-header-cell>
 
-  <ng-container matColumnDef="title">
-    <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
-    <mat-cell *matCellDef="let row"> {{ row.title }} </mat-cell>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="['username', 'age', 'title']">
-  </mat-header-row>
-  <mat-row *matRowDef="let row; columns: ['username', 'age', 'title']">
-  </mat-row>
-</mat-table>
+        <mat-cell
+          *matCellDef="let model"
+          [ngClass]="column.cssClass"
+          [style.flex-basis]="column.width"
+          [style.flex-shrink]="0">
+          {{ model[column.key] }}
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+  </mat-table>
+</div>

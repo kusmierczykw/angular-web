@@ -9,11 +9,57 @@ import { QuickTable } from '@shared/tables/components/quick-table-renderer/model
   styleUrls: ['./patients-list.component.scss'],
 })
 export class PatientsListComponent implements OnInit {
+  public quickTable!: QuickTable<PatientKey>;
+
   public constructor(
     private readonly quickTableBuilder: QuickTableBuilderService<PatientKey>,
   ) {}
 
   public ngOnInit(): void {
-    const quickTable: QuickTable<PatientKey> = this.quickTableBuilder.build();
+    this.quickTable = this.quickTableBuilder
+      .columns((builder) => [
+        builder //
+          .initOrdinaryColumn()
+          .stickyRight()
+          .build(),
+
+        builder //
+          .init('firstName')
+          .label('Imię')
+          .width('20rem')
+          .build(),
+
+        builder //
+          .init('lastName')
+          .label('Nazwisko')
+          .width('20rem')
+          .build(),
+
+        builder //
+          .init('age')
+          .label('Wiek')
+          .width('15rem')
+          .build(),
+
+        builder //
+          .init('createdAt')
+          .label('Data utworzenia')
+          .width('20rem')
+          .build(),
+
+        builder //
+          .init('updatedAt')
+          .label('Data aktualizacji')
+          .width('20rem')
+          .build(),
+
+        builder //
+          .init('active')
+          .label('Czy aktywny?')
+          .width('15rem')
+          .stickyLeft()
+          .build(),
+      ])
+      .build();
   }
 }

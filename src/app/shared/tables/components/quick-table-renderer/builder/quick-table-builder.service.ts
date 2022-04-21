@@ -44,7 +44,11 @@ export class QuickTableBuilderService<ColumnKey> {
   }
 
   public build(): QuickTable<ColumnKey> {
-    return new QuickTable(this._columns);
+    const quickTable = new QuickTable(this._columns);
+
+    this.reset();
+
+    return quickTable;
   }
 
   public reset(): this {

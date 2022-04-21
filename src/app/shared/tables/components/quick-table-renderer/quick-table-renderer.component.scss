@@ -1,0 +1,18 @@
+:host {
+  .mat-header-cell,
+  .mat-cell {
+    background-color: inherit;
+    border-bottom: inherit;
+    margin-bottom: -1px;
+
+    &.sticky-right {
+      position: sticky;
+      right: 0;
+    }
+
+    &.sticky-left {
+      position: sticky;
+      left: 0;
+    }
+  }
+}
