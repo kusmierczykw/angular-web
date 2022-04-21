@@ -3,6 +3,7 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
 import { Nullish } from '@utils/types/nullish';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
+import { CssClass } from '@utils/types/css-class';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ export class QuickTableColumnBuilderService<Key> {
   private _label: Nullish<string>;
   private _key: Nullish<Key>;
   private _type: Nullish<TableColumnType>;
+  private _cssClass: Nullish<CssClass>;
 
   public constructor() {
     this.reset();
@@ -50,8 +52,14 @@ export class QuickTableColumnBuilderService<Key> {
     return this;
   }
 
+  public cssClass(cssClass: CssClass): this {
+    this._cssClass = cssClass;
+
+    return this;
+  }
+
   public reset(): this {
-    this._label = this._key = this._type = undefined;
+    this._label = this._key = this._type = this._cssClass = undefined;
 
     return this;
   }
@@ -59,11 +67,13 @@ export class QuickTableColumnBuilderService<Key> {
   public build(): TableColumn<Key> {
     this.validateKey();
     this.validateLabel();
+    this.validateType();
 
     return new TableColumn(
       this._key as Key,
       this._label as string,
       this._type as TableColumnType,
+      this._cssClass as CssClass,
     );
   }
 

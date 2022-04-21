@@ -6,5 +6,6 @@ import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [QuickTableRendererComponent],
   imports: [CommonModule, MatTableModule],
+  exports: [QuickTableRendererComponent],
 })
 export class QuickTableRendererModule {}
