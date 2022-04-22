@@ -20,7 +20,7 @@ export class PatientsListComponent implements OnInit {
       .columns((builder) => [
         builder //
           .initOrdinaryColumn()
-          .stickyRight()
+          .stickyLeft()
           .build(),
 
         builder //
@@ -57,7 +57,7 @@ export class PatientsListComponent implements OnInit {
           .init('active')
           .label('Czy aktywny?')
           .width('15rem')
-          .stickyLeft()
+          .stickyRight()
           .build(),
       ])
       .build();

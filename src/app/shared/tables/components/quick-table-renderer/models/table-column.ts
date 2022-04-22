@@ -1,5 +1,6 @@
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { CssClass } from '@utils/types/css-class';
+import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
 
 export class TableColumn<ColumnKey> {
   public constructor(
@@ -9,5 +10,6 @@ export class TableColumn<ColumnKey> {
     public readonly cssClass: CssClass[],
     public readonly visible: boolean,
     public readonly width: string,
+    public readonly sticky: TableColumnSticky,
   ) {}
 }

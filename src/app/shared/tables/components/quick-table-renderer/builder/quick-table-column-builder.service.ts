@@ -4,6 +4,7 @@ import { Nullish } from '@utils/types/nullish';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { CssClass } from '@utils/types/css-class';
+import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   private _cssClass!: CssClass[];
   private _visible!: boolean;
   private _width: Nullish<string>;
+  private _sticky: Nullish<TableColumnSticky>;
 
   public constructor() {
     this.reset();
@@ -66,11 +68,15 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   }
 
   public stickyLeft(): this {
-    return this.cssClass('sticky-left');
+    this._sticky = TableColumnSticky.LEFT;
+
+    return this;
   }
 
   public stickyRight(): this {
-    return this.cssClass('sticky-right');
+    this._sticky = TableColumnSticky.RIGHT;
+
+    return this;
   }
 
   public reset(): this {
@@ -80,6 +86,7 @@ export class QuickTableColumnBuilderService<ColumnKey> {
     this._cssClass = [];
     this._width = undefined;
     this._visible = true;
+    this._sticky = TableColumnSticky.NONE;
 
     return this;
   }
@@ -97,6 +104,7 @@ export class QuickTableColumnBuilderService<ColumnKey> {
       this._cssClass,
       this._visible,
       this._width as string,
+      this._sticky as TableColumnSticky,
     );
 
     this.reset();

@@ -1,18 +1,32 @@
 :host {
+  $_border-compensation: -1px;
+  $_cell_border: 1px solid rgba(0, 0, 0, 0.12);
+  $_sticky-column-padding: 1rem;
+
+  .example-container {
+    height: 400px;
+    overflow-x: auto;
+  }
+
   .mat-header-cell,
   .mat-cell {
     background-color: inherit;
     border-bottom: inherit;
-    margin-bottom: -1px;
+    margin-bottom: $_border-compensation;
+    flex-shrink: 0;
 
-    &.sticky-right {
-      position: sticky;
-      right: 0;
+    &.mat-table-sticky-border-elem-right {
+      border-left: $_cell_border;
+      padding-left: $_sticky-column-padding;
     }
 
-    &.sticky-left {
-      position: sticky;
-      left: 0;
+    &.mat-table-sticky-border-elem-left {
+      border-right: $_cell_border;
+
+      & + .mat-header-cell,
+      & + .mat-cell {
+        padding-left: $_sticky-column-padding;
+      }
     }
   }
 }

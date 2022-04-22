@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { QuickTable } from '@shared/tables/components/quick-table-renderer/models/quick-table';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
 import { Patient } from '@features/patient/models/patient';
+import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
 
 @Component({
   selector: 'app-quick-table-renderer',
@@ -10,6 +11,8 @@ import { Patient } from '@features/patient/models/patient';
 })
 export class QuickTableRendererComponent<ColumnKey> implements OnInit {
   @Input() public quickTable!: QuickTable<ColumnKey>;
+
+  public readonly Sticky = TableColumnSticky;
 
   public columns!: TableColumn<ColumnKey>[];
   public data = [
@@ -27,7 +30,5 @@ export class QuickTableRendererComponent<ColumnKey> implements OnInit {
 
   public ngOnInit(): void {
     this.columns = this.quickTable.columns;
-
-    console.log(this.columns);
   }
 }

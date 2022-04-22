@@ -1,7 +1,25 @@
-<div [style.overflow-x]="'auto'">
+<div class="example-container">
   <mat-table [dataSource]="data">
+    <ng-container *ngFor="let column of columns | onlyVisibleColumns">
+      <ng-container
+        matColumnDef="{{ column.key }}"
+        [sticky]="column.sticky === Sticky.LEFT"
+        [stickyEnd]="column.sticky === Sticky.RIGHT">
+        <mat-header-cell *matHeaderCellDef [style.flex-basis]="column.width">
+          {{ column.label }}
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let model" [style.flex-basis]="column.width">
+          {{ model[column.key] }}
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+
     <mat-header-row
-      *matHeaderRowDef="columns | onlyVisibleColumns | columnKeys">
+      *matHeaderRowDef="
+        columns | onlyVisibleColumns | columnKeys;
+        sticky: true
+      ">
     </mat-header-row>
     <mat-row
       *matRowDef="
@@ -9,25 +27,5 @@
         columns: columns | onlyVisibleColumns | columnKeys
       ">
     </mat-row>
-
-    <ng-container *ngFor="let column of columns | onlyVisibleColumns">
-      <ng-container matColumnDef="{{ column.key }}">
-        <mat-header-cell
-          *matHeaderCellDef
-          [ngClass]="column.cssClass"
-          [style.flex-basis]="column.width"
-          [style.flex-shrink]="0">
-          {{ column.label }}
-        </mat-header-cell>
-
-        <mat-cell
-          *matCellDef="let model"
-          [ngClass]="column.cssClass"
-          [style.flex-basis]="column.width"
-          [style.flex-shrink]="0">
-          {{ model[column.key] }}
-        </mat-cell>
-      </ng-container>
-    </ng-container>
   </mat-table>
 </div>
