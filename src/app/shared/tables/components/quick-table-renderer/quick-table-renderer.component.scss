@@ -1,11 +1,14 @@
 :host {
   $_border-compensation: -1px;
   $_cell_border: 1px solid rgba(0, 0, 0, 0.12);
-  $_sticky-column-padding: 1rem;
+  $_column-padding: 0.5rem 1rem;
 
   .example-container {
-    height: 400px;
     overflow-x: auto;
+  }
+
+  .mat-row {
+    align-items: stretch;
   }
 
   .mat-header-cell,
@@ -13,20 +16,15 @@
     background-color: inherit;
     border-bottom: inherit;
     margin-bottom: $_border-compensation;
+    padding: $_column-padding;
     flex-shrink: 0;
 
     &.mat-table-sticky-border-elem-right {
       border-left: $_cell_border;
-      padding-left: $_sticky-column-padding;
     }
 
     &.mat-table-sticky-border-elem-left {
       border-right: $_cell_border;
-
-      & + .mat-header-cell,
-      & + .mat-cell {
-        padding-left: $_sticky-column-padding;
-      }
     }
   }
 }

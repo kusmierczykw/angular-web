@@ -5,7 +5,6 @@ import { DashboardSidebarToggleService } from '@layouts/dashboard/services/dashb
 import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
 import { negate } from '@utils/rxjs/operators/negate';
 import { Icon } from '@core/icons/enums/icon';
-import { Image } from '@core/images/enums/image';
 
 @Component({
   selector: 'app-dashboard-sidebar',
@@ -14,7 +13,6 @@ import { Image } from '@core/images/enums/image';
 })
 export class DashboardSidebarComponent {
   public readonly Icon = Icon;
-  public readonly Image = Image;
   public readonly menu$: Observable<MenuItem[]>;
   public readonly accountMenu$: Observable<MenuItem[]>;
   public readonly sidebarExpand$: Observable<boolean>;

@@ -5,13 +5,15 @@ import { RequiredMethodCallException } from '@core/exceptions/required-method-ca
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { CssClass } from '@utils/types/css-class';
 import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
+import { ColumnKey } from '@shared/tables/components/quick-table-renderer/types/column-key';
+import { isNullish } from '@utils/is-nullish';
 
 @Injectable({
   providedIn: 'root',
 })
-export class QuickTableColumnBuilderService<ColumnKey> {
+export class QuickTableColumnBuilderService<Key> {
   private _label: Nullish<string>;
-  private _key: Nullish<ColumnKey>;
+  private _key: Nullish<ColumnKey<Key>>;
   private _type: Nullish<TableColumnType>;
   private _cssClass!: CssClass[];
   private _visible!: boolean;
@@ -26,18 +28,22 @@ export class QuickTableColumnBuilderService<ColumnKey> {
     return new QuickTableColumnBuilderService();
   }
 
-  public init(key: ColumnKey): this {
+  public init(key: ColumnKey<Key>): this {
     return this.key(key).type(TableColumnType.TEXT);
   }
 
-  public initOrdinaryColumn(key?: ColumnKey): this {
-    return this.key(key ?? ('ordinary' as unknown as ColumnKey))
+  public initOrdinaryColumn(key: ColumnKey<Key> = 'ordinary'): this {
+    return this.key(key)
       .type(TableColumnType.ORDINARY)
       .label('#')
       .width('5rem');
   }
 
-  public key(key: ColumnKey): this {
+  public initActionColumn(key: ColumnKey<Key> = 'action'): this {
+    return this.key(key).type(TableColumnType.ACTION).label('Akcje');
+  }
+
+  public key(key: ColumnKey<Key>): this {
     this._key = key;
 
     return this;
@@ -91,14 +97,14 @@ export class QuickTableColumnBuilderService<ColumnKey> {
     return this;
   }
 
-  public build(): TableColumn<ColumnKey> {
+  public build(): TableColumn<Key> {
     this.validateKey();
     this.validateLabel();
     this.validateType();
     this.validateWidth();
 
     const column = new TableColumn(
-      this._key as ColumnKey,
+      this._key as Key,
       this._label as string,
       this._type as TableColumnType,
       this._cssClass,
@@ -113,7 +119,7 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   }
 
   private validateKey(): void {
-    if (this._key) {
+    if (!isNullish(this._key)) {
       return;
     }
 
@@ -121,7 +127,11 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   }
 
   private validateLabel(): void {
-    if (this._label) {
+    if (!isNullish(this._label)) {
+      return;
+    }
+
+    if (this.isActionType()) {
       return;
     }
 
@@ -129,7 +139,7 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   }
 
   private validateType(): void {
-    if (this._type) {
+    if (!isNullish(this._type)) {
       return;
     }
 
@@ -137,10 +147,18 @@ export class QuickTableColumnBuilderService<ColumnKey> {
   }
 
   private validateWidth(): void {
-    if (this._width) {
+    if (!isNullish(this._width)) {
+      return;
+    }
+
+    if (this.isActionType()) {
       return;
     }
 
     throw new RequiredMethodCallException('width');
+  }
+
+  private isActionType(): boolean {
+    return this._type === TableColumnType.ACTION;
   }
 }

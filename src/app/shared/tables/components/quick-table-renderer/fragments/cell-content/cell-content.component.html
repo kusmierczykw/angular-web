@@ -1,0 +1,17 @@
+<ng-container [ngSwitch]="column.type">
+  <ng-container *ngSwitchCase="Type.TEXT">
+    {{ model[key] }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.ORDINARY">
+    {{ model[key] }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.ACTION">
+    <app-table-actions [actions]="actions!" [model]="model"></app-table-actions>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    Brak definicji zawartości komórki dla typu {{ column.type }}.
+  </ng-container>
+</ng-container>

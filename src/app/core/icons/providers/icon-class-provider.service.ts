@@ -17,6 +17,7 @@ export class IconClassProviderService {
     [Icon.CREDIT_CARD]: 'bi-credit-card',
     [Icon.CHEVRON_RIGHT]: 'bi bi-chevron-right',
     [Icon.DASHBOARD]: 'bi bi-columns-gap',
+    [Icon.EYE_FILL]: 'bi bi-eye-fill',
     [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
     [Icon.LAYOUT_SIDEBAR]: 'bi bi-layout-sidebar',
     [Icon.LAYOUT_SIDEBAR_REVERSE]: 'bi bi-layout-sidebar-reverse',

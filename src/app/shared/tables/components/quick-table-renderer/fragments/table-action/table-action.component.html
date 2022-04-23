@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="action.type">
+  <ng-container *ngSwitchCase="Type.ROUTER_LINK">
+    <a [routerLink]="action.routerLink">
+      <i [class]="action.icon | iconClass"></i>
+    </a>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.COMMAND">
+    <button (click)="action.command!(model)">
+      <i [class]="action.icon | iconClass"></i>
+    </button>
+  </ng-container>
+</ng-container>

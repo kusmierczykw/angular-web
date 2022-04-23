@@ -3,14 +3,18 @@
     <ng-container *ngFor="let column of columns | onlyVisibleColumns">
       <ng-container
         matColumnDef="{{ column.key }}"
-        [sticky]="column.sticky === Sticky.LEFT"
-        [stickyEnd]="column.sticky === Sticky.RIGHT">
+        [sticky]="column.stickyLeft"
+        [stickyEnd]="column.stickyRight">
         <mat-header-cell *matHeaderCellDef [style.flex-basis]="column.width">
           {{ column.label }}
         </mat-header-cell>
 
         <mat-cell *matCellDef="let model" [style.flex-basis]="column.width">
-          {{ model[column.key] }}
+          <app-cell-content
+            [column]="column"
+            [model]="model"
+            [actions]="actions">
+          </app-cell-content>
         </mat-cell>
       </ng-container>
     </ng-container>

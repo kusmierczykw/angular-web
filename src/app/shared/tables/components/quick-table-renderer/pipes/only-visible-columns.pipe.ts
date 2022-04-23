@@ -5,9 +5,7 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
   name: 'onlyVisibleColumns',
 })
 export class OnlyVisibleColumnsPipe implements PipeTransform {
-  public transform<ColumKey>(
-    columns: TableColumn<ColumKey>[],
-  ): TableColumn<ColumKey>[] {
+  public transform<Key>(columns: TableColumn<Key>[]): TableColumn<Key>[] {
     return columns.filter(({ visible }) => visible);
   }
 }
