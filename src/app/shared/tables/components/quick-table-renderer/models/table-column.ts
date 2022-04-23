@@ -21,4 +21,8 @@ export class TableColumn<Key> {
   public get stickyLeft(): boolean {
     return this.sticky === TableColumnSticky.LEFT;
   }
+
+  public get isAction(): boolean {
+    return this.type === TableColumnType.ACTION;
+  }
 }

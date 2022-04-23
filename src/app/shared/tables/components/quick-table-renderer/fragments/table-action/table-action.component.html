@@ -1,12 +1,20 @@
 <ng-container [ngSwitch]="action.type">
   <ng-container *ngSwitchCase="Type.ROUTER_LINK">
-    <a [routerLink]="action.routerLink">
+    <a
+      class="table-action table-action__router-link"
+      mat-button
+      [matTooltip]="action.tooltip"
+      [routerLink]="action.routerLinkFactory! | tableActionRouterLink: model">
       <i [class]="action.icon | iconClass"></i>
     </a>
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.COMMAND">
-    <button (click)="action.command!(model)">
+    <button
+      class="table-action table-action__command"
+      mat-button
+      [matTooltip]="action.tooltip"
+      (click)="handleClick()">
       <i [class]="action.icon | iconClass"></i>
     </button>
   </ng-container>

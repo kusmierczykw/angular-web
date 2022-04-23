@@ -27,13 +27,21 @@ export class PatientsListComponent implements OnInit {
     this.quickTable = this.quickTableBuilder
       .actions((builder) => [
         builder
-          .initCommand(PatientRowAction.PREVIEW)
+          .initRouterLink(PatientRowAction.PREVIEW)
           .icon(Icon.EYE_FILL)
+          .tooltip('Podgląd')
+          .routerLink(() => {
+            return ['/'];
+          })
           .build(),
 
         builder
           .initCommand(PatientRowAction.DEACTIVATE)
           .icon(Icon.EYE_FILL)
+          .tooltip('Dezaktywuj')
+          .command((model) => {
+            console.log(model);
+          })
           .build(),
       ])
       .columns((builder) => [

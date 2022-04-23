@@ -12,4 +12,8 @@ export class TableActionComponent<ActionKey, Model> {
   @Input() public model!: Model;
 
   public readonly Type = TableActionType;
+
+  public handleClick(): void {
+    this.action.commandFactory!(this.model);
+  }
 }

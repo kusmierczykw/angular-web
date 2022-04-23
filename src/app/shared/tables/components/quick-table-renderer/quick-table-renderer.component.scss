@@ -3,7 +3,7 @@
   $_cell_border: 1px solid rgba(0, 0, 0, 0.12);
   $_column-padding: 0.5rem 1rem;
 
-  .example-container {
+  .quick-table {
     overflow-x: auto;
   }
 
@@ -25,6 +25,10 @@
 
     &.mat-table-sticky-border-elem-left {
       border-right: $_cell_border;
+    }
+
+    &.mat-column-action {
+      justify-content: center;
     }
   }
 }

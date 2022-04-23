@@ -1,0 +1,7 @@
+<ng-container [ngSwitch]="column.type">
+  <ng-container *ngSwitchCase="Type.ACTION"></ng-container>
+
+  <ng-container *ngSwitchDefault>
+    {{ column.label }}
+  </ng-container>
+</ng-container>

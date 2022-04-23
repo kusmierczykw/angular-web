@@ -32,15 +32,15 @@ export class QuickTableColumnBuilderService<Key> {
     return this.key(key).type(TableColumnType.TEXT);
   }
 
-  public initOrdinaryColumn(key: ColumnKey<Key> = 'ordinary'): this {
-    return this.key(key)
+  public initOrdinaryColumn(): this {
+    return this.key('ordinary')
       .type(TableColumnType.ORDINARY)
       .label('#')
       .width('5rem');
   }
 
-  public initActionColumn(key: ColumnKey<Key> = 'action'): this {
-    return this.key(key).type(TableColumnType.ACTION).label('Akcje');
+  public initActionColumn(): this {
+    return this.key('action').type(TableColumnType.ACTION);
   }
 
   public key(key: ColumnKey<Key>): this {
