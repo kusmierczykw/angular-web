@@ -50,7 +50,7 @@ export class PatientsListComponent implements OnInit {
 
         builder.init('lastName').label('Nazwisko').width('20rem').build(),
 
-        builder.init('age').label('Wiek').width('15rem').build(),
+        builder.initNumber('age').label('Wiek').width('15rem').build(),
 
         builder.initCurrency('amount').label('Cena').width('15rem').build(),
 
@@ -66,7 +66,11 @@ export class PatientsListComponent implements OnInit {
           .width('20rem')
           .build(),
 
-        builder.init('active').label('Czy aktywny?').width('15rem').build(),
+        builder
+          .initBoolean('active')
+          .label('Czy aktywny?')
+          .width('15rem')
+          .build(),
 
         builder.initAction().stickyRight().build(),
       ])

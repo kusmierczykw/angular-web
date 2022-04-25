@@ -37,9 +37,19 @@
     &.mat-table-sticky-border-elem-left {
       border-right: $_cell_border;
     }
+  }
 
-    &.mat-column-action {
+  .mat-cell {
+    &.action-column-type {
       justify-content: center;
+    }
+
+    &.number-column-type {
+      justify-content: flex-end;
+    }
+
+    &.currency-column-type {
+      justify-content: flex-end;
     }
   }
 }

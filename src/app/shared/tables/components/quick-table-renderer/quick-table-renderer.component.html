@@ -7,6 +7,7 @@
         [stickyEnd]="column.stickyRight">
         <mat-header-cell
           *matHeaderCellDef
+          [ngClass]="column.cssClass"
           [style.flex-basis]="column | columnWidth: actions">
           <app-header-cell-content [column]="column"></app-header-cell-content>
         </mat-header-cell>

@@ -1,26 +1,30 @@
 <ng-container [ngSwitch]="column.type">
   <ng-container *ngSwitchCase="Type.TEXT">
-    {{ model[key] }}
+    {{ textValue }}
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.DATE">
-    {{ $any(model[key]) | date: 'YYYY-MM-dd' }}
+    {{ dateValue | date: angularDateConfig.dateFormat }}
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.NUMBER">
-    {{ $any(model[key]) | number }}
+    {{ numberValue | number }}
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.CURRENCY">
-    {{ $any(model[key]) | number }} {{ currencyConfig?.currency }}
+    {{ numberValue | number }} {{ currencyConfig.shortcut }}
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.DATE_TIME">
-    {{ $any(model[key]) | date: 'YYYY-MM-dd hh:mm:ss' }}
+    {{ dateValue | date: angularDateConfig.dateTimeFormat }}
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.ORDINARY">
-    {{ model[key] }}
+    {{ ordinary }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.BOOLEAN">
+    {{ booleanValue | boolean: booleanLabels }}
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.CUSTOM">

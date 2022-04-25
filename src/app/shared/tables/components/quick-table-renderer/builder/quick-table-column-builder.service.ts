@@ -9,6 +9,8 @@ import { ColumnKey } from '@shared/tables/components/quick-table-renderer/types/
 import { isNullish } from '@utils/is-nullish';
 import { TableColumnConfig } from '@shared/tables/components/quick-table-renderer/interfaces/table-column-config';
 import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';
+import { TableColumnTypeCssClassProviderService } from '@shared/tables/components/quick-table-renderer/providers/table-column-type-css-class-provider.service';
+import { TableBooleanColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-boolean-column-config';
 
 @Injectable({
   providedIn: 'root',
@@ -23,12 +25,14 @@ export class QuickTableColumnBuilderService<Key> {
   private _sticky: Nullish<TableColumnSticky>;
   private _config!: TableColumnConfig;
 
-  public constructor() {
+  public constructor(
+    private readonly columnTypeCssProvider: TableColumnTypeCssClassProviderService,
+  ) {
     this.reset();
   }
 
   public newInstance<Key>(): QuickTableColumnBuilderService<Key> {
-    return new QuickTableColumnBuilderService();
+    return new QuickTableColumnBuilderService(this.columnTypeCssProvider);
   }
 
   public init(key: ColumnKey<Key>): this {
@@ -64,10 +68,23 @@ export class QuickTableColumnBuilderService<Key> {
     return this.init(key).type(TableColumnType.NUMBER);
   }
 
+  public initBoolean(key: ColumnKey<Key>): this {
+    return this.init(key).type(TableColumnType.BOOLEAN);
+  }
+
   public setCurrencyConfig(config: TableCurrencyColumnConfig): this {
     this._config = {
       ...this._config,
       currency: config,
+    };
+
+    return this;
+  }
+
+  public setBooleanConfig(config: TableBooleanColumnConfig): this {
+    this._config = {
+      ...this._config,
+      boolean: config,
     };
 
     return this;
@@ -135,6 +152,8 @@ export class QuickTableColumnBuilderService<Key> {
     this.validateWidth();
 
     this.setCurrencyDefaultConfig();
+    this.setBooleanDefaultConfig();
+    this.setDefaultCssClass();
 
     const column = new TableColumn(
       this._key as Key,
@@ -202,11 +221,31 @@ export class QuickTableColumnBuilderService<Key> {
     }
   }
 
+  private setBooleanDefaultConfig(): void {
+    if (!this.isBooleanType()) {
+      return;
+    }
+
+    if (!this._config.boolean) {
+      this.setBooleanConfig(new TableBooleanColumnConfig('Tak', 'Nie'));
+    }
+  }
+
+  private setDefaultCssClass(): void {
+    const cssClass = this.columnTypeCssProvider.get(this._type!);
+
+    this._cssClass.push(cssClass);
+  }
+
   private isActionType(): boolean {
     return this._type === TableColumnType.ACTION;
   }
 
   private isCurrencyType(): boolean {
     return this._type === TableColumnType.CURRENCY;
+  }
+
+  private isBooleanType(): boolean {
+    return this._type === TableColumnType.BOOLEAN;
   }
 }

@@ -25,7 +25,7 @@ export class QuickTableRendererComponent<ColumnKey, ActionKey, Model>
       new Date(),
       new Date(),
       'ACTIVE',
-      true,
+      false,
       12,
     ),
     new Patient(
