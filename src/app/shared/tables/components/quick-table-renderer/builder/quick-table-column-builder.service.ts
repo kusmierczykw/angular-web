@@ -59,9 +59,7 @@ export class QuickTableColumnBuilderService<Key> {
   }
 
   public initCurrency(key: ColumnKey<Key>): this {
-    this.initNumber(key).type(TableColumnType.CURRENCY);
-
-    return this;
+    return this.initNumber(key).type(TableColumnType.CURRENCY);
   }
 
   public initNumber(key: ColumnKey<Key>): this {
@@ -70,6 +68,10 @@ export class QuickTableColumnBuilderService<Key> {
 
   public initBoolean(key: ColumnKey<Key>): this {
     return this.init(key).type(TableColumnType.BOOLEAN);
+  }
+
+  public initCustom(key: ColumnKey<Key>): this {
+    return this.init(key).type(TableColumnType.CUSTOM);
   }
 
   public setCurrencyConfig(config: TableCurrencyColumnConfig): this {

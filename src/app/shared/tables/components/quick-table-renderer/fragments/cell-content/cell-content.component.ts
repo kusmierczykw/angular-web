@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, TemplateRef } from '@angular/core';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
 import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { Nullish } from '@utils/types/nullish';
@@ -12,6 +12,7 @@ import { isString } from '@utils/is-string';
 import { isBoolean } from '@utils/is-boolean';
 import { isDate } from '@utils/is-date';
 import { isNumber } from '@utils/is-number';
+import { CustomCellContent } from '@shared/tables/components/quick-table-renderer/interfaces/custom-cell-content';
 
 @Component({
   selector: 'app-cell-content',
@@ -23,6 +24,9 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
   @Input() public column!: TableColumn<ColumnKey>;
   @Input() public model!: Model;
   @Input() public actions: Nullish<TableAction<ActionKey, Model>[]>;
+  @Input() public customCellContentTemplate?: TemplateRef<
+    CustomCellContent<ColumnKey, Model>
+  >;
 
   public readonly Type = TableColumnType;
 

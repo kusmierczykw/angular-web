@@ -28,7 +28,16 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.CUSTOM">
-    {{ model[key] }}
+    <ng-container
+      *ngIf="customCellContentTemplate; else noCustomCellContentTemplate">
+      <ng-template
+        [ngTemplateOutlet]="customCellContentTemplate"
+        [ngTemplateOutletContext]="{ model, column}"></ng-template>
+    </ng-container>
+
+    <ng-template #noCustomCellContentTemplate>
+      Brak definicji zawartości komórki dla typu własnego.
+    </ng-template>
   </ng-container>
 
   <ng-container *ngSwitchCase="Type.ACTION">
