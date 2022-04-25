@@ -2,6 +2,7 @@ import { TableColumnType } from '@shared/tables/components/quick-table-renderer/
 import { CssClass } from '@utils/types/css-class';
 import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
 import { ColumnKey } from '@shared/tables/components/quick-table-renderer/types/column-key';
+import { TableColumnConfig } from '@shared/tables/components/quick-table-renderer/interfaces/table-column-config';
 
 export class TableColumn<Key> {
   public constructor(
@@ -12,6 +13,7 @@ export class TableColumn<Key> {
     public readonly visible: boolean,
     public readonly width: string,
     public readonly sticky: TableColumnSticky,
+    public readonly config: TableColumnConfig,
   ) {}
 
   public get stickyRight(): boolean {

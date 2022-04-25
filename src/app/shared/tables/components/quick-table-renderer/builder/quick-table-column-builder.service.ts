@@ -7,6 +7,8 @@ import { CssClass } from '@utils/types/css-class';
 import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
 import { ColumnKey } from '@shared/tables/components/quick-table-renderer/types/column-key';
 import { isNullish } from '@utils/is-nullish';
+import { TableColumnConfig } from '@shared/tables/components/quick-table-renderer/interfaces/table-column-config';
+import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +21,7 @@ export class QuickTableColumnBuilderService<Key> {
   private _visible!: boolean;
   private _width: Nullish<string>;
   private _sticky: Nullish<TableColumnSticky>;
+  private _config!: TableColumnConfig;
 
   public constructor() {
     this.reset();
@@ -32,15 +35,42 @@ export class QuickTableColumnBuilderService<Key> {
     return this.key(key).type(TableColumnType.TEXT);
   }
 
-  public initOrdinaryColumn(): this {
-    return this.key('ordinary')
+  public initOrdinary(): this {
+    return this.init('ordinary')
       .type(TableColumnType.ORDINARY)
       .label('#')
       .width('5rem');
   }
 
-  public initActionColumn(): this {
-    return this.key('action').type(TableColumnType.ACTION);
+  public initAction(): this {
+    return this.init('action').type(TableColumnType.ACTION);
+  }
+
+  public initDate(key: ColumnKey<Key>): this {
+    return this.init(key).type(TableColumnType.DATE);
+  }
+
+  public initDateTime(key: ColumnKey<Key>): this {
+    return this.init(key).type(TableColumnType.DATE_TIME);
+  }
+
+  public initCurrency(key: ColumnKey<Key>): this {
+    this.initNumber(key).type(TableColumnType.CURRENCY);
+
+    return this;
+  }
+
+  public initNumber(key: ColumnKey<Key>): this {
+    return this.init(key).type(TableColumnType.NUMBER);
+  }
+
+  public setCurrencyConfig(config: TableCurrencyColumnConfig): this {
+    this._config = {
+      ...this._config,
+      currency: config,
+    };
+
+    return this;
   }
 
   public key(key: ColumnKey<Key>): this {
@@ -93,6 +123,7 @@ export class QuickTableColumnBuilderService<Key> {
     this._width = undefined;
     this._visible = true;
     this._sticky = TableColumnSticky.NONE;
+    this._config = {};
 
     return this;
   }
@@ -103,6 +134,8 @@ export class QuickTableColumnBuilderService<Key> {
     this.validateType();
     this.validateWidth();
 
+    this.setCurrencyDefaultConfig();
+
     const column = new TableColumn(
       this._key as Key,
       this._label as string,
@@ -111,6 +144,7 @@ export class QuickTableColumnBuilderService<Key> {
       this._visible,
       this._width as string,
       this._sticky as TableColumnSticky,
+      this._config,
     );
 
     this.reset();
@@ -158,7 +192,21 @@ export class QuickTableColumnBuilderService<Key> {
     throw new RequiredMethodCallException('width');
   }
 
+  private setCurrencyDefaultConfig(): void {
+    if (!this.isCurrencyType()) {
+      return;
+    }
+
+    if (!this._config.currency) {
+      this.setCurrencyConfig(new TableCurrencyColumnConfig('zł'));
+    }
+  }
+
   private isActionType(): boolean {
     return this._type === TableColumnType.ACTION;
+  }
+
+  private isCurrencyType(): boolean {
+    return this._type === TableColumnType.CURRENCY;
   }
 }

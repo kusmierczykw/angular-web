@@ -23,7 +23,6 @@ export class PatientsListComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    /* prettier-ignore */
     this.quickTable = this.quickTableBuilder
       .actions((builder) => [
         builder
@@ -45,7 +44,7 @@ export class PatientsListComponent implements OnInit {
           .build(),
       ])
       .columns((builder) => [
-        builder.initOrdinaryColumn().stickyLeft().build(),
+        builder.initOrdinary().stickyLeft().build(),
 
         builder.init('firstName').label('Imię').width('20rem').build(),
 
@@ -53,21 +52,23 @@ export class PatientsListComponent implements OnInit {
 
         builder.init('age').label('Wiek').width('15rem').build(),
 
+        builder.initCurrency('amount').label('Cena').width('15rem').build(),
+
         builder
-          .init('createdAt')
+          .initDate('createdAt')
           .label('Data utworzenia')
           .width('20rem')
           .build(),
 
         builder
-          .init('updatedAt')
+          .initDateTime('updatedAt')
           .label('Data aktualizacji')
           .width('20rem')
           .build(),
 
         builder.init('active').label('Czy aktywny?').width('15rem').build(),
 
-        builder.initActionColumn().stickyRight().build(),
+        builder.initAction().stickyRight().build(),
       ])
       .build();
   }

@@ -9,6 +9,12 @@
 
   .mat-row {
     align-items: stretch;
+
+    &:hover {
+      .mat-cell {
+        background-color: #fafafa;
+      }
+    }
   }
 
   .mat-header-cell,
@@ -19,8 +25,13 @@
     padding: $_column-padding;
     flex-shrink: 0;
 
+    &:not(.mat-table-sticky-border-elem-right) {
+      border-right: $_cell_border;
+    }
+
     &.mat-table-sticky-border-elem-right {
       border-left: $_cell_border;
+      margin-left: $_border-compensation;
     }
 
     &.mat-table-sticky-border-elem-left {

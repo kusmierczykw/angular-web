@@ -3,6 +3,7 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
 import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { Nullish } from '@utils/types/nullish';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
+import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';
 
 @Component({
   selector: 'app-cell-content',
@@ -18,5 +19,9 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
 
   public get key(): keyof Model {
     return this.column.key as keyof Model;
+  }
+
+  public get currencyConfig(): Nullish<TableCurrencyColumnConfig> {
+    return this.column.config.currency;
   }
 }

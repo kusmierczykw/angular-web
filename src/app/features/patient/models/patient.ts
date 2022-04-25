@@ -7,5 +7,6 @@ export class Patient {
     public readonly updatedAt: Date,
     public readonly status: string,
     public readonly active: boolean,
+    public readonly amount: number,
   ) {}
 }

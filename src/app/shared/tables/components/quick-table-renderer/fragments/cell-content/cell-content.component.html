@@ -3,7 +3,27 @@
     {{ model[key] }}
   </ng-container>
 
+  <ng-container *ngSwitchCase="Type.DATE">
+    {{ $any(model[key]) | date: 'YYYY-MM-dd' }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.NUMBER">
+    {{ $any(model[key]) | number }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.CURRENCY">
+    {{ $any(model[key]) | number }} {{ currencyConfig?.currency }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.DATE_TIME">
+    {{ $any(model[key]) | date: 'YYYY-MM-dd hh:mm:ss' }}
+  </ng-container>
+
   <ng-container *ngSwitchCase="Type.ORDINARY">
+    {{ model[key] }}
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.CUSTOM">
     {{ model[key] }}
   </ng-container>
 
