@@ -32,7 +32,7 @@
       *ngIf="customCellContentTemplate; else noCustomCellContentTemplate">
       <ng-template
         [ngTemplateOutlet]="customCellContentTemplate"
-        [ngTemplateOutletContext]="{ model, column}"></ng-template>
+        [ngTemplateOutletContext]="{ model, column, key}"></ng-template>
     </ng-container>
 
     <ng-template #noCustomCellContentTemplate>

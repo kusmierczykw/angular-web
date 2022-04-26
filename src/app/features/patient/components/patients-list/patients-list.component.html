@@ -1,1 +1,17 @@
-<app-quick-table-renderer [quickTable]="quickTable"></app-quick-table-renderer>
+<app-quick-table-renderer
+  [quickTable]="quickTable"
+  [data]="data"
+  [customCellContentTemplate]="customCellContentTemplate">
+</app-quick-table-renderer>
+
+<ng-template
+  #customCellContentTemplate
+  let-model="model"
+  let-column="column"
+  let-key="key">
+  <app-custom-cell-content-renderer
+    [model]="model"
+    [column]="column"
+    [key]="key">
+  </app-custom-cell-content-renderer>
+</ng-template>

@@ -3,4 +3,5 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
 export interface CustomCellContent<ColumnKey, Model> {
   model: Model;
   column: TableColumn<ColumnKey>;
+  key: ColumnKey;
 }

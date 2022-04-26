@@ -13,6 +13,88 @@ import { Icon } from '@core/icons/enums/icon';
 })
 export class PatientsListComponent implements OnInit {
   public quickTable!: Table<PatientKey, PatientRowAction, Patient>;
+  public data = [
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      false,
+      12,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      1000,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      3000,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      900,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      200,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      1000,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      300,
+    ),
+    new Patient(
+      'Jan',
+      'Kowalski',
+      12,
+      new Date(),
+      new Date(),
+      'ACTIVE',
+      true,
+      100,
+    ),
+  ];
 
   public constructor(
     private readonly quickTableBuilder: QuickTableBuilderService<
@@ -53,6 +135,8 @@ export class PatientsListComponent implements OnInit {
         builder.initNumber('age').label('Wiek').width('15rem').build(),
 
         builder.initCurrency('amount').label('Cena').width('15rem').build(),
+
+        builder.initCustom('status').label('Status').width('20rem').build(),
 
         builder
           .initDate('createdAt')
