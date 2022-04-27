@@ -4,12 +4,12 @@ import { DashboardSidebarMenuProviderService } from '@layouts/dashboard/provider
 import { filter, map, Observable, startWith } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { ScrollTopService } from '@core/routing/services/scroll-top.service';
-import { TitleService } from '@features/title/services/title.service';
+import { TitleService } from '@modules/title/services/title.service';
 import { Breadcrumb } from '@shared/breadcrumbs/models/breadcrumb';
 import { BreadcrumbsProviderService } from '@shared/breadcrumbs/providers/breadcrumbs-provider.service';
 import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
 import { DashboardHeaderMenuService } from '@layouts/dashboard/services/dashboard-header-menu.service';
-import { Title } from '@features/title/models/title';
+import { Title } from '@modules/title/models/title';
 
 @Component({
   selector: 'app-dashboard',

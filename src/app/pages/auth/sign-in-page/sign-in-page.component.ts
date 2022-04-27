@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Image } from '@core/images/enums/image';
 import { AuthService } from '@core/auth/services/auth.service';
 import { NavigationService } from '@core/routing/services/navigation.service';
-import { SignIn } from '@features/sign-in/models/sign.in';
+import { SignIn } from '@modules/sign-in/models/sign.in';
 import { RoutePath } from '@core/routing/paths/route-path';
 
 @Component({

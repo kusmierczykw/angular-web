@@ -4,7 +4,7 @@ import { SignInPageComponent } from './sign-in-page.component';
 import { SignInPageRoutingModule } from './sign-in-page-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ImagesModule } from '@core/images/images.module';
-import { SignInFormModule } from '@features/sign-in/components/sign-in-form/sign-in-form.module';
+import { SignInFormModule } from '@modules/sign-in/components/sign-in-form/sign-in-form.module';
 
 @NgModule({
   declarations: [SignInPageComponent],

@@ -5,10 +5,7 @@ import { Observable, startWith } from 'rxjs';
 import { QuickFormModelMapper } from '@shared/forms/components/quick-form-renderer/interfaces/quick-form-model-mapper';
 import { QuickControlName } from '@shared/forms/components/quick-form-renderer/types/quick-control.name';
 import { Confirmation } from '@shared/confirmations/components/confirmation/models/confirmation';
-import {
-  abstractControlStatus,
-  isInvalid,
-} from '@shared/forms/operators/abstract-control-status';
+import { AbstractControlStatus } from '@shared/forms/operators/abstract-control-status';
 
 export class QuickForm<ControlName extends QuickControlName, Model> {
   private _formGroup!: FormGroup;
@@ -29,13 +26,17 @@ export class QuickForm<ControlName extends QuickControlName, Model> {
   }
 
   public get isValid$(): Observable<boolean> {
+    const { isValid } = AbstractControlStatus;
+
     return this._formGroup.statusChanges.pipe(
       startWith(this._formGroup.status),
-      abstractControlStatus(),
+      isValid(),
     );
   }
 
   public get isInvalid$(): Observable<boolean> {
+    const { isInvalid } = AbstractControlStatus;
+
     return this._formGroup.statusChanges.pipe(
       startWith(this._formGroup.status),
       isInvalid(),

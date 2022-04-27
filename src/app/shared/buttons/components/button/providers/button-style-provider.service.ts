@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ButtonStyle } from '@shared/buttons/components/button/enums';
+import { ButtonStyle } from '@shared/buttons/components/button/enums/button-style';
 
 @Injectable({
   providedIn: 'root',

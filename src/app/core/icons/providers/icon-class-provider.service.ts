@@ -24,6 +24,8 @@ export class IconClassProviderService {
     [Icon.PEOPLE_FILL]: 'bi bi-people-fill',
     [Icon.RECORD]: 'bi bi-record',
     [Icon.RECORD_PARTIALLY_FILL]: 'bi bi-record2',
+    [Icon.SLASH_CIRCLE]: 'bi bi-slash-circle',
+    [Icon.SLASH_CIRCLE_FILL]: 'bi bi-slash-circle-fill',
     [Icon.USERS]: 'bi bi-people',
   };
 

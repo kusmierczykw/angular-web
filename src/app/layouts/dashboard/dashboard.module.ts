@@ -13,8 +13,8 @@ import { DashboardHeaderComponent } from '@layouts/dashboard/fragments/dashboard
 import { DashboardSidebarToggleComponent } from '@layouts/dashboard/fragments/dashboard-sidebar-toggle/dashboard-sidebar-toggle.component';
 import { DashboardFooterComponent } from '@layouts/dashboard/fragments/dashboard-footer/dashboard-footer.component';
 import { DashboardSidebarComponent } from '@layouts/dashboard/fragments/dashboard-sidebar/dashboard-sidebar.component';
-import { UserAvatarModule } from '@features/avatar/components/user-avatar/user-avatar.module';
-import { TitleModule } from '@features/title/components/title/title.module';
+import { UserAvatarModule } from '@modules/avatar/components/user-avatar/user-avatar.module';
+import { TitleModule } from '@modules/title/components/title/title.module';
 
 @NgModule({
   declarations: [
