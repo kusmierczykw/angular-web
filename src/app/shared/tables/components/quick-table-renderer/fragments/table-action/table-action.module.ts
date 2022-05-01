@@ -6,16 +6,23 @@ import { IconsModule } from '@core/icons/icons.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TableActionRouterLinkPipe } from './pipes/table-action-router-link.pipe';
+import { OnlyVisibleActionsPipe } from '@shared/tables/components/quick-table-renderer/fragments/table-action/pipes/only-visible-actions.pipe';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [TableActionComponent, TableActionRouterLinkPipe],
+  declarations: [
+    TableActionComponent,
+    TableActionRouterLinkPipe,
+    OnlyVisibleActionsPipe,
+  ],
   imports: [
     CommonModule,
     RouterModule,
     IconsModule,
     MatButtonModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
-  exports: [TableActionComponent],
+  exports: [TableActionComponent, OnlyVisibleActionsPipe],
 })
 export class TableActionModule {}

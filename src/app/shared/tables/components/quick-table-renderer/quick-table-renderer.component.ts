@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { Table } from '@shared/tables/components/quick-table-renderer/models/table';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
 import { CustomCellContent } from '@shared/tables/components/quick-table-renderer/interfaces/custom-cell-content';
 
 @Component({

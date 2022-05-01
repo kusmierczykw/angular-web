@@ -7,15 +7,15 @@
         [stickyEnd]="column.stickyRight">
         <mat-header-cell
           *matHeaderCellDef
-          [ngClass]="column.cssClass"
-          [style.flex-basis]="column | columnWidth: actions">
+          [style.flex-basis]="column | columnWidth: actions"
+          [ngClass]="column.cssClass">
           <app-header-cell-content [column]="column"></app-header-cell-content>
         </mat-header-cell>
 
         <mat-cell
           *matCellDef="let model"
-          [ngClass]="column.cssClass"
-          [style.flex-basis]="column | columnWidth: actions">
+          [style.flex-basis]="column | columnWidth: actions"
+          [ngClass]="column.cssClass">
           <app-cell-content
             [customCellContentTemplate]="customCellContentTemplate"
             [column]="column"

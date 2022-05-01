@@ -21,11 +21,13 @@ export class IconClassProviderService {
     [Icon.GEAR_WIDE_CONNECTED]: 'bi bi-gear-wide-connected',
     [Icon.LAYOUT_SIDEBAR]: 'bi bi-layout-sidebar',
     [Icon.LAYOUT_SIDEBAR_REVERSE]: 'bi bi-layout-sidebar-reverse',
+    [Icon.PENCIL]: 'bi bi-pencil',
     [Icon.PEOPLE_FILL]: 'bi bi-people-fill',
     [Icon.RECORD]: 'bi bi-record',
     [Icon.RECORD_PARTIALLY_FILL]: 'bi bi-record2',
     [Icon.SLASH_CIRCLE]: 'bi bi-slash-circle',
     [Icon.SLASH_CIRCLE_FILL]: 'bi bi-slash-circle-fill',
+    [Icon.THREE_DOTS_VERTICAL]: 'bi bi-three-dots-vertical',
     [Icon.USERS]: 'bi bi-people',
   };
 

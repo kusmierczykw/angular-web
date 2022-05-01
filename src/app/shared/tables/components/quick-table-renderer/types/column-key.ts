@@ -1,1 +1,1 @@
-export type ColumnKey<Key> = Key | 'action' | 'ordinary';
+export type ColumnKey<Key> = Key | 'action' | 'ordinary' | 'filler';

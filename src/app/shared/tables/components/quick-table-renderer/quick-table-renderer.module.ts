@@ -5,7 +5,6 @@ import { MatTableModule } from '@angular/material/table';
 import { OnlyVisibleColumnsPipe } from './pipes/only-visible-columns.pipe';
 import { ColumnKeysPipe } from './pipes/column-keys.pipe';
 import { CellContentModule } from '@shared/tables/components/quick-table-renderer/fragments/cell-content/cell-content.module';
-import { OnlyVisibleActionsPipe } from './pipes/only-visible-actions.pipe';
 import { HeaderCellContentModule } from '@shared/tables/components/quick-table-renderer/fragments/header-cell-content/header-cell-content.module';
 import { ColumnWidthPipe } from './pipes/column-width.pipe';
 
@@ -14,7 +13,6 @@ import { ColumnWidthPipe } from './pipes/column-width.pipe';
     QuickTableRendererComponent,
     OnlyVisibleColumnsPipe,
     ColumnKeysPipe,
-    OnlyVisibleActionsPipe,
     ColumnWidthPipe,
   ],
   imports: [

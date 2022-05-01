@@ -1,6 +1,6 @@
 import { Component, Inject, Input, TemplateRef } from '@angular/core';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
 import { Nullish } from '@utils/types/nullish';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';

@@ -1,6 +1,10 @@
 :host {
+  $_action-size: 2rem;
+
   .table-action {
-    width: 2rem;
+    width: $_action-size;
+    height: $_action-size;
+    line-height: $_action-size;
     padding: 0;
     min-width: auto;
   }

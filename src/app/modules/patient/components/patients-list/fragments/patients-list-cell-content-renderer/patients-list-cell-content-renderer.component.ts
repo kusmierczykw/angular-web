@@ -4,11 +4,11 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
 import { PatientKey } from '@modules/patient/types/patient-key';
 
 @Component({
-  selector: 'app-custom-cell-content-renderer',
-  templateUrl: './custom-cell-content-renderer.component.html',
-  styleUrls: ['./custom-cell-content-renderer.component.scss'],
+  selector: 'app-patients-list-cell-content-renderer',
+  templateUrl: './patients-list-cell-content-renderer.component.html',
+  styleUrls: ['./patients-list-cell-content-renderer.component.scss'],
 })
-export class CustomCellContentRendererComponent {
+export class PatientsListCellContentRendererComponent {
   @Input() public model!: Patient;
   @Input() public column!: TableColumn<PatientKey>;
   @Input() public key!: PatientKey;

@@ -1,39 +1,53 @@
 import { Injectable } from '@angular/core';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
 import { Nullish } from '@utils/types/nullish';
 import { Icon } from '@core/icons/enums/icon';
-import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/types/table-action-command';
+import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-command';
 import { isNullish } from '@utils/is-nullish';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { TableActionType } from '@shared/tables/components/quick-table-renderer/enums/table-action-type';
-import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/types/table-action-router-link';
+import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-router-link';
+import { Observable, of } from 'rxjs';
+import { TableActionKey } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-key';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuickTableRowActionBuilderService<Key, Model> {
-  private _key: Nullish<Key>;
+  private _key: Nullish<TableActionKey<Key>>;
   private _type: Nullish<TableActionType>;
   private _tooltip: Nullish<string>;
   private _icon: Nullish<Icon>;
   private _routerLinkFactory: Nullish<TableActionRouterLink<Model>>;
   private _commandFactory: Nullish<TableActionCommand<Model>>;
-  private _visible!: boolean;
+  private _visibility$!: Observable<boolean>;
+  private _children!: TableAction<Key, Model>[];
+
+  public constructor() {
+    this.reset();
+  }
 
   public newInstance<Key, Model>() {
     return new QuickTableRowActionBuilderService<Key, Model>();
   }
 
-  public init(key: Key): this {
+  public init(key: TableActionKey<Key>): this {
     return this.key(key);
   }
 
-  public initRouterLink(key: Key): this {
+  public initRouterLink(key: TableActionKey<Key>): this {
     return this.init(key).type(TableActionType.ROUTER_LINK);
   }
 
-  public initCommand(key: Key): this {
+  public initCommand(key: TableActionKey<Key>): this {
     return this.init(key).type(TableActionType.COMMAND);
+  }
+
+  public initMore(): this {
+    return this.init('more')
+      .type(TableActionType.MORE)
+      .tooltip('Więcej')
+      .icon(Icon.THREE_DOTS_VERTICAL);
   }
 
   public type(type: TableActionType): this {
@@ -42,7 +56,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     return this;
   }
 
-  public key(key: Key): this {
+  public key(key: TableActionKey<Key>): this {
     this._key = key;
 
     return this;
@@ -54,8 +68,8 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     return this;
   }
 
-  public visible(factory: () => boolean): this {
-    this._visible = factory();
+  public visibility(visibility: Observable<boolean>): this {
+    this._visibility$ = visibility;
 
     return this;
   }
@@ -78,6 +92,30 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     return this;
   }
 
+  public children(
+    factory: (
+      builder: QuickTableRowActionBuilderService<Key, Model>,
+    ) => TableAction<Key, Model>[],
+  ): this {
+    const children = factory(this.newInstance());
+
+    this._children = [...this._children, ...children];
+
+    return this;
+  }
+
+  public child(
+    factory: (
+      builder: QuickTableRowActionBuilderService<Key, Model>,
+    ) => TableAction<Key, Model>,
+  ): this {
+    const child = factory(this.newInstance());
+
+    this._children.push(child);
+
+    return this;
+  }
+
   public reset(): this {
     this._key = undefined;
     this._type = undefined;
@@ -85,7 +123,8 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     this._routerLinkFactory = undefined;
     this._tooltip = undefined;
     this._commandFactory = undefined;
-    this._visible = true;
+    this._visibility$ = of(true);
+    this._children = [];
 
     return this;
   }
@@ -95,6 +134,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     this.validateIcon();
     this.validateType();
     this.validateTooltip();
+    this.validateMoreAction();
     this.validateRouterLinkFactory();
     this.validateCommandFactory();
 
@@ -105,7 +145,8 @@ export class QuickTableRowActionBuilderService<Key, Model> {
       this._tooltip as string,
       this._routerLinkFactory,
       this._commandFactory,
-      this._visible,
+      this._visibility$,
+      this._children,
     );
 
     this.reset();
@@ -169,11 +210,31 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     throw new RequiredMethodCallException('command');
   }
 
+  private validateMoreAction(): void {
+    if (!this.isMore()) {
+      return;
+    }
+
+    if (this.haveChildren()) {
+      return;
+    }
+
+    throw new RequiredMethodCallException('child or children');
+  }
+
   private isRouterLink(): boolean {
     return this._type === TableActionType.ROUTER_LINK;
   }
 
   private isCommand(): boolean {
     return this._type === TableActionType.COMMAND;
+  }
+
+  private isMore(): boolean {
+    return this._type === TableActionType.MORE;
+  }
+
+  private haveChildren(): boolean {
+    return this._children.length > 0;
   }
 }

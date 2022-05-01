@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
 import { TableActionType } from '@shared/tables/components/quick-table-renderer/enums/table-action-type';
 
 @Component({
@@ -7,8 +7,8 @@ import { TableActionType } from '@shared/tables/components/quick-table-renderer/
   templateUrl: './table-action.component.html',
   styleUrls: ['./table-action.component.scss'],
 })
-export class TableActionComponent<ActionKey, Model> {
-  @Input() public action!: TableAction<ActionKey, Model>;
+export class TableActionComponent<Key, Model> {
+  @Input() public action!: TableAction<Key, Model>;
   @Input() public model!: Model;
 
   public readonly Type = TableActionType;

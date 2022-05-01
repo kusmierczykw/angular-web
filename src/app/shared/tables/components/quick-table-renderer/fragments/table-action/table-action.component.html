@@ -14,8 +14,40 @@
       class="table-action table-action__command"
       mat-button
       [matTooltip]="action.tooltip"
-      (click)="handleClick()">
+      (click)="action.commandFactory!(model)">
+      <i [class]="action.icon | iconClass"></i>
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Type.MORE">
+    <button
+      class="table-action table-action__more"
+      mat-button
+      [matMenuTriggerFor]="menu"
+      [matTooltip]="action.tooltip">
       <i [class]="action.icon | iconClass"></i>
     </button>
   </ng-container>
 </ng-container>
+
+<mat-menu #menu="matMenu">
+  <ng-container *ngFor="let child of action.children">
+    <ng-container [ngSwitch]="child.type">
+      <ng-container *ngSwitchCase="Type.COMMAND">
+        <button mat-menu-item (click)="child.commandFactory!(model)">
+          {{ child.tooltip }}
+        </button>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="Type.ROUTER_LINK">
+        <a
+          mat-menu-item
+          [routerLink]="
+            child.routerLinkFactory! | tableActionRouterLink: model
+          ">
+          {{ child.tooltip }}
+        </a>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</mat-menu>
