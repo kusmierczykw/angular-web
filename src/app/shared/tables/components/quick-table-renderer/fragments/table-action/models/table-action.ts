@@ -9,9 +9,10 @@ import { TableActionKey } from '@shared/tables/components/quick-table-renderer/f
 export class TableAction<Key, Model> {
   public constructor(
     public readonly key: TableActionKey<Key>,
-    public readonly type: Nullish<TableActionType>,
-    public readonly icon: Icon,
+    public readonly type: TableActionType,
+    public readonly icon: Nullish<Icon>,
     public readonly tooltip: string,
+    public readonly label: string,
     public readonly routerLinkFactory: Nullish<TableActionRouterLink<Model>>,
     public readonly commandFactory: Nullish<TableActionCommand<Model>>,
     public readonly visibility$: Observable<boolean>,

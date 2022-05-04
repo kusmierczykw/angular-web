@@ -11,6 +11,7 @@ import { TableAction } from '@shared/tables/components/quick-table-renderer/frag
 })
 export class HeaderCellContentComponent<ColumnKey, ActionKey, Model> {
   @Input() public column!: TableColumn<ColumnKey>;
+  @Input() public columns!: TableColumn<ColumnKey>[];
   @Input() public actions: Nullish<TableAction<ActionKey, Model>[]>;
 
   public readonly Type = TableColumnType;

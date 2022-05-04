@@ -39,6 +39,12 @@
     }
   }
 
+  .mat-header-cell {
+    &.action-column-type {
+      justify-content: center;
+    }
+  }
+
   .mat-cell {
     &.action-column-type {
       justify-content: center;

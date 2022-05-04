@@ -130,8 +130,7 @@ export class PatientsListComponent implements OnInit {
             builder
               .initCommand(PatientRowAction.EDIT)
               .command((model) => {})
-              .icon(Icon.PENCIL)
-              .tooltip('Edytuj')
+              .label('Edytuj')
               .build(),
           ])
           .build(),

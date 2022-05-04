@@ -17,6 +17,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   private _key: Nullish<TableActionKey<Key>>;
   private _type: Nullish<TableActionType>;
   private _tooltip: Nullish<string>;
+  private _label: Nullish<string>;
   private _icon: Nullish<Icon>;
   private _routerLinkFactory: Nullish<TableActionRouterLink<Model>>;
   private _commandFactory: Nullish<TableActionCommand<Model>>;
@@ -80,6 +81,12 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     return this;
   }
 
+  public label(label: string): this {
+    this._label = label;
+
+    return this;
+  }
+
   public command(factory: TableActionCommand<Model>): this {
     this._commandFactory = factory;
 
@@ -131,18 +138,19 @@ export class QuickTableRowActionBuilderService<Key, Model> {
 
   public build(): TableAction<Key, Model> {
     this.validateKey();
-    this.validateIcon();
     this.validateType();
-    this.validateTooltip();
+    this.validateTooltipOrLabel();
     this.validateMoreAction();
     this.validateRouterLinkFactory();
     this.validateCommandFactory();
+    this.configureDefaultTooltipOrLabel();
 
     const action = new TableAction<Key, Model>(
       this._key as Key,
       this._type as TableActionType,
       this._icon as Icon,
       this._tooltip as string,
+      this._label as string,
       this._routerLinkFactory,
       this._commandFactory,
       this._visibility$,
@@ -162,14 +170,6 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     throw new RequiredMethodCallException('key or init');
   }
 
-  private validateIcon(): void {
-    if (!isNullish(this._icon)) {
-      return;
-    }
-
-    throw new RequiredMethodCallException('icon');
-  }
-
   private validateType(): void {
     if (!isNullish(this._type)) {
       return;
@@ -178,12 +178,16 @@ export class QuickTableRowActionBuilderService<Key, Model> {
     throw new RequiredMethodCallException('type');
   }
 
-  private validateTooltip(): void {
+  private validateTooltipOrLabel(): void {
     if (!isNullish(this._tooltip)) {
       return;
     }
 
-    throw new RequiredMethodCallException('tooltip');
+    if (!isNullish(this._label)) {
+      return;
+    }
+
+    throw new RequiredMethodCallException('tooltip or label');
   }
 
   private validateRouterLinkFactory(): void {
@@ -236,5 +240,19 @@ export class QuickTableRowActionBuilderService<Key, Model> {
 
   private haveChildren(): boolean {
     return this._children.length > 0;
+  }
+
+  private configureDefaultTooltipOrLabel() {
+    if (isNullish(this._label)) {
+      this._label = this._tooltip;
+
+      return;
+    }
+
+    if (isNullish(this._tooltip)) {
+      this._tooltip = this._label;
+
+      return;
+    }
   }
 }

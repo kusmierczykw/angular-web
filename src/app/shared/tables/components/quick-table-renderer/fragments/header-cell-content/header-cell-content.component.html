@@ -1,5 +1,7 @@
 <ng-container [ngSwitch]="column.type">
-  <ng-container *ngSwitchCase="Type.ACTION"></ng-container>
+  <ng-container *ngSwitchCase="Type.ACTION">
+    <app-header-action-overlay [columns]="columns"></app-header-action-overlay>
+  </ng-container>
 
   <ng-container *ngSwitchDefault>
     {{ column.label }}
