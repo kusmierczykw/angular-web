@@ -3,6 +3,6 @@
     mat-button
     [matTooltip]="sidebar.label!"
     (click)="handleToggleClick()">
-    <i [class]="sidebar.icon! | iconClass"></i>
+    <app-icon [icon]="sidebar.icon!"></app-icon>
   </button>
 </ng-container>

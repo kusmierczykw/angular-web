@@ -10,10 +10,10 @@ export class TableColumn<Key> {
     public readonly label: string,
     public readonly type: TableColumnType,
     public readonly cssClass: CssClass[],
-    public readonly visible: boolean,
     public readonly width: string,
     public readonly sticky: TableColumnSticky,
     public readonly config: TableColumnConfig,
+    public visible: boolean,
   ) {}
 
   public get stickyRight(): boolean {
@@ -26,5 +26,13 @@ export class TableColumn<Key> {
 
   public get isAction(): boolean {
     return this.type === TableColumnType.ACTION;
+  }
+
+  public markAsVisible(): void {
+    this.visible = true;
+  }
+
+  public markAsInvisible(): void {
+    this.visible = false;
   }
 }

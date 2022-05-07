@@ -10,7 +10,7 @@
   [routerLink]="item.routerLink">
   <ng-container *ngIf="item.icon">
     <span class="menu-item__icon">
-      <i [class]="item.icon | iconClass"></i>
+      <app-icon [icon]="item.icon"></app-icon>
     </span>
   </ng-container>
 

@@ -162,10 +162,10 @@ export class QuickTableColumnBuilderService<Key> {
       this._label as string,
       this._type as TableColumnType,
       this._cssClass,
-      this._visible,
       this._width as string,
       this._sticky as TableColumnSticky,
       this._config,
+      this._visible,
     );
 
     this.reset();

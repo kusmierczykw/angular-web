@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IconClassProviderService } from '@core/icons/providers/icon-class-provider.service';
-import { Icon } from '@core/icons/enums/icon';
+import { IconClassProviderService } from '@shared/icons/providers/icon-class-provider.service';
+import { Icon } from '@shared/icons/enums/icon';
 import { Nullish } from '@utils/types/nullish';
 import { isNullish } from '@utils/is-nullish';
 

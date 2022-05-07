@@ -4,7 +4,7 @@ import { PatientKey } from '../../../patient/types/patient-key';
 import { Table } from '@shared/tables/components/quick-table-renderer/models/table';
 import { PatientRowAction } from '@modules/patient/enums/patient-row-action';
 import { Patient } from '../../../patient/models/patient';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 import { PatientStatus } from '@modules/patient/components/patient-status/enums/patient-status';
 
 @Component({

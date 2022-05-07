@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 import { Observable } from 'rxjs';
 import { MenuItem } from '@shared/menu/models/menu-item';
 import { Title } from '@modules/title/models/title';

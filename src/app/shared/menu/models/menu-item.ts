@@ -2,7 +2,7 @@ import { RouterLink } from '@core/routing/types/router-link';
 import { ThemePalette } from '@angular/material/core/common-behaviors/color';
 import { Observable } from 'rxjs';
 import { RouterLinkActiveOptions } from '@shared/menu/types/router-link-active.options';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 
 export class MenuItem {
   public constructor(

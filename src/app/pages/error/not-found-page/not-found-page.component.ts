@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Image } from '@core/images/enums/image';
+import { Image } from '@shared/images/enums/image';
 import { RouterLink } from '@core/routing/types/router-link';
 import { RouteProviderService } from '@core/routing/providers/route-provider.service';
 import { RoutePath } from '@core/routing/paths/route-path';

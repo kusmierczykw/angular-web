@@ -1,0 +1,11 @@
+<button
+  mat-button
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  (click)="handleToggleClick()">
+  <app-icon [icon]="Icon.GEAR_WIDE_CONNECTED"></app-icon>
+</button>
+
+<app-simple-overlay [overlayOrigin]="trigger">
+  <app-columns-select-list [columns]="columns"></app-columns-select-list>
+</app-simple-overlay>

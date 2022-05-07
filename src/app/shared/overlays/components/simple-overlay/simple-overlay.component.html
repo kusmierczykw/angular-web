@@ -1,0 +1,10 @@
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayLockPosition]="true"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayOpen]="isOpen"
+  (overlayOutsideClick)="handleOverlayOutsideClick()">
+  <div class="simple-overlay__content">
+    <ng-content></ng-content>
+  </div>
+</ng-template>

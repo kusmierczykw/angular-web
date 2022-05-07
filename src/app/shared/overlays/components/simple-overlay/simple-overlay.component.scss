@@ -1,0 +1,13 @@
+@use '@angular/material';
+
+$_content-background-color: white;
+$_content-border-radius: 4px;
+
+.simple-overlay {
+  &__content {
+    background-color: $_content-background-color;
+    border-radius: $_content-border-radius;
+
+    @include material.elevation(4);
+  }
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
 import { Nullish } from '@utils/types/nullish';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-command';
 import { isNullish } from '@utils/is-nullish';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';

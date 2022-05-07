@@ -2,7 +2,7 @@ import { MenuItemBuilder } from '@shared/menu/builders/menu-item.builder';
 import { Injectable } from '@angular/core';
 import { MenuItem } from '@shared/menu/models/menu-item';
 import { RouteProviderService } from '@core/routing/providers/route-provider.service';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 import { RoutePath } from '@core/routing/paths/route-path';
 
 @Injectable({

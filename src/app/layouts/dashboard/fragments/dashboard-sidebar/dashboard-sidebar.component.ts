@@ -4,7 +4,7 @@ import { MenuItem } from '@shared/menu/models/menu-item';
 import { DashboardSidebarToggleService } from '@layouts/dashboard/services/dashboard-sidebar-toggle.service';
 import { DashboardSidebarMenuService } from '@layouts/dashboard/services/dashboard-sidebar-menu.service';
 import { negate } from '@utils/rxjs/operators/negate';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 
 @Component({
   selector: 'app-dashboard-sidebar',

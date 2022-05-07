@@ -1,4 +1,4 @@
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 import { Nullish } from '@utils/types/nullish';
 import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-command';
 import { TableActionType } from '@shared/tables/components/quick-table-renderer/enums/table-action-type';

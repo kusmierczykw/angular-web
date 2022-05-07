@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Icon } from '@core/icons/enums/icon';
+import { Icon } from '@shared/icons/enums/icon';
 import { Breadcrumb } from '@shared/breadcrumbs/models/breadcrumb';
 
 @Component({
