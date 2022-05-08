@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { TableActionType } from '@shared/tables/components/quick-table-renderer/enums/table-action-type';
 
 @Component({

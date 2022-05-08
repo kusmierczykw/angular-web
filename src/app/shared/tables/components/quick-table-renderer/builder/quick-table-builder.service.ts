@@ -3,7 +3,7 @@ import { QuickTableColumnBuilderService } from '@shared/tables/components/quick-
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
 import { Table } from '@shared/tables/components/quick-table-renderer/models/table';
 import { QuickTableRowActionBuilderService } from '@shared/tables/components/quick-table-renderer/builder/quick-table-row-action-builder.service';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { TableColumns } from '@shared/tables/components/quick-table-renderer/types/table-columns';
 import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 

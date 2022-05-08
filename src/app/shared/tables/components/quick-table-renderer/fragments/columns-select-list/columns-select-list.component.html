@@ -4,9 +4,9 @@
   [style.overflow-y]="'auto'">
   <mat-selection-list>
     <mat-list-option
-      [value]="column"
       *ngFor="let column of columns"
-      [selected]="column.visible">
+      [selected]="column.visible"
+      [value]="column">
       {{ column.label }}
     </mat-list-option>
   </mat-selection-list>

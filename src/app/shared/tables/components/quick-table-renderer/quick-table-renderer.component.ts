@@ -32,6 +32,10 @@ export class QuickTableRendererComponent<ColumnKey, ActionKey, Model>
   }
 
   public ngOnInit(): void {
+    this.configureQuickTable();
+  }
+
+  private configureQuickTable(): void {
     const { columns, actions } = this.quickTable;
 
     this.service.setColumns(columns);

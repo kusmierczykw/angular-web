@@ -22,6 +22,14 @@ export class QuickTableService<ColumnKey, ActionKey, Model> {
     this.actions$ = this.actionsSource$.asObservable();
   }
 
+  public initColumns(columns: TableColumns<ColumnKey>): void {
+    this.columnsSource$.next(columns);
+  }
+
+  public initActions(actions: TableActions<ActionKey, Model>): void {
+    this.actionsSource$.next(actions);
+  }
+
   public setColumns(columns: TableColumns<ColumnKey>): void {
     this.columnsSource$.next(columns);
   }
@@ -31,37 +39,31 @@ export class QuickTableService<ColumnKey, ActionKey, Model> {
   }
 
   public markColumnAsVisible(column: TableColumn<ColumnKey>): void {
+    const columns = [...this.columnsSource$.getValue()];
     const { key } = column;
 
     this.setColumns(
-      this.columnsSource$.getValue().map((current) => {
-        const { key: currentKey } = current;
-
-        if (currentKey === key) {
-          current.markAsVisible();
-
-          return current;
+      columns.map((column) => {
+        if (column.key === key) {
+          column.markAsVisible();
         }
 
-        return current;
+        return column;
       }),
     );
   }
 
   public markColumnAsInvisible(column: TableColumn<ColumnKey>): void {
+    const columns = [...this.columnsSource$.getValue()];
     const { key } = column;
 
     this.setColumns(
-      this.columnsSource$.getValue().map((current) => {
-        const { key: currentKey } = current;
-
-        if (currentKey === key) {
-          current.markAsInvisible();
-
-          return current;
+      columns.map((column) => {
+        if (column.key === key) {
+          column.markAsInvisible();
         }
 
-        return current;
+        return column;
       }),
     );
   }

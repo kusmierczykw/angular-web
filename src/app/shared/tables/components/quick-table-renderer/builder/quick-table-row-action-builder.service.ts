@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { Nullish } from '@utils/types/nullish';
 import { Icon } from '@shared/icons/enums/icon';
-import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-command';
+import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/types/table-action-command';
 import { isNullish } from '@utils/is-nullish';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { TableActionType } from '@shared/tables/components/quick-table-renderer/enums/table-action-type';
-import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-router-link';
+import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/types/table-action-router-link';
 import { Observable, of } from 'rxjs';
-import { TableActionKey } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-key';
+import { TableActionKey } from '@shared/tables/components/quick-table-renderer/types/table-action-key';
 import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 @Injectable({

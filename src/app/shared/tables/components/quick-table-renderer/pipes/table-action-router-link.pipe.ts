@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-router-link';
+import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/types/table-action-router-link';
 import { RouterLink } from '@core/routing/types/router-link';
 
 @Pipe({

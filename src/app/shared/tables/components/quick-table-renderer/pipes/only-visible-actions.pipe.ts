@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { toObservable } from '@utils/rxjs/operators/to-observable';
 import { Nullish } from '@utils/types/nullish';
