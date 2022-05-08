@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 @Component({
   selector: 'app-table-actions',
@@ -7,6 +7,6 @@ import { TableAction } from '@shared/tables/components/quick-table-renderer/frag
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent<Key, Model> {
-  @Input() public actions!: TableAction<Key, Model>[];
+  @Input() public actions!: TableActions<Key, Model>;
   @Input() public model!: Model;
 }

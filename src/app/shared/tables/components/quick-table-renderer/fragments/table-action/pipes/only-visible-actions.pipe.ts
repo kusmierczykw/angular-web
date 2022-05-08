@@ -3,10 +3,11 @@ import { TableAction } from '@shared/tables/components/quick-table-renderer/frag
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { toObservable } from '@utils/rxjs/operators/to-observable';
 import { Nullish } from '@utils/types/nullish';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 declare type TableActionSource<Key, Model> =
-  | TableAction<Key, Model>[]
-  | Observable<TableAction<Key, Model>[]>;
+  | TableActions<Key, Model>
+  | Observable<TableActions<Key, Model>>;
 
 @Pipe({
   name: 'onlyVisibleActions$',
@@ -14,9 +15,9 @@ declare type TableActionSource<Key, Model> =
 export class OnlyVisibleActionsPipe<Key, Model> implements PipeTransform {
   public transform(
     items: TableActionSource<Key, Model>,
-  ): Observable<TableAction<Key, Model>[]> {
+  ): Observable<TableActions<Key, Model>> {
     return toObservable(items).pipe(
-      switchMap((items: TableAction<Key, Model>[]) =>
+      switchMap((items: TableActions<Key, Model>) =>
         combineLatest(this.resolveItemsVisibility(items)).pipe(
           map(this.onlyVisibleItems()),
         ),
@@ -24,12 +25,12 @@ export class OnlyVisibleActionsPipe<Key, Model> implements PipeTransform {
     );
   }
 
-  private resolveItemsVisibility = (items: TableAction<Key, Model>[]) =>
+  private resolveItemsVisibility = (items: TableActions<Key, Model>) =>
     items.map((item: TableAction<Key, Model>) =>
       item.visibility$.pipe(map((visible) => (visible ? item : null))),
     );
 
   private onlyVisibleItems =
     () => (items: Array<Nullish<TableAction<Key, Model>>>) =>
-      items.filter(Boolean) as TableAction<Key, Model>[];
+      items.filter(Boolean) as TableActions<Key, Model>;
 }

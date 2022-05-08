@@ -4,13 +4,15 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
 import { Table } from '@shared/tables/components/quick-table-renderer/models/table';
 import { QuickTableRowActionBuilderService } from '@shared/tables/components/quick-table-renderer/builder/quick-table-row-action-builder.service';
 import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableColumns } from '@shared/tables/components/quick-table-renderer/types/table-columns';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuickTableBuilderService<ColumnKey, ActionKey, Model> {
-  private _columns: TableColumn<ColumnKey>[] = [];
-  private _actions: TableAction<ActionKey, Model>[] = [];
+  private _columns: TableColumns<ColumnKey> = [];
+  private _actions: TableActions<ActionKey, Model> = [];
 
   public constructor(
     private readonly columnBuilder: QuickTableColumnBuilderService<ColumnKey>,
@@ -36,7 +38,7 @@ export class QuickTableBuilderService<ColumnKey, ActionKey, Model> {
   public columns(
     factory: (
       builder: QuickTableColumnBuilderService<ColumnKey>,
-    ) => TableColumn<ColumnKey>[],
+    ) => TableColumns<ColumnKey>,
   ): this {
     const columns = factory(this.columnBuilder);
 
@@ -60,7 +62,7 @@ export class QuickTableBuilderService<ColumnKey, ActionKey, Model> {
   public actions(
     factory: (
       builder: QuickTableRowActionBuilderService<ActionKey, Model>,
-    ) => TableAction<ActionKey, Model>[],
+    ) => TableActions<ActionKey, Model>,
   ): this {
     const actions = factory(this.actionBuilder);
 

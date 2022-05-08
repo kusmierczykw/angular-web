@@ -3,7 +3,10 @@
   [style.width.rem]="15"
   [style.overflow-y]="'auto'">
   <mat-selection-list>
-    <mat-list-option *ngFor="let column of columns" [selected]="column.visible">
+    <mat-list-option
+      [value]="column"
+      *ngFor="let column of columns"
+      [selected]="column.visible">
       {{ column.label }}
     </mat-list-option>
   </mat-selection-list>

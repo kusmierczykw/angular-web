@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { Nullish } from '@utils/types/nullish';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableColumns } from '@shared/tables/components/quick-table-renderer/types/table-columns';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 @Component({
   selector: 'app-header-cell-content',
@@ -11,8 +12,8 @@ import { TableAction } from '@shared/tables/components/quick-table-renderer/frag
 })
 export class HeaderCellContentComponent<ColumnKey, ActionKey, Model> {
   @Input() public column!: TableColumn<ColumnKey>;
-  @Input() public columns!: TableColumn<ColumnKey>[];
-  @Input() public actions: Nullish<TableAction<ActionKey, Model>[]>;
+  @Input() public columns: Nullish<TableColumns<ColumnKey>>;
+  @Input() public actions: Nullish<TableActions<ActionKey, Model>>;
 
   public readonly Type = TableColumnType;
 }

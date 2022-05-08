@@ -1,27 +1,29 @@
 <div class="quick-table">
   <mat-table [dataSource]="data">
-    <ng-container *ngFor="let column of columns | onlyVisibleColumns">
+    <ng-container *ngFor="let column of columns$ | async | onlyVisibleColumns">
       <ng-container
         matColumnDef="{{ column.key }}"
         [sticky]="column.stickyLeft"
         [stickyEnd]="column.stickyRight">
         <mat-header-cell
           *matHeaderCellDef
-          [style.flex-basis]="column | columnWidth: actions"
+          [style.flex-basis]="column | columnWidth: (actions$ | async)"
           [ngClass]="column.cssClass">
-          <app-header-cell-content [column]="column" [columns]="columns">
+          <app-header-cell-content
+            [column]="column"
+            [columns]="columns$ | async">
           </app-header-cell-content>
         </mat-header-cell>
 
         <mat-cell
           *matCellDef="let model"
-          [style.flex-basis]="column | columnWidth: actions"
+          [style.flex-basis]="column | columnWidth: (actions$ | async)"
           [ngClass]="column.cssClass">
           <app-cell-content
             [customCellContentTemplate]="customCellContentTemplate"
             [column]="column"
             [model]="model"
-            [actions]="actions">
+            [actions]="actions$ | async">
           </app-cell-content>
         </mat-cell>
       </ng-container>
@@ -29,7 +31,7 @@
 
     <mat-header-row
       *matHeaderRowDef="
-        columns | onlyVisibleColumns | columnKeys;
+        columns$ | async | onlyVisibleColumns | columnKeys;
         sticky: true
       ">
     </mat-header-row>
@@ -37,7 +39,7 @@
     <mat-row
       *matRowDef="
         let model;
-        columns: columns | onlyVisibleColumns | columnKeys
+        columns: columns$ | async | onlyVisibleColumns | columnKeys
       ">
     </mat-row>
   </mat-table>

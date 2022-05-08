@@ -5,6 +5,7 @@ import { TableActionType } from '@shared/tables/components/quick-table-renderer/
 import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-router-link';
 import { Observable } from 'rxjs';
 import { TableActionKey } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-key';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 export class TableAction<Key, Model> {
   public constructor(
@@ -16,6 +17,6 @@ export class TableAction<Key, Model> {
     public readonly routerLinkFactory: Nullish<TableActionRouterLink<Model>>,
     public readonly commandFactory: Nullish<TableActionCommand<Model>>,
     public readonly visibility$: Observable<boolean>,
-    public readonly children: TableAction<Key, Model>[],
+    public readonly children: TableActions<Key, Model>,
   ) {}
 }

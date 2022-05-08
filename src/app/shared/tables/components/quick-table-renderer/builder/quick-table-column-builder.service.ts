@@ -24,6 +24,7 @@ export class QuickTableColumnBuilderService<Key> {
   private _width: Nullish<string>;
   private _sticky: Nullish<TableColumnSticky>;
   private _config!: TableColumnConfig;
+  private _visibility!: boolean;
 
   public constructor(
     private readonly columnTypeCssProvider: TableColumnTypeCssClassProviderService,
@@ -42,12 +43,13 @@ export class QuickTableColumnBuilderService<Key> {
   public initOrdinary(): this {
     return this.init('ordinary')
       .type(TableColumnType.ORDINARY)
+      .visibility(false)
       .label('#')
       .width('5rem');
   }
 
   public initAction(): this {
-    return this.init('action').type(TableColumnType.ACTION);
+    return this.init('action').visibility(false).type(TableColumnType.ACTION);
   }
 
   public initDate(key: ColumnKey<Key>): this {
@@ -122,6 +124,18 @@ export class QuickTableColumnBuilderService<Key> {
     return this;
   }
 
+  public visibility(visibility: boolean): this {
+    this._visibility = visibility;
+
+    return this;
+  }
+
+  public visible(visible: boolean): this {
+    this._visible = visible;
+
+    return this;
+  }
+
   public stickyLeft(): this {
     this._sticky = TableColumnSticky.LEFT;
 
@@ -140,9 +154,10 @@ export class QuickTableColumnBuilderService<Key> {
     this._type = undefined;
     this._cssClass = [];
     this._width = undefined;
-    this._visible = true;
     this._sticky = TableColumnSticky.NONE;
     this._config = {};
+    this.visible(true);
+    this.visibility(true);
 
     return this;
   }
@@ -165,6 +180,7 @@ export class QuickTableColumnBuilderService<Key> {
       this._width as string,
       this._sticky as TableColumnSticky,
       this._config,
+      this._visibility,
       this._visible,
     );
 

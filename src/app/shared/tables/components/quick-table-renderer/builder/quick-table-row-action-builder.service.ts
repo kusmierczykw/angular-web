@@ -9,6 +9,7 @@ import { TableActionType } from '@shared/tables/components/quick-table-renderer/
 import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-router-link';
 import { Observable, of } from 'rxjs';
 import { TableActionKey } from '@shared/tables/components/quick-table-renderer/fragments/table-action/types/table-action-key';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   private _routerLinkFactory: Nullish<TableActionRouterLink<Model>>;
   private _commandFactory: Nullish<TableActionCommand<Model>>;
   private _visibility$!: Observable<boolean>;
-  private _children!: TableAction<Key, Model>[];
+  private _children!: TableActions<Key, Model>;
 
   public constructor() {
     this.reset();
@@ -102,7 +103,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   public children(
     factory: (
       builder: QuickTableRowActionBuilderService<Key, Model>,
-    ) => TableAction<Key, Model>[],
+    ) => TableActions<Key, Model>,
   ): this {
     const children = factory(this.newInstance());
 

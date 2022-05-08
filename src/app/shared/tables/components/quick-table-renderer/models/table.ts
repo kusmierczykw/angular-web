@@ -1,9 +1,9 @@
-import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
+import { TableColumns } from '@shared/tables/components/quick-table-renderer/types/table-columns';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 export class Table<ColumnKey, ActionKey, Model> {
   public constructor(
-    public readonly columns: TableColumn<ColumnKey>[],
-    public readonly actions: TableAction<ActionKey, Model>[],
+    public readonly columns: TableColumns<ColumnKey>,
+    public readonly actions: TableActions<ActionKey, Model>,
   ) {}
 }

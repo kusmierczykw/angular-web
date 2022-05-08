@@ -6,6 +6,7 @@ import { IconModule } from '@shared/icons/icon.module';
 import { SimpleOverlayModule } from '@shared/overlays/components/simple-overlay/simple-overlay.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ColumnsSelectListModule } from '@shared/tables/components/quick-table-renderer/fragments/columns-select-list/columns-select-list.module';
+import { ColumnsPipeModule } from '@shared/tables/components/quick-table-renderer/pipes/columns/columns-pipe.module';
 
 @NgModule({
   declarations: [HeaderActionCellContentComponent],
@@ -16,6 +17,7 @@ import { ColumnsSelectListModule } from '@shared/tables/components/quick-table-r
     SimpleOverlayModule,
     OverlayModule,
     ColumnsSelectListModule,
+    ColumnsPipeModule,
   ],
   exports: [HeaderActionCellContentComponent],
 })

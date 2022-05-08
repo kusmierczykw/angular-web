@@ -1,7 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Icon } from '@shared/icons/enums/icon';
 import { SimpleOverlayComponent } from '@shared/overlays/components/simple-overlay/simple-overlay.component';
-import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
+import { Nullish } from '@utils/types/nullish';
+import { TableColumns } from '@shared/tables/components/quick-table-renderer/types/table-columns';
 
 @Component({
   selector: 'app-header-action-cell-content',
@@ -9,7 +10,7 @@ import { TableColumn } from '@shared/tables/components/quick-table-renderer/mode
   styleUrls: ['./header-action-cell-content.component.scss'],
 })
 export class HeaderActionCellContentComponent<Key> {
-  @Input() public columns!: TableColumn<Key>[];
+  @Input() public columns: Nullish<TableColumns<Key>>;
 
   @ViewChild(SimpleOverlayComponent)
   public simpleOverlay!: SimpleOverlayComponent;

@@ -1,6 +1,5 @@
 import { Component, Inject, Input, TemplateRef } from '@angular/core';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
-import { TableAction } from '@shared/tables/components/quick-table-renderer/fragments/table-action/models/table-action';
 import { Nullish } from '@utils/types/nullish';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';
@@ -13,6 +12,7 @@ import { isBoolean } from '@utils/is-boolean';
 import { isDate } from '@utils/is-date';
 import { isNumber } from '@utils/is-number';
 import { CustomCellContent } from '@shared/tables/components/quick-table-renderer/interfaces/custom-cell-content';
+import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 @Component({
   selector: 'app-cell-content',
@@ -23,7 +23,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
   @Input() public ordinary!: number;
   @Input() public column!: TableColumn<ColumnKey>;
   @Input() public model!: Model;
-  @Input() public actions: Nullish<TableAction<ActionKey, Model>[]>;
+  @Input() public actions: Nullish<TableActions<ActionKey, Model>>;
   @Input() public customCellContentTemplate?: TemplateRef<
     CustomCellContent<ColumnKey, Model>
   >;

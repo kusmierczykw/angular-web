@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="column.type">
   <ng-container *ngSwitchCase="Type.ACTION">
-    <app-header-action-cell-content
-      [columns]="columns"></app-header-action-cell-content>
+    <app-header-action-cell-content [columns]="columns">
+    </app-header-action-cell-content>
   </ng-container>
 
   <ng-container *ngSwitchDefault>
