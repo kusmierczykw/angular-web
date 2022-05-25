@@ -1,6 +1,6 @@
 import { Component, Inject, Input, TemplateRef } from '@angular/core';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';
 import { ANGULAR_DATE_LOCALE_CONFIG_TOKEN } from '@core/locale/date/angular-date-locale-config-token';
@@ -23,7 +23,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
   @Input() public ordinary!: number;
   @Input() public column!: TableColumn<ColumnKey>;
   @Input() public model!: Model;
-  @Input() public actions: Nullish<TableActions<ActionKey, Model>>;
+  @Input() public actions: Nil<TableActions<ActionKey, Model>>;
   @Input() public customCellContentTemplate?: TemplateRef<
     CustomCellContent<ColumnKey, Model>
   >;
@@ -35,7 +35,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
     public readonly angularDateConfig: DateLocaleConfig,
   ) {}
 
-  public get textValue(): Nullish<string> {
+  public get textValue(): Nil<string> {
     const value = this.value();
 
     if (!isString(value)) {
@@ -45,7 +45,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
     return value;
   }
 
-  public get booleanValue(): Nullish<boolean> {
+  public get booleanValue(): Nil<boolean> {
     const value = this.value();
 
     if (!isBoolean(value)) {
@@ -55,7 +55,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
     return value;
   }
 
-  public get dateValue(): Nullish<Date> {
+  public get dateValue(): Nil<Date> {
     const value = this.value();
 
     if (!isDate(value)) {
@@ -65,7 +65,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
     return value;
   }
 
-  public get numberValue(): Nullish<number> {
+  public get numberValue(): Nil<number> {
     const value = this.value();
 
     if (!isNumber(value)) {
@@ -91,7 +91,7 @@ export class CellContentComponent<ColumnKey, ActionKey, Model> {
     return [this.booleanConfig.trueLabel, this.booleanConfig.falseLabel];
   }
 
-  private value(): Nullish<unknown> {
+  private value(): Nil<unknown> {
     return this.model[this.key];
   }
 }

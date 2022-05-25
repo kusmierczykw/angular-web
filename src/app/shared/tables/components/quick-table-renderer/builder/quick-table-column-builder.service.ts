@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TableColumn } from '@shared/tables/components/quick-table-renderer/models/table-column';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { TableColumnType } from '@shared/tables/components/quick-table-renderer/enums/table-column-type';
 import { CssClass } from '@utils/types/css-class';
 import { TableColumnSticky } from '@shared/tables/components/quick-table-renderer/enums/table-column-sticky';
 import { ColumnKey } from '@shared/tables/components/quick-table-renderer/types/column-key';
-import { isNullish } from '@utils/is-nullish';
+import { isNil } from '@utils/is-nil';
 import { TableColumnConfig } from '@shared/tables/components/quick-table-renderer/interfaces/table-column-config';
 import { TableCurrencyColumnConfig } from '@shared/tables/components/quick-table-renderer/models/table-currency-column-config';
 import { TableColumnTypeCssClassProviderService } from '@shared/tables/components/quick-table-renderer/providers/table-column-type-css-class-provider.service';
@@ -16,13 +16,13 @@ import { TableBooleanColumnConfig } from '@shared/tables/components/quick-table-
   providedIn: 'root',
 })
 export class QuickTableColumnBuilderService<Key> {
-  private _label: Nullish<string>;
-  private _key: Nullish<ColumnKey<Key>>;
-  private _type: Nullish<TableColumnType>;
+  private _label: Nil<string>;
+  private _key: Nil<ColumnKey<Key>>;
+  private _type: Nil<TableColumnType>;
   private _cssClass!: CssClass[];
   private _visible!: boolean;
-  private _width: Nullish<string>;
-  private _sticky: Nullish<TableColumnSticky>;
+  private _width: Nil<string>;
+  private _sticky: Nil<TableColumnSticky>;
   private _config!: TableColumnConfig;
   private _visibility!: boolean;
 
@@ -190,7 +190,7 @@ export class QuickTableColumnBuilderService<Key> {
   }
 
   private validateKey(): void {
-    if (!isNullish(this._key)) {
+    if (!isNil(this._key)) {
       return;
     }
 
@@ -198,7 +198,7 @@ export class QuickTableColumnBuilderService<Key> {
   }
 
   private validateLabel(): void {
-    if (!isNullish(this._label)) {
+    if (!isNil(this._label)) {
       return;
     }
 
@@ -210,7 +210,7 @@ export class QuickTableColumnBuilderService<Key> {
   }
 
   private validateType(): void {
-    if (!isNullish(this._type)) {
+    if (!isNil(this._type)) {
       return;
     }
 
@@ -218,7 +218,7 @@ export class QuickTableColumnBuilderService<Key> {
   }
 
   private validateWidth(): void {
-    if (!isNullish(this._width)) {
+    if (!isNil(this._width)) {
       return;
     }
 

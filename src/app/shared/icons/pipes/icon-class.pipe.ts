@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IconClassProviderService } from '@shared/icons/providers/icon-class-provider.service';
 import { Icon } from '@shared/icons/enums/icon';
-import { Nullish } from '@utils/types/nullish';
-import { isNullish } from '@utils/is-nullish';
+import { Nil } from '@utils/types/nil';
+import { isNil } from '@utils/is-nil';
 
 @Pipe({
   name: 'iconClass',
@@ -12,8 +12,8 @@ export class IconClassPipe implements PipeTransform {
     private readonly iconClassProvider: IconClassProviderService,
   ) {}
 
-  public transform(icon: Nullish<Icon>): Nullish<string> {
-    if (isNullish(icon)) {
+  public transform(icon: Nil<Icon>): Nil<string> {
+    if (isNil(icon)) {
       return icon;
     }
 

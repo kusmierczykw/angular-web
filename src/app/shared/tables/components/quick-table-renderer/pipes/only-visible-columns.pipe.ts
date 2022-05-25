@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Nullish } from '@utils/types/nullish';
-import { isNullish } from '@utils/is-nullish';
+import { Nil } from '@utils/types/nil';
+import { isNil } from '@utils/is-nil';
 import { TableColumns } from '@shared/tables/components/quick-table-renderer/types/table-columns';
 
 @Pipe({
@@ -8,9 +8,9 @@ import { TableColumns } from '@shared/tables/components/quick-table-renderer/typ
 })
 export class OnlyVisibleColumnsPipe implements PipeTransform {
   public transform<Key>(
-    columns: Nullish<TableColumns<Key>>,
-  ): Nullish<TableColumns<Key>> {
-    if (isNullish(columns)) {
+    columns: Nil<TableColumns<Key>>,
+  ): Nil<TableColumns<Key>> {
+    if (isNil(columns)) {
       return columns;
     }
 

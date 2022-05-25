@@ -1,17 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Tuple } from '@utils/types/tuple';
-import { Nullish } from '@utils/types/nullish';
-import { isNullish } from '@utils/is-nullish';
+import { Nil } from '@utils/types/nil';
+import { isNil } from '@utils/is-nil';
 
 @Pipe({
   name: 'boolean',
 })
 export class BooleanPipe implements PipeTransform {
-  public transform(
-    value: Nullish<boolean>,
-    labels: Tuple<string>,
-  ): Nullish<string> {
-    if (isNullish(value)) {
+  public transform(value: Nil<boolean>, labels: Tuple<string>): Nil<string> {
+    if (isNil(value)) {
       return value;
     }
 

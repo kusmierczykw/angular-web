@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { PatientStatus } from '@modules/patient/components/patient-status/enums/patient-status';
 import { Observable, of } from 'rxjs';
 import { PatientStatusLabelProviderService } from '@modules/patient/components/patient-status/providers/patient-status-label-provider.service';
-import { isNullish } from '@utils/is-nullish';
+import { isNil } from '@utils/is-nil';
 
 @Pipe({
   name: 'patientStatusLabel',
@@ -13,10 +13,8 @@ export class PatientStatusLabelPipe implements PipeTransform {
     private readonly labelProvider: PatientStatusLabelProviderService,
   ) {}
 
-  public transform(
-    status: Nullish<PatientStatus>,
-  ): Observable<Nullish<string>> {
-    if (isNullish(status)) {
+  public transform(status: Nil<PatientStatus>): Observable<Nil<string>> {
+    if (isNil(status)) {
       return of(status);
     }
 

@@ -3,11 +3,11 @@ import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { debounce } from '@utils/rxjs/operators/debounce';
 import { TextVariableService } from '@shared/text-variables/services/text-variable.service';
 import { TextValueProviderService } from '@shared/text-variables/services/text-value-provider.service';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { Tuple } from '@utils/types/tuple';
 
 type VariableValue = Tuple<string>;
-type NullishVariableValue = Nullish<VariableValue>;
+type NullishVariableValue = Nil<VariableValue>;
 
 @Pipe({
   name: 'textVariablesSubstitution$',

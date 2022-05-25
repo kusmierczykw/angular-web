@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { RouteData } from '@core/routing/data/route-data';
 import { isString } from '@utils/is-string';
 
@@ -8,9 +8,7 @@ import { isString } from '@utils/is-string';
   providedIn: 'root',
 })
 export class ActivatedRouteHelperService {
-  public breadcrumbFromSnapshot(
-    snapshot: ActivatedRouteSnapshot,
-  ): Nullish<string> {
+  public breadcrumbFromSnapshot(snapshot: ActivatedRouteSnapshot): Nil<string> {
     const result = this.dataFromSnapshot(snapshot, RouteData.BREADCRUMB);
 
     if (isString(result)) {
@@ -23,7 +21,7 @@ export class ActivatedRouteHelperService {
   public dataFromSnapshot<T>(
     snapshot: ActivatedRouteSnapshot,
     dataKey: RouteData,
-  ): Nullish<T> {
+  ): Nil<T> {
     return snapshot.data[dataKey];
   }
 }

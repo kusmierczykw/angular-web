@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { toObservable } from '@utils/rxjs/operators/to-observable';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { TableActions } from '@shared/tables/components/quick-table-renderer/types/table-actions';
 
 declare type TableActionSource<Key, Model> =
@@ -31,6 +31,6 @@ export class OnlyVisibleActionsPipe<Key, Model> implements PipeTransform {
     );
 
   private onlyVisibleItems =
-    () => (items: Array<Nullish<TableAction<Key, Model>>>) =>
+    () => (items: Array<Nil<TableAction<Key, Model>>>) =>
       items.filter(Boolean) as TableActions<Key, Model>;
 }

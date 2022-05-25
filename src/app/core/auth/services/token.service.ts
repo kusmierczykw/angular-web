@@ -6,7 +6,7 @@ import { Token } from '@core/auth/models/token';
 import { RefreshToken } from '@core/auth/models/refresh-token';
 import { STORAGE_TOKEN } from '@core/storage/tokens/storage.token';
 import { Storage } from '@core/storage/interfaces/storage.interface';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +19,11 @@ export class TokenService {
     '2ce109d4-595f-4469-a878-aee150f6dac4',
   );
 
-  public token$: Observable<Nullish<Token>>;
-  public refreshToken$: Observable<Nullish<RefreshToken>>;
+  public token$: Observable<Nil<Token>>;
+  public refreshToken$: Observable<Nil<RefreshToken>>;
 
-  private tokenSource$ = new ReplaySubject<Nullish<Token>>(1);
-  private refreshTokenSource$ = new ReplaySubject<Nullish<RefreshToken>>(1);
+  private tokenSource$ = new ReplaySubject<Nil<Token>>(1);
+  private refreshTokenSource$ = new ReplaySubject<Nil<RefreshToken>>(1);
 
   public constructor(
     @Inject(STORAGE_TOKEN) private readonly storage: Storage,

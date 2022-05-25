@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { QuickFormControl } from '@shared/forms/components/quick-form-renderer/models/quick-form-control';
 import { QuickControlType } from '../../enums/quick-control.type';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 
 @Component({
   template: '',
@@ -17,15 +17,15 @@ export abstract class AbstractControlRendererComponent<ControlName> {
     return this.control.formControl;
   }
 
-  public get label(): Nullish<string> {
+  public get label(): Nil<string> {
     return this.control.label;
   }
 
-  public get hint(): Nullish<string> {
+  public get hint(): Nil<string> {
     return this.control.hint;
   }
 
-  public get errors(): Nullish<ValidationErrors> {
+  public get errors(): Nil<ValidationErrors> {
     return this.formControl.errors;
   }
 }

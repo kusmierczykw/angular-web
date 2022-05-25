@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { MenuItem } from '@shared/menu/models/menu-item';
 import { toObservable } from '@utils/rxjs/operators/to-observable';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 
 declare type MenuItemsSource = MenuItem[] | Observable<MenuItem[]>;
 
@@ -25,6 +25,6 @@ export class OnlyVisibleMenuItemsPipe implements PipeTransform {
       item.visibility$.pipe(map((visible) => (visible ? item : null))),
     );
 
-  private onlyVisibleItems = () => (items: Array<Nullish<MenuItem>>) =>
+  private onlyVisibleItems = () => (items: Array<Nil<MenuItem>>) =>
     items.filter(Boolean) as MenuItem[];
 }

@@ -25,11 +25,14 @@
 
   & > main {
     grid-area: content;
+    overflow: hidden;
+    grid-column: 2 / 3;
   }
 
   &__sidebar {
     position: sticky;
     top: 0;
+    grid-column: 1 / 2;
   }
 
   &__header {

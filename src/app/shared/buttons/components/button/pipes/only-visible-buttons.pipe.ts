@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { Button } from '@shared/buttons/components/button/models/button';
 import { toObservable } from '@utils/rxjs/operators/to-observable';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 
 declare type ButtonsSource = Button[] | Observable<Button[]>;
 
@@ -25,6 +25,6 @@ export class OnlyVisibleButtonsPipe implements PipeTransform {
       item.visibility$.pipe(map((visible) => (visible ? item : null))),
     );
 
-  private onlyVisible = () => (button: Array<Nullish<Button>>) =>
+  private onlyVisible = () => (button: Array<Nil<Button>>) =>
     button.filter(Boolean) as Button[];
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { TableAction } from '@shared/tables/components/quick-table-renderer/models/table-action';
-import { Nullish } from '@utils/types/nullish';
+import { Nil } from '@utils/types/nil';
 import { Icon } from '@shared/icons/enums/icon';
 import { TableActionCommand } from '@shared/tables/components/quick-table-renderer/types/table-action-command';
-import { isNullish } from '@utils/is-nullish';
+import { isNil } from '@utils/is-nil';
 import { RequiredMethodCallException } from '@core/exceptions/required-method-call.exception';
 import { TableActionType } from '@shared/tables/components/quick-table-renderer/enums/table-action-type';
 import { TableActionRouterLink } from '@shared/tables/components/quick-table-renderer/types/table-action-router-link';
@@ -15,13 +15,13 @@ import { TableActions } from '@shared/tables/components/quick-table-renderer/typ
   providedIn: 'root',
 })
 export class QuickTableRowActionBuilderService<Key, Model> {
-  private _key: Nullish<TableActionKey<Key>>;
-  private _type: Nullish<TableActionType>;
-  private _tooltip: Nullish<string>;
-  private _label: Nullish<string>;
-  private _icon: Nullish<Icon>;
-  private _routerLinkFactory: Nullish<TableActionRouterLink<Model>>;
-  private _commandFactory: Nullish<TableActionCommand<Model>>;
+  private _key: Nil<TableActionKey<Key>>;
+  private _type: Nil<TableActionType>;
+  private _tooltip: Nil<string>;
+  private _label: Nil<string>;
+  private _icon: Nil<Icon>;
+  private _routerLinkFactory: Nil<TableActionRouterLink<Model>>;
+  private _commandFactory: Nil<TableActionCommand<Model>>;
   private _visibility$!: Observable<boolean>;
   private _children!: TableActions<Key, Model>;
 
@@ -164,7 +164,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   }
 
   private validateKey(): void {
-    if (!isNullish(this._key)) {
+    if (!isNil(this._key)) {
       return;
     }
 
@@ -172,7 +172,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   }
 
   private validateType(): void {
-    if (!isNullish(this._type)) {
+    if (!isNil(this._type)) {
       return;
     }
 
@@ -180,11 +180,11 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   }
 
   private validateTooltipOrLabel(): void {
-    if (!isNullish(this._tooltip)) {
+    if (!isNil(this._tooltip)) {
       return;
     }
 
-    if (!isNullish(this._label)) {
+    if (!isNil(this._label)) {
       return;
     }
 
@@ -196,7 +196,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
       return;
     }
 
-    if (!isNullish(this._routerLinkFactory)) {
+    if (!isNil(this._routerLinkFactory)) {
       return;
     }
 
@@ -208,7 +208,7 @@ export class QuickTableRowActionBuilderService<Key, Model> {
       return;
     }
 
-    if (!isNullish(this._commandFactory)) {
+    if (!isNil(this._commandFactory)) {
       return;
     }
 
@@ -244,13 +244,13 @@ export class QuickTableRowActionBuilderService<Key, Model> {
   }
 
   private configureDefaultTooltipOrLabel() {
-    if (isNullish(this._label)) {
+    if (isNil(this._label)) {
       this._label = this._tooltip;
 
       return;
     }
 
-    if (isNullish(this._tooltip)) {
+    if (isNil(this._tooltip)) {
       this._tooltip = this._label;
 
       return;
