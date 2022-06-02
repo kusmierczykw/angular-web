@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ThemePalette } from '@angular/material/core/common-behaviors/color';
+import { ThemePalette } from '@angular/material/core';
 
 declare type Button = {
   theme: ThemePalette;

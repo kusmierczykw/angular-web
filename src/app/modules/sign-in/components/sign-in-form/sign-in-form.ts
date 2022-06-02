@@ -1,7 +1,7 @@
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { SignInFormControl } from './sign-in-form.control';
@@ -10,10 +10,10 @@ import { SignIn } from '../../../sign-in/models/sign.in';
 import { AbstractControlStatus } from '@shared/forms/operators/abstract-control-status';
 
 export class SignInForm {
-  public readonly form: FormGroup;
+  public readonly form: UntypedFormGroup;
 
   public constructor(
-    private readonly builder: FormBuilder,
+    private readonly builder: UntypedFormBuilder,
     private readonly model?: SignIn,
   ) {
     this.form = this.build();
@@ -34,7 +34,7 @@ export class SignInForm {
     return new SignIn(username, password);
   }
 
-  private build(): FormGroup {
+  private build(): UntypedFormGroup {
     return this.builder.group({
       [SignInFormControl.FC_USERNAME]: this.builder.control(
         this.model?.username,
@@ -51,7 +51,7 @@ export class SignInForm {
     return this.getControl(name).value as T;
   }
 
-  private getControl(name: SignInFormControl): FormControl {
-    return this.form.get(name) as FormControl;
+  private getControl(name: SignInFormControl): UntypedFormControl {
+    return this.form.get(name) as UntypedFormControl;
   }
 }
