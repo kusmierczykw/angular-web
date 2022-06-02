@@ -138,17 +138,40 @@ export class PatientsListComponent implements OnInit {
       .columns((builder) => {
         /* prettier-ignore */
         return [
-          builder.initOrdinary().stickyLeft().build(),
+          builder
+            .initOrdinary()
+            .stickyLeft()
+            .build(),
 
-          builder.init('firstName').label('Imię').width('15rem').build(),
+          builder
+            .init('firstName')
+            .label('Imię')
+            .width('15rem')
+            .build(),
 
-          builder.init('lastName').label('Nazwisko').width('15rem').build(),
+          builder
+            .init('lastName')
+            .label('Nazwisko')
+            .width('15rem')
+            .build(),
 
-          builder.initNumber('age').label('Wiek').width('8rem').build(),
+          builder
+            .initNumber('age')
+            .label('Wiek')
+            .width('8rem')
+            .build(),
 
-          builder.initCurrency('amount').label('Cena').width('10rem').build(),
+          builder
+            .initCurrency('amount')
+            .label('Cena')
+            .width('10rem')
+            .build(),
 
-          builder.initCustom('status').label('Status').width('10rem').build(),
+          builder
+            .initCustom('status')
+            .label('Status')
+            .width('10rem')
+            .build(),
 
           builder
             .initDate('createdAt')
@@ -168,7 +191,10 @@ export class PatientsListComponent implements OnInit {
             .width('10rem')
             .build(),
 
-          builder.initAction().stickyRight().build(),
+          builder
+            .initAction()
+            .stickyRight()
+            .build(),
         ];
       })
       .build();
