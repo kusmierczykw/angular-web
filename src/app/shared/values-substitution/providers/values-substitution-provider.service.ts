@@ -4,15 +4,12 @@ import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class TextValueProviderService {
+export class ValuesSubstitutionProviderService {
   private valuesSource$ = new BehaviorSubject(
     new Map<string, Observable<string>>(),
   );
 
-  public registerValue(
-    variable: string,
-    valueFactory: () => Observable<string>,
-  ): void {
+  public apply(variable: string, valueFactory: () => Observable<string>): void {
     const values = this.valuesSource$.getValue();
 
     values.set(variable, valueFactory());
@@ -20,7 +17,7 @@ export class TextValueProviderService {
     this.valuesSource$.next(values);
   }
 
-  public fetchValue(variable: string): Observable<string> {
+  public fetch(variable: string): Observable<string> {
     return this.valuesSource$.pipe(
       switchMap((values) => {
         const value = values.get(variable);
@@ -34,7 +31,7 @@ export class TextValueProviderService {
     );
   }
 
-  public unregisterValue(variable: string): void {
+  public resolve(variable: string): void {
     const values = this.valuesSource$.getValue();
 
     values.delete(variable);

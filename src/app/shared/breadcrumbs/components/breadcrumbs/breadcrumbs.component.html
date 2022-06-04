@@ -5,7 +5,7 @@
       [ngClass]="{ 'breadcrumb__item--last': isLast }">
       <a class="breadcrumb__link" [routerLink]="breadcrumb.routerLink">
         <span>
-          {{ breadcrumb.label | textVariablesSubstitution$ | async }}
+          {{ breadcrumb.label | valuesSubstitution$ | async }}
         </span>
       </a>
 

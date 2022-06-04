@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 import { IconModule } from '@shared/icons/icon.module';
-import { TextVariablesModule } from '@shared/text-variables/text-variables.module';
+import { ValuesSubstitutionModule } from '@shared/values-substitution/values-substitution.module';
 
 @NgModule({
   declarations: [BreadcrumbsComponent],
   exports: [BreadcrumbsComponent],
-  imports: [CommonModule, RouterModule, IconModule, TextVariablesModule],
+  imports: [CommonModule, RouterModule, IconModule, ValuesSubstitutionModule],
 })
 export class BreadcrumbsModule {}

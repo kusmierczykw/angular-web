@@ -1,4 +1,4 @@
-type Nullish = undefined | null;
+type Nil = undefined | null;
 
-export const isNil = (predictable: unknown): predictable is Nullish =>
+export const isNil = (predictable: unknown): predictable is Nil =>
   predictable === undefined || predictable === null;

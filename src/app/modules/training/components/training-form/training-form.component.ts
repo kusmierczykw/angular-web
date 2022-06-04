@@ -14,8 +14,8 @@ import { QuickFormBuilder } from '@shared/forms/components/quick-form-renderer/b
   styleUrls: ['./training-form.component.scss'],
 })
 export class TrainingFormComponent implements OnInit {
-  @Output() public readonly submitClick = new EventEmitter<Training>();
-  @Output() public readonly cancelClick = new EventEmitter<void>();
+  @Output() public readonly submitClickEvent = new EventEmitter<Training>();
+  @Output() public readonly cancelClickEvent = new EventEmitter<void>();
 
   public form!: QuickForm<TrainingFormControl, Training>;
 
@@ -84,14 +84,14 @@ export class TrainingFormComponent implements OnInit {
       .cancel((cancel) =>
         cancel
           .command({
-            execute: () => this.cancelClick.emit(),
+            execute: () => this.cancelClickEvent.emit(),
           })
           .build(),
       )
       .submit((submit) =>
         submit
           .command({
-            execute: (model: Training) => this.submitClick.emit(model),
+            execute: (model: Training) => this.submitClickEvent.emit(model),
           })
           .build(),
       )

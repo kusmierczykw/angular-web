@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { SignIn } from '../../../sign-in/models/sign.in';
+import { SignIn } from '../../models/sign.in';
 import { negate } from '@utils/rxjs/operators/negate';
 import { AbstractControlStatus } from '@shared/forms/operators/abstract-control-status';
 
@@ -16,14 +16,14 @@ interface SignInForm {
   styleUrls: ['./sign-in-form.component.scss'],
 })
 export class SignInFormComponent implements OnInit {
-  @Input()
-  public model?: SignIn;
+  @Input() public model?: SignIn;
 
-  @Output()
-  public submitClick = new EventEmitter<SignIn>();
+  @Output() public submitClickEvent = new EventEmitter<SignIn>();
 
   public form!: FormGroup<SignInForm>;
   public submit$!: Observable<boolean>;
+
+  public constructor(private readonly builder: FormBuilder) {}
 
   public ngOnInit() {
     this.configureForm();
@@ -35,13 +35,13 @@ export class SignInFormComponent implements OnInit {
       value: { username, password },
     } = this.form;
 
-    this.submitClick.next(new SignIn(username!, password!));
+    this.submitClickEvent.next(new SignIn(username!, password!));
   }
 
   private configureForm(): void {
-    this.form = new FormGroup<SignInForm>({
-      username: new FormControl(null),
-      password: new FormControl(null),
+    this.form = this.builder.group<SignInForm>({
+      username: this.builder.control(null),
+      password: this.builder.control(null),
     });
   }
 

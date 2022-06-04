@@ -18,7 +18,7 @@ export class SignInPageComponent {
     private readonly navigation: NavigationService,
   ) {}
 
-  public handleSubmitClick(model: SignIn): void {
+  public handleSubmitClickEvent(model: SignIn): void {
     this.signIn(model);
   }
 

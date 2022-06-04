@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouteBreadcrumbVariable } from '@core/routing/data/route-breadcrumb-variable';
-import { TextValueProviderService } from '@shared/text-variables/services/text-value-provider.service';
+import { ValuesSubstitutionProviderService } from '@shared/values-substitution/providers/values-substitution-provider.service';
 import { toObservable } from '@utils/rxjs/operators/to-observable';
 
 @Component({
@@ -10,30 +10,30 @@ import { toObservable } from '@utils/rxjs/operators/to-observable';
 })
 export class PatientDetailsPageComponent implements OnInit, OnDestroy {
   public constructor(
-    private readonly textValueProvider: TextValueProviderService,
+    private readonly valuesSubstitutionProvider: ValuesSubstitutionProviderService,
   ) {}
 
   public ngOnInit(): void {
-    this.registerBreadcrumbVariables();
+    this.applyBreadcrumbVariables();
   }
 
   public ngOnDestroy(): void {
-    this.unregisterBreadcrumbsVariables();
+    this.resolveBreadcrumbsVariables();
   }
 
-  private registerBreadcrumbVariables(): void {
-    this.textValueProvider.registerValue(
+  private applyBreadcrumbVariables(): void {
+    this.valuesSubstitutionProvider.apply(
       RouteBreadcrumbVariable.FIRST_NAME,
       () => toObservable('Wojciech'),
     );
-    this.textValueProvider.registerValue(
+    this.valuesSubstitutionProvider.apply(
       RouteBreadcrumbVariable.LAST_NAME,
       () => toObservable('Kuśmierczyk'),
     );
   }
 
-  private unregisterBreadcrumbsVariables(): void {
-    this.textValueProvider.unregisterValue(RouteBreadcrumbVariable.FIRST_NAME);
-    this.textValueProvider.unregisterValue(RouteBreadcrumbVariable.LAST_NAME);
+  private resolveBreadcrumbsVariables(): void {
+    this.valuesSubstitutionProvider.resolve(RouteBreadcrumbVariable.FIRST_NAME);
+    this.valuesSubstitutionProvider.resolve(RouteBreadcrumbVariable.LAST_NAME);
   }
 }
