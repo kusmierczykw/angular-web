@@ -15,25 +15,30 @@ const routes: Routes = [
       {
         path: RoutePathFragment.SIGN_IN,
         component: AuthComponent,
-        loadChildren: () =>
-          import('@pages/auth/sign-in-page/sign-in-page.module').then(
-            (m) => m.SignInPageModule,
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('@pages/auth/sign-in-page/sign-in-page.component').then(
+                (c) => c.SignInPageComponent,
+              ),
+          },
+        ],
       },
       {
         path: RoutePathFragment.SIGN_OUT,
-        loadChildren: () =>
-          import('@pages/auth/sign-out-page/sign-out-page.module').then(
-            (m) => m.SignOutPageModule,
+        loadComponent: () =>
+          import('@pages/auth/sign-out-page/sign-out-page.component').then(
+            (c) => c.SignOutPageComponent,
           ),
       },
     ],
   },
   {
     path: RoutePathFragment.GUIDEBOOK,
-    loadChildren: () =>
-      import('@pages/guidebook/guidebook-page/guidebook-page.module').then(
-        (m) => m.GuidebookPageModule,
+    loadComponent: () =>
+      import('@pages/guidebook/guidebook-page/guidebook-page.component').then(
+        (c) => c.GuidebookPageComponent,
       ),
   },
   {
@@ -48,10 +53,10 @@ const routes: Routes = [
             data: {
               [RouteData.BREADCRUMB]: 'Dashboard',
             },
-            loadChildren: () =>
+            loadComponent: () =>
               import(
-                '@pages/dashboard/dashboard-page/dashboard-page.module'
-              ).then((m) => m.DashboardPageModule),
+                '@pages/dashboard/dashboard-page/dashboard-page.component'
+              ).then((c) => c.DashboardPageComponent),
           },
         ],
       },
@@ -66,30 +71,30 @@ const routes: Routes = [
             data: {
               [RouteData.BREADCRUMB]: 'Dodaj',
             },
-            loadChildren: () =>
+            loadComponent: () =>
               import(
-                '@pages/patient/patient-add-page/patient-add-page.module'
-              ).then((m) => m.PatientAddPageModule),
+                '@pages/patient/patient-add-page/patient-add-page.component'
+              ).then((c) => c.PatientAddPageComponent),
           },
           {
             path: `:${RoutePathParam.ID}`,
             data: {
               [RouteData.BREADCRUMB]: `Użytkownik ${RouteBreadcrumbVariable.FIRST_NAME} ${RouteBreadcrumbVariable.LAST_NAME}`,
             },
-            loadChildren: () =>
+            loadComponent: () =>
               import(
-                '@pages/patient/patient-details-page/patient-details-page.module'
-              ).then((m) => m.PatientDetailsPageModule),
+                '@pages/patient/patient-details-page/patient-details-page.component'
+              ).then((c) => c.PatientDetailsPageComponent),
           },
           {
             path: '',
             data: {
               [RouteData.BREADCRUMB]: null,
             },
-            loadChildren: () =>
-              import('@pages/patient/patients-page/patients-page.module').then(
-                (m) => m.PatientsPageModule,
-              ),
+            loadComponent: () =>
+              import(
+                '@pages/patient/patients-page/patients-page.component'
+              ).then((c) => c.PatientsPageComponent),
           },
         ],
       },
@@ -103,10 +108,15 @@ const routes: Routes = [
   {
     path: RoutePathFragment.NOT_FOUND,
     component: BlankComponent,
-    loadChildren: () =>
-      import('@pages/error/not-found-page/not-found-page.module').then(
-        (m) => m.NotFoundPageModule,
-      ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('@pages/error/not-found-page/not-found-page.component').then(
+            (c) => c.NotFoundPageComponent,
+          ),
+      },
+    ],
   },
   {
     path: RoutePathFragment.WILDCARD,

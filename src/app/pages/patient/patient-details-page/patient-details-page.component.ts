@@ -7,6 +7,7 @@ import { toObservable } from '@utils/rxjs/operators/to-observable';
   selector: 'app-patient-details-page',
   templateUrl: './patient-details-page.component.html',
   styleUrls: ['./patient-details-page.component.scss'],
+  standalone: true,
 })
 export class PatientDetailsPageComponent implements OnInit, OnDestroy {
   public constructor(

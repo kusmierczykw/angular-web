@@ -7,6 +7,7 @@ import { RoutePath } from '@core/routing/paths/route-path';
   selector: 'app-sign-out-page',
   templateUrl: './sign-out-page.component.html',
   styleUrls: ['./sign-out-page.component.scss'],
+  standalone: true,
 })
 export class SignOutPageComponent implements OnInit {
   public constructor(
