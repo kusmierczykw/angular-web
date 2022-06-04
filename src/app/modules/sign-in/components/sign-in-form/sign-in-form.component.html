@@ -1,19 +1,19 @@
-<form [formGroup]="formModel.form">
+<form [formGroup]="form">
   <mat-form-field class="w-100">
     <input
       matInput
       autocomplete="username"
-      placeholder="Nazwa użytkownika"
-      [formControlName]="SignInFormControl.FC_USERNAME" />
+      formControlName="username"
+      placeholder="Nazwa użytkownika" />
   </mat-form-field>
 
   <mat-form-field class="w-100">
     <input
       matInput
       type="password"
+      formControlName="password"
       autocomplete="current-password"
-      placeholder="Hasło użytkownika"
-      [formControlName]="SignInFormControl.FC_PASSWORD" />
+      placeholder="Hasło użytkownika" />
   </mat-form-field>
 
   <div class="d-flex justify-content-end">

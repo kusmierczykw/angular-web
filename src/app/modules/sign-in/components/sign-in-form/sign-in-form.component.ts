@@ -1,10 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
-import { SignInFormControl } from './sign-in-form.control';
-import { SignInForm } from './sign-in-form';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SignIn } from '../../../sign-in/models/sign.in';
 import { negate } from '@utils/rxjs/operators/negate';
+import { AbstractControlStatus } from '@shared/forms/operators/abstract-control-status';
+
+interface SignInForm {
+  username: FormControl<string | null>;
+  password: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-sign-in-form',
@@ -18,12 +22,8 @@ export class SignInFormComponent implements OnInit {
   @Output()
   public submitClick = new EventEmitter<SignIn>();
 
-  public readonly SignInFormControl = SignInFormControl;
-
-  public formModel!: SignInForm;
+  public form!: FormGroup<SignInForm>;
   public submit$!: Observable<boolean>;
-
-  public constructor(private readonly formBuilder: UntypedFormBuilder) {}
 
   public ngOnInit() {
     this.configureForm();
@@ -31,14 +31,28 @@ export class SignInFormComponent implements OnInit {
   }
 
   public handleSubmitClick(): void {
-    this.submitClick.next(this.formModel.toModel());
+    const {
+      value: { username, password },
+    } = this.form;
+
+    this.submitClick.next(new SignIn(username!, password!));
   }
 
   private configureForm(): void {
-    this.formModel = new SignInForm(this.formBuilder, this.model);
+    this.form = new FormGroup<SignInForm>({
+      username: new FormControl(null),
+      password: new FormControl(null),
+    });
   }
 
   private configureSubmitPossibility(): void {
-    this.submit$ = this.formModel.isValid$.pipe(negate());
+    this.submit$ = this.isValid$().pipe(negate());
+  }
+
+  private isValid$(): Observable<boolean> {
+    return this.form.statusChanges.pipe(
+      AbstractControlStatus.onlyValidOrInvalid(),
+      AbstractControlStatus.isValid(),
+    );
   }
 }

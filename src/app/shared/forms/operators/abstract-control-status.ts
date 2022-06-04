@@ -18,6 +18,12 @@ export namespace AbstractControlStatus {
     return map((status: FormControlStatus) => status === 'DISABLED');
   }
 
+  export function onlyValidOrInvalid(): MonoTypeOperatorFunction<FormControlStatus> {
+    return filter((status: FormControlStatus) =>
+      ['VALID', 'INVALID'].includes(status),
+    );
+  }
+
   export function onlyValid(): MonoTypeOperatorFunction<FormControlStatus> {
     return filter((status: FormControlStatus) => status === 'VALID');
   }
