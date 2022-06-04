@@ -13,7 +13,6 @@ export class TableColumn<Key> {
     public readonly width: string,
     public readonly sticky: TableColumnSticky,
     public readonly config: TableColumnConfig,
-    public readonly visibility: boolean,
     public readonly visible: boolean,
   ) {}
 

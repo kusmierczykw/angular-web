@@ -5,6 +5,7 @@ export enum TableColumnType {
   CUSTOM,
   DATE,
   DATE_TIME,
+  FILLER,
   NUMBER,
   ORDINARY,
   TEXT,

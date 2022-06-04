@@ -13,5 +13,5 @@ export class PatientsListCellContentRendererComponent {
   @Input() public column!: TableColumn<PatientKey>;
   @Input() public key!: PatientKey;
 
-  public readonly STATUS_COLUMN_KEY: PatientKey = 'status';
+  public readonly STATUS: PatientKey = 'status';
 }

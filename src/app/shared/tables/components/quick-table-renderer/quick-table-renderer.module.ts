@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { QuickTableRendererComponent } from './quick-table-renderer.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
-import { ColumnsSelectListComponent } from '@shared/tables/components/quick-table-renderer/fragments/columns-select-list/columns-select-list.component';
 import { OnlyVisibleColumnsPipe } from '@shared/tables/components/quick-table-renderer/pipes/only-visible-columns.pipe';
 import { ColumnKeysPipe } from '@shared/tables/components/quick-table-renderer/pipes/column-keys.pipe';
 import { ColumnWidthPipe } from '@shared/tables/components/quick-table-renderer/pipes/column-width.pipe';
-import { OnlyVisibilityColumnsPipe } from '@shared/tables/components/quick-table-renderer/pipes/only-visibility-columns.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { IconModule } from '@shared/icons/icon.module';
 import { SimpleOverlayModule } from '@shared/overlays/components/simple-overlay/simple-overlay.module';
@@ -27,14 +25,12 @@ import { TableActionRouterLinkPipe } from '@shared/tables/components/quick-table
 @NgModule({
   declarations: [
     CellContentComponent,
-    ColumnsSelectListComponent,
     ColumnKeysPipe,
     ColumnWidthPipe,
     HeaderActionCellContentComponent,
     HeaderCellContentComponent,
     OnlyVisibleActionsPipe,
     OnlyVisibleColumnsPipe,
-    OnlyVisibilityColumnsPipe,
     TableActionComponent,
     TableActionsComponent,
     TableActionRouterLinkPipe,

@@ -33,21 +33,28 @@
 
     <ng-container matColumnDef="filler">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let model"></td>
+      <td mat-cell *matCellDef></td>
     </ng-container>
 
+    <!-- prettier-ignore -->
     <tr
       mat-header-row
       *matHeaderRowDef="
-        columns$ | async | onlyVisibleColumns | columnKeys;
-        sticky: true
-      "></tr>
+        columns$
+        | async
+        | onlyVisibleColumns
+        | columnKeys">
+    </tr>
 
+    <!-- prettier-ignore -->
     <tr
       mat-row
       *matRowDef="
         let model;
-        columns: columns$ | async | onlyVisibleColumns | columnKeys
-      "></tr>
+        columns: columns$
+        | async
+        | onlyVisibleColumns
+        | columnKeys">
+    </tr>
   </table>
 </div>

@@ -13,6 +13,7 @@ export class TableColumnTypeCssClassProviderService {
     [TableColumnType.CUSTOM]: 'custom-column-type',
     [TableColumnType.DATE]: 'date-column-type',
     [TableColumnType.DATE_TIME]: 'date-column-type-time',
+    [TableColumnType.FILLER]: 'date-column-type-filler',
     [TableColumnType.NUMBER]: 'number-column-type',
     [TableColumnType.ORDINARY]: 'ordinary-column-type',
     [TableColumnType.TEXT]: 'text-column-type',
